@@ -1,8 +1,8 @@
-edu/eci/cosw/spademo/DemoApplication$SecurityConfiguration.class
-edu/eci/cosw/spademo/DemoApplication.class
-edu/eci/cosw/spademo/stub/IStub.class
-edu/eci/cosw/spademo/controller/Controller.class
-edu/eci/cosw/spademo/stub/Stub.class
-edu/eci/cosw/spademo/DemoApplication$SecurityConfiguration$1.class
-edu/eci/cosw/spademo/tarea/Tarea.class
-edu/eci/cosw/spademo/controller/UsersController.class
+edu\eci\cosw\spademo\DemoApplication.class
+edu\eci\cosw\spademo\stub\Stub.class
+edu\eci\cosw\spademo\stub\IStub.class
+edu\eci\cosw\spademo\DemoApplication$SecurityConfiguration.class
+edu\eci\cosw\spademo\controller\UsersController.class
+edu\eci\cosw\spademo\tarea\Tarea.class
+edu\eci\cosw\spademo\DemoApplication$SecurityConfiguration$1.class
+edu\eci\cosw\spademo\controller\Controller.class
