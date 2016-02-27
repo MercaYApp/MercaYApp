@@ -7,7 +7,6 @@ package edu.eci.cosw.spademo.client;
 
 import edu.eci.cosw.spademo.stub.IStub;
 import edu.eci.cosw.spademo.tarea.TaskController;
-import edu.eci.cosw.spademo.client.Client;
 import java.util.Set;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +35,6 @@ public class ClientController {
     @RequestMapping(method = RequestMethod.POST)
     public void postClient(@RequestBody Client client){
         stub.postClient(client);
-        LOG.info("Add zone; "+client.getId());
     }
     
     @RequestMapping(value="/{id}", method = RequestMethod.GET)

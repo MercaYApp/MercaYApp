@@ -5,6 +5,7 @@
  */
 package edu.eci.cosw.spademo.zone;
 
+import edu.eci.cosw.spademo.invoice.Invoice;
 import edu.eci.cosw.spademo.product.Product;
 import java.util.HashSet;
 
@@ -23,8 +24,7 @@ public class Zone {
         this.id = id;
         this.products = products;
     }
-
-    
+   
     /**
      * @return the id
      */

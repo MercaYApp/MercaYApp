@@ -14,7 +14,7 @@ import java.util.HashSet;
  * @author Felipe Brasil
  */
 public class Supermarket {
-    private Integer id;
+    private int id;
     private HashSet<Store> stores;
     private HashSet<Client> clients;
 
@@ -31,7 +31,7 @@ public class Supermarket {
     /**
      * @return the id
      */
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 

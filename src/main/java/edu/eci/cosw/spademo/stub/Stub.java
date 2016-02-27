@@ -47,52 +47,52 @@ public class Stub implements IStub{
  
     @Override
     public Set<Supermarket> getSupermarkets() {
-        Supermarket s=new Supermarket(1, null, null);
+        /*Supermarket s=new Supermarket(1, null, null);
         listSupermarkets.add(s);
-        
+        */
         return listSupermarkets;
     }
 
     @Override
     public Set<Store> getStores() {
-        Store s=new Store(2, null);
+        /*Store s=new Store(2, null);
         listStores.add(s);
-        
+        */
         return listStores;
     }
 
     @Override
     public Set<Zone> getZones() {
-        Zone z=new Zone(3, null);
+        /*Zone z=new Zone(3, null);
         listZones.add(z);
-        
+        */
         return listZones;
     }
 
     @Override
     public Set<Product> getProducts() {
-        Product p=new Product(4, "nada", 1, 2, 3);
+        /*Product p=new Product(4, "nada", 1, 2, 3);
         listProducts.add(p);
-        
+        */
         return listProducts;
     }
 
     @Override
     public Set<Invoice> getInvoices() {
-        Invoice i=new Invoice(5, 112294, 60000);
+        /*Invoice i=new Invoice(5, 112294, 60000);
         listInvoices.add(i);
-        
+        */
         return listInvoices;
     }
     
     @Override
     public Set<Client> getClients() {
-        Invoice i=new Invoice(10, 11122, 23000);
+        /*Invoice i=new Invoice(10, 11122, 23000);
         HashSet<Invoice> set=new HashSet<>();
         set.add(i);
         Client c=new Client(6, "Felipe", "Felipe@yo.com", "123", set);
         listClients.add(c);
-        
+        */
         return listClients;
     }
 

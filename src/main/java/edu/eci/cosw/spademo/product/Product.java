@@ -16,6 +16,14 @@ public class Product {
     private int percetage;
     private int weight;
 
+    /**
+     * 
+     * @param id
+     * @param name
+     * @param buyPrice pesos Colombianos
+     * @param percetage values in 0-100
+     * @param weight in grams
+     */
     public Product(int id, String name, int buyPrice, int percetage, int weight) {
         this.id = id;
         this.name = name;

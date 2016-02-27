@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="edu.eci.cosw.spademo.DemoApplicationTests" time="0.004" tests="1" errors="0" skipped="0" failures="0">
+<testsuite name="edu.eci.cosw.spademo.DemoApplicationTests" time="0.016" tests="6" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_65\jre\bin"/>
@@ -60,5 +60,10 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="contextLoads" classname="edu.eci.cosw.spademo.DemoApplicationTests" time="0.004"/>
+  <testcase name="invoice1Test" classname="edu.eci.cosw.spademo.DemoApplicationTests" time="0.005"/>
+  <testcase name="supermarket1Test" classname="edu.eci.cosw.spademo.DemoApplicationTests" time="0.007"/>
+  <testcase name="client1Test" classname="edu.eci.cosw.spademo.DemoApplicationTests" time="0.001"/>
+  <testcase name="zone1Test" classname="edu.eci.cosw.spademo.DemoApplicationTests" time="0.001"/>
+  <testcase name="store1Test" classname="edu.eci.cosw.spademo.DemoApplicationTests" time="0"/>
+  <testcase name="product1Test" classname="edu.eci.cosw.spademo.DemoApplicationTests" time="0.002"/>
 </testsuite>
