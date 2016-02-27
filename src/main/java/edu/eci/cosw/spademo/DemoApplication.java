@@ -39,6 +39,7 @@ protected static class SecurityConfiguration extends WebSecurityConfigurerAdapte
     @Override
     protected void configure(AuthenticationManagerBuilder builder) throws Exception {
         builder.inMemoryAuthentication().withUser("user").password("password").roles("USER");
+        
     }
 
     @Override

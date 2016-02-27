@@ -4,6 +4,7 @@
 angular.module('myApp', [
     'ngRoute',
     'myApp.viewLogin',
+    'myApp.viewSignUp',
     'myApp.view1',
     'myApp.view2',
     'myApp.view3',

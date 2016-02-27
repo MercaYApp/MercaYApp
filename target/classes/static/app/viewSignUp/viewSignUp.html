@@ -1,0 +1,34 @@
+<form role="form" ng-submit="signUp()">
+    <div ng-show="!authenticated">
+        <div class="form-group">
+            <label for="identificacion">Identificacion:</label> <input type="number"
+                                                           class="form-control" id="identificacion" name="username" ng-model="credentials.identificacion"/>
+        </div>
+        <div class="form-group">
+            <label for="nombre">Nombre:</label> <input type="nombre"
+                                                       class="form-control" id="nombre" name="nombre" ng-model="credentials.nombre"/>
+        </div>
+        <button type="submit" class="btn btn-primary">Consult</button>
+    </div>
+    
+    <div ng-show="authenticated" ng-controller="View2Ctrl">
+        <div class="form-group">
+            <label for="identificacion">Identificacion:</label> <input type="number"
+                                                       class="form-control" id="identificacion" name="username" ng-model="credentials.identificacion"/>
+        </div>
+        <div class="form-group">
+            <label for="nombre">Nombre:</label> <input type="text"
+                                                     class="form-control" id="nombre" name="nombre" ng-model="credentials.nombre"/>
+        </div>
+        <div class="form-group">
+            <label for="correo">Correo</label> <input type="text"
+                                                           class="form-control" id="correo" name="correo" ng-model="credentials.correo"/>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label> <input type="text"
+                                                           class="form-control" id="password" name="password" ng-model="credentials.password"/>
+        </div>
+        <button type="submit" class="btn btn-primary">SignUp</button>
+    </div>
+    
+</form>
