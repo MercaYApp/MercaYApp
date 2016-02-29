@@ -34,6 +34,30 @@ public class Stub implements IStub{
     Set<Invoice> listInvoices=new HashSet<>();
     Set<Client> listClients=new HashSet<>();
     
+    public  Stub(){
+        Supermarket s=new Supermarket(11, null, null, null);
+        listSupermarkets.add(s);
+        
+        Store st=new Store(12, null);
+        listStores.add(st);
+        
+        Zone z=new Zone(13, null);
+        listZones.add(z);
+        
+        Product p=new Product(14, "nada", 1, 2, 3);
+        listProducts.add(p);
+        
+        Invoice i=new Invoice(15, 112294, 60000);
+        listInvoices.add(i);
+        
+        Invoice in=new Invoice(110, 11122, 23000);
+        HashSet<Invoice> set=new HashSet<>();
+        set.add(in);
+        Client c=new Client(16, "Felipe", "Felipe@yo.com", "123", set);
+        listClients.add(c);
+        
+    }
+    
     public List<Tarea> getTarea() {
         Tarea t= new Tarea("Estudiar", 2);
         
@@ -98,6 +122,7 @@ public class Stub implements IStub{
 
     @Override
     public Client getClientById(int id) {
+        System.out.println("Id cliente recibido en stub: "+id);
         boolean flag=false;
         Client c=null;
         for (Iterator<Client> i = listClients.iterator(); i.hasNext();) {

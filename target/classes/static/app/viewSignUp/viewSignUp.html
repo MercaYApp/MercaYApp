@@ -1,34 +1,30 @@
-<form role="form" ng-submit="signUp()">
-    <div ng-show="!authenticated">
+<form ng-controller="signUpController" role="form" ng-submit="signUp()">
+    <div ng-show="!check">
         <div class="form-group">
-            <label for="identificacion">Identificacion:</label> <input type="number"
-                                                           class="form-control" id="identificacion" name="username" ng-model="credentials.identificacion"/>
+            <label for="id">Identificacion:</label> <input type="text"
+                        class="form-control" id="id" name="id" ng-model="id1"/>
         </div>
-        <div class="form-group">
-            <label for="nombre">Nombre:</label> <input type="nombre"
-                                                       class="form-control" id="nombre" name="nombre" ng-model="credentials.nombre"/>
-        </div>
-        <button type="submit" class="btn btn-primary">Consult</button>
+        <button type="submit" class="btn btn-primary" ng-click="consult()">Consult</button>
     </div>
     
-    <div ng-show="authenticated" ng-controller="View2Ctrl">
+    <div ng-show="check" >
         <div class="form-group">
-            <label for="identificacion">Identificacion:</label> <input type="number"
-                                                       class="form-control" id="identificacion" name="username" ng-model="credentials.identificacion"/>
+            <label for="idR">Identificacion:</label> <input type="number"
+                        class="form-control" id="idR" name="id" ng-model="id"/>
         </div>
         <div class="form-group">
             <label for="nombre">Nombre:</label> <input type="text"
-                                                     class="form-control" id="nombre" name="nombre" ng-model="credentials.nombre"/>
+                        class="form-control" id="nombre" name="nombre" ng-model="credentials.nombre"/>
         </div>
         <div class="form-group">
             <label for="correo">Correo</label> <input type="text"
-                                                           class="form-control" id="correo" name="correo" ng-model="credentials.correo"/>
+                        ng-app=""class="form-control" id="correo" name="correo" ng-model="credentials.correo"/>
         </div>
         <div class="form-group">
             <label for="password">Password:</label> <input type="text"
-                                                           class="form-control" id="password" name="password" ng-model="credentials.password"/>
+                        class="form-control" id="password" name="password" ng-model="credentials.password"/>
         </div>
-        <button type="submit" class="btn btn-primary">SignUp</button>
+        <button ng-click="postClient" type="submit" class="btn btn-primary">SignUp</button>
     </div>
     
 </form>

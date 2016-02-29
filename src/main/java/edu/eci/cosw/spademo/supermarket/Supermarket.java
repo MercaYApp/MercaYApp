@@ -17,11 +17,14 @@ public class Supermarket {
     private int id;
     private HashSet<Store> stores;
     private HashSet<Client> clients;
+    private HashSet<Client> clientsApp;
+    
 
-    public Supermarket(Integer id, HashSet<Store> stores,HashSet<Client> clients) {
+    public Supermarket(Integer id, HashSet<Store> stores,HashSet<Client> clients, HashSet<Client> clientsApp) {
         this.id = id;
         this.stores = stores;
-        this.clients = clients;   
+        this.clients = clients;
+        this.clientsApp = clientsApp;
     }
 
     
@@ -68,5 +71,19 @@ public class Supermarket {
      */
     public void setClients(HashSet<Client> clients) {
         this.clients = clients;
+    }
+
+    /**
+     * @return the clientsApp
+     */
+    public HashSet<Client> getClientsApp() {
+        return clientsApp;
+    }
+
+    /**
+     * @param clientsApp the clientsApp to set
+     */
+    public void setClientsApp(HashSet<Client> clientsApp) {
+        this.clientsApp = clientsApp;
     }
 }

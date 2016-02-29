@@ -5,45 +5,32 @@ angular.module('myApp.viewSignUp', ['ngRoute'])
         .config(['$routeProvider', function ($routeProvider) {
                 $routeProvider.when('/viewSignUp', {
                     templateUrl: 'viewSignUp/viewSignUp.html',
-                    controller: 'ViewSignUpCtrl'
+                    controller: 'signUpController'
                 });
-        }])
+            }])
 
-        .controller('ViewSignUpCtrl', ['$rootScope', '$scope', '$http', '$location', function ($rootScope, $scope, $http, $location) {
-                var authenticate = function (credentials, callback) {
-
-                    var headers = credentials ? {authorization: "Basic "
-                                + btoa(credentials.username + ":" + credentials.password)
-                    } : {};
-                    $http.get('user', {headers: headers}).success(function (data) {
-                        /*if (data.name) {
-                            $rootScope.authenticated = true;                            
-                        } else {
-                            $rootScope.authenticated = false;
+        .controller('signUpController', ['$scope', 'GetClient', function ($scope, GetClient) {
+                $scope.id1=16;
+                $scope.check=false;
+                //$scope.client={"id":16,"name":"Felipe","email":"Felipe@yo.com","password":"123","invoices":[{"id":110,"date":11122,"total":23000}]};
+                $scope.consult=function(){
+                    $scope.client = GetClient.get({id: $scope.id1});
+                    console.log("Objeto JSON angular controller: "+$scope.client.id);
+                    //if((""+$scope.client.id)===$scope.id1.toString()){
+                    if((""+GetClient.get({id:$scope.id1}).id)===$scope.id1.toString()){
+                        $scope.check=true;
+                        alert("SE REGISTRO EL CLIENTE");
+                    }else{
+                        alert("No se puede registrar usuario con ID: "+$scope.id1);
+                    }
+                };
+                
+                $scope.postClient=function(){
+                    var postData={"id": $scope.id1};
+                        Post.save(postData, function(){
+                            console.info("Saved: "+postData.nombre);
                         }
-                        callback && callback();*/
-                    }).error(function () {
-                    //    $rootScope.authenticated = false;
-                    //    callback && callback();
-                    });
-                    
-
-                };
-
-                authenticate();
-                $scope.credentials = {};
-                $scope.SignUp = function () {                    
-                    authenticate($scope.credentials, function () {
-                        alert("internooooto autenticar: "+ $scope.credentials.password);
-                        /*if ($rootScope.authenticated) {
-                            $location.path("/");
-                            $scope.error = false;
-                        } else {
-                            $location.path("/signUp");
-                            $scope.error = true;
-                        }*/
-                    });
-                };
-
-
+                    );
+                }
             }]);
+        

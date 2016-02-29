@@ -99,7 +99,10 @@ public class DemoApplicationTests {
             Client c=new Client(6, "Felipe", "Felipe@yo.com", "123", null);
             setC.add(c);
             
-            Supermarket s=new Supermarket(1, setS, setC);
+            HashSet<Client> setCA=new HashSet<>();           
+            setCA.add(c);
+            
+            Supermarket s=new Supermarket(1, setS, setC, setCA);
             stub.postSupermarket(s);
             assertTrue(stub.getSupermarkets().contains(s));
             
