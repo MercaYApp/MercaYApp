@@ -8,8 +8,6 @@ import edu.eci.cosw.spademo.stub.IStub;
 import edu.eci.cosw.spademo.supermarket.Supermarket;
 import edu.eci.cosw.spademo.zone.Zone;
 import java.util.HashSet;
-import java.util.Set;
-import java.util.logging.Logger;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;

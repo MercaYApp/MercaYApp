@@ -43,6 +43,7 @@ public interface  IStub {
     
     
     public void postSupermarket(Supermarket s);
+    
     public void postStore(Store s);
     public void postZone(Zone z);
     public void postProduct(Product p);

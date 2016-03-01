@@ -21,7 +21,7 @@ angular.module('myApp', [
                     $http.post('/logout', {}).success(function () {
                         $rootScope.authenticated = false;
                         $location.path("/");
-                    }).error(function (data) {
+                    }).error(function () {
                         $rootScope.authenticated = false;
                     });
                 };
