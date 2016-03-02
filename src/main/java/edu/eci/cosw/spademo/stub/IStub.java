@@ -29,6 +29,7 @@ public interface  IStub {
     public Set<Product> getProducts();
     public Set<Invoice> getInvoices();
     public Set<Client> getClients();
+    public Set<Client> getClientsApp();
     
     
     public Supermarket getSupermarketById(int id);
@@ -43,10 +44,11 @@ public interface  IStub {
     
     
     public void postSupermarket(Supermarket s);
-    
     public void postStore(Store s);
     public void postZone(Zone z);
     public void postProduct(Product p);
     public void postInvoice(Invoice i);
     public void postClient(Client c);
+    public void postClientApp(Client c);
+    
 }

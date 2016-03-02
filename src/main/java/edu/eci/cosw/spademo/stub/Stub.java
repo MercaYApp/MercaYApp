@@ -33,13 +33,15 @@ public class Stub implements IStub{
     Set<Product> listProducts=new HashSet<>();
     Set<Invoice> listInvoices=new HashSet<>();
     Set<Client> listClients=new HashSet<>();
+    Set<Client> listClientsApp=new HashSet<>();
     
     public  Stub(){
-        Supermarket s=new Supermarket(11, null, null, null);
-        listSupermarkets.add(s);
+        HashSet<Client> setClient=new HashSet<>();
+        Client c1=new Client(69, "Oscar", "Oscar@yo.com", "123", null);
+        setClient.add(c1);
         
-        Store st=new Store(12, null);
-        listStores.add(st);
+        Supermarket s=new Supermarket(11, null, setClient, setClient);
+        listSupermarkets.add(s);
         
         Zone z=new Zone(13, null);
         listZones.add(z);
@@ -56,6 +58,7 @@ public class Stub implements IStub{
         Client c=new Client(16, "Felipe", "Felipe@yo.com", "123", set);
         listClients.add(c);
         
+        listClientsApp.add(c);
     }
     
     public List<Tarea> getTarea() {
@@ -120,6 +123,17 @@ public class Stub implements IStub{
         return listClients;
     }
 
+    @Override
+    public Set<Client> getClientsApp() {
+        /*Invoice i=new Invoice(100, 11122, 23000);
+        HashSet<Invoice> set=new HashSet<>();
+        set.add(i);
+        Client c=new Client(60, "Felipe", "Felipe@yo.com", "123", set);
+        listClients.add(c);
+        */
+        return listClientsApp;
+    }
+    
     @Override
     public Client getClientById(int id) {
         System.out.println("Id cliente recibido en stub: "+id);
@@ -216,7 +230,6 @@ public class Stub implements IStub{
         }
         return in;
     }
-
     
     @Override
     public Set<Invoice> getInvoiceByClient(int c) {
@@ -245,7 +258,6 @@ public class Stub implements IStub{
         listProducts.add(p);
     }
 
-
     @Override
     public void postInvoice(Invoice i) {
         listInvoices.add(i);
@@ -254,5 +266,14 @@ public class Stub implements IStub{
     @Override
     public void postClient(Client c) {
         listClients.add(c);
+    }
+
+    @Override
+    public void postClientApp(Client c) {
+        if(listClients.contains(c)){
+            listClientsApp.add(c);
+        }else{
+            System.out.println("No se puede agregar cliente.");
+        }
     }
 }

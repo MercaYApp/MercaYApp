@@ -34,7 +34,9 @@ public class ClientController {
     
     @RequestMapping(method = RequestMethod.POST)
     public void postClient(@RequestBody Client client){
-        stub.postClient(client);
+        if(!stub.getClients().contains(client)){
+            stub.postClient(client);
+        }
     }
     
     @RequestMapping(value="/{id}", method = RequestMethod.GET)

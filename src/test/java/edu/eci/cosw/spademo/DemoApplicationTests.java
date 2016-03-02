@@ -29,7 +29,15 @@ public class DemoApplicationTests {
             HashSet<Invoice> set=new HashSet<>();
             set.add(i);
             Client c=new Client(6, "Felipe", "Felipe@yo.com", "123", set);
+            Client c1=new Client(61, "Oscar", "Oscar@yo.com", "123", set);
             stub.postClient(c);
+            
+            int cantidad = stub.getClientsApp().size();
+            stub.postClientApp(c);
+            assertEquals(cantidad+1, stub.getClientsApp().size());
+            
+            stub.postClientApp(c1);
+            assertEquals(cantidad+1, stub.getClientsApp().size());
             
             assertEquals(6, stub.getClientById(6).getId());
             assertEquals("Felipe", stub.getClientById(6).getName());

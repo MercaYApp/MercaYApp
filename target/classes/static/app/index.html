@@ -13,16 +13,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="app.css">
         <link rel="stylesheet" href="/bower_components/bootstrap-css-only/css/bootstrap.css">
-        
+
     </head>
+
     <body>
-        <ul class="menu" ng-controller="ViewPrincipal">
-            <li><a href="#/viewLogin">Login</a></li>
-            <li><a href="#/viewSignUp">SignUp</a></li>
-            <li><a href="#/view1">Main</a></li>
-            <li><a href="#/view3">Agregar</a></li>
+        <!--<ul class="menu" ng-controller="ViewPrincipal">-->
+        <header id="header">
+            <h1><a href="#" id="logo">|  MercaYApp  | </a><a href="#/viewSignUp">| SignUp |</a> <a href="#/view3">| Agregar |</a></h1>
+
+        </header>
+        <!--<ul class="menu" >
+            <!--<li><a href="#/viewLogin">Login</a></li>
+            <li><a href="#/view1"> Main </a> <a href="#/viewSignUp"> SignUp </a> <a href="#/view3"> Agregar </a> </li>
             <!--<li><a href="#/view2">Listar</a></li>-->
-            <li><a ng-click="logout()">Logout</a></li>
+            <!--<li><a ng-click="logout()">Logout</a></li>
         </ul>
 
         <!--[if lt IE 7]>
@@ -31,7 +35,7 @@
 
         <div ng-view></div>
 
-        <div>Angular seed app: v<span app-version></span></div>
+      
 
         <!-- In production use:
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
@@ -40,7 +44,7 @@
         <script src="/bower_components/angular-resource/angular-resource.js"></script>
         <script src="/bower_components/angular-route/angular-route.js"></script>
         <script src="app.js"></script>
-        <script src="viewLogin/viewLogin.js"></script>
+        <!--<script src="viewLogin/viewLogin.js"></script>-->
         <script src="viewSignUp/viewSignUp.js"></script>
         <script src="view1/view1.js"></script>
         <!--<script src="view2/view2.js"></script>-->

@@ -9,12 +9,11 @@ angular.module('myApp.viewSignUp', ['ngRoute'])
                 });
             }])
 
-        .controller('signUpController', ['$scope', 'GetClient', function ($scope, GetClient) {
+        .controller('signUpController', ['$scope', 'GetClient', 'PostClient', function ($scope, GetClient, PostClient) { 
                 $scope.id1 = 16;
                 $scope.nombre = "";
                 $scope.correo = "";
                 $scope.password = "";
-                
                 $scope.check = false;
                 $scope.client = {};
                 $scope.consult = function () {
@@ -23,6 +22,10 @@ angular.module('myApp.viewSignUp', ['ngRoute'])
                         $scope.client = data;
                         if (("" + $scope.client.id) === $scope.id1.toString()) {
                             $scope.check = true;
+                            $scope.id1 = parseInt(response.id);
+                            $scope.nombre = response.name;
+                            $scope.correo = response.email;
+                            $scope.password = response.password;
                             alert("SE REGISTRO EL CLIENTE");
                         } else {
                             alert("No se puede registrar usuario con ID: " + $scope.id1);
@@ -31,13 +34,13 @@ angular.module('myApp.viewSignUp', ['ngRoute'])
                 };
 
                 $scope.postClient = function () {
-                    
                     var postData = {};
-                    Post.save(postData, function () {
-                        postData={id:id1, name:nombre, email:correo, password:password, invoices:[]};
-                        console.info("Saved: " + postData.id);
-                    }
-                    );
+                    
+                    postData={id:$scope.id1, name:$scope.nombre, email:$scope.correo, password:$scope.password, invoices:[]};
+                        PostClient.save(postData, function(){
+                            alert("User saved");
+                            }
+                        );
                 };
             }]);
         

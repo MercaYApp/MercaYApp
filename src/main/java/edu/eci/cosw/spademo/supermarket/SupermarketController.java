@@ -5,6 +5,7 @@
  */
 package edu.eci.cosw.spademo.supermarket;
 
+import edu.eci.cosw.spademo.client.Client;
 import edu.eci.cosw.spademo.stub.IStub;
 import edu.eci.cosw.spademo.tarea.TaskController;
 import java.util.Set;
@@ -41,10 +42,17 @@ public class SupermarketController {
     @RequestMapping(value="/{id}", method = RequestMethod.GET)
     public Supermarket getSupermarketById(@PathVariable int id){
         return stub.getSupermarketById(id);
-        
     }
     
+    @RequestMapping(value="/{id}/clients", method = RequestMethod.GET)
+    public Set<Client> getSupermarketClientsById(@PathVariable int id){
+        return stub.getSupermarketById(id).getClients();  
+    }
     
+    @RequestMapping(value="/{id}/clientsApp", method = RequestMethod.GET)
+    public Set<Client> getSupermarketClientsAppById(@PathVariable int id){
+        return stub.getSupermarketById(id).getClientsApp();  
+    }
     
     
     private static final Logger LOG = Logger.getLogger(TaskController.class.getName());
