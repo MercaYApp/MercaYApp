@@ -15,12 +15,18 @@ angular.module('service.modulo1', ['ngRoute', 'ngResource'])
 
         //---------------Get clients---------------
         .factory('GetClient', function ($resource) {
-
             var cliente = $resource('/clients/:id', {id: "@id"},
                     {get: {method: 'GET'}}
             );
-    
             return cliente;
+        })
+        
+        //---------------Get clients---------------
+        .factory('GetClients', function ($resource) {
+            var clientes = $resource('/supermarkets/:id/clientsApp', {id: "@id"},
+                    {get: {method: 'GET'}}
+            );
+            return clientes;
         })
 
         //---------------Post clients---------------
