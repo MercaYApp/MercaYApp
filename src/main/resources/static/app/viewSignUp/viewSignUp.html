@@ -1,0 +1,30 @@
+<form ng-controller="signUpController" role="form" ng-submit="signUp()">
+    <div ng-show="!check">
+        <div class="form-group">
+            <label for="id">Identificacion:</label> <input type="number"
+                        class="form-control" id="id" name="id" ng-model="id1"/>
+        </div>
+        <button type="submit" class="btn btn-primary" ng-click="consult()">Consult</button>
+    </div>
+    
+    <div ng-show="check" >
+        <div class="form-group">
+            <label for="idR">Identificacion:</label> <input type="number"
+                        class="form-control" id="idR" name="id" ng-model="id1" disabled/>
+        </div>
+        <div class="form-group">
+            <label for="nombre">Nombre:</label> <input type="text"
+                        class="form-control" id="nombre" name="nombre" ng-model="nombre" disabled/>
+        </div>
+        <div class="form-group">
+            <label for="correo">Correo</label> <input type="text"
+                        ng-app=""class="form-control" id="correo" name="correo" ng-model="correo"/>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label> <input type="text"
+                        class="form-control" id="password" name="password" ng-model="password"/>
+        </div>
+        <button type="submit" class="btn btn-primary" ng-click="postClient()">SignUp</button>
+    </div>
+    
+</form>
