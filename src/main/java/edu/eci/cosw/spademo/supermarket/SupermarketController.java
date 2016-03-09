@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
- * @author Felipe Gómez
+ * @author Felipe GÃ³mez
  */
 @RestController
 @RequestMapping("/supermarkets")

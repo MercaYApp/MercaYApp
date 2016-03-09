@@ -50,7 +50,7 @@ angular.module('myApp.viewSignUp', ['ngRoute'])
                                 }
                             );
                     }else{
-                        alert("Las contraseñas no coinciden. ");
+                        alert("Las contraseÃ±as no coinciden. ");
                     }
                 };
             }]);
