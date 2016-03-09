@@ -7,7 +7,7 @@ package edu.eci.cosw.spademo.client;
 
 import edu.eci.cosw.spademo.stub.IStub;
 import edu.eci.cosw.spademo.tarea.TaskController;
-import java.util.Set;
+import java.util.Map;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,13 +28,13 @@ public class ClientController {
     IStub stub;
     
     @RequestMapping(method = RequestMethod.GET)
-    public Set<Client> getClients(){
+    public Map<Integer, Client> getClients(){
         return stub.getClients();
     }
     
     @RequestMapping(method = RequestMethod.POST)
     public void postClient(@RequestBody Client client){
-        if(!stub.getClients().contains(client)){
+        if(!stub.getClients().containsKey(client.getId())){
             stub.postClient(client);
         }
     }

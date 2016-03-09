@@ -7,7 +7,7 @@ package edu.eci.cosw.spademo.zone;
 
 import edu.eci.cosw.spademo.invoice.Invoice;
 import edu.eci.cosw.spademo.product.Product;
-import java.util.HashSet;
+import java.util.HashMap;
 
 /**
  *
@@ -15,12 +15,12 @@ import java.util.HashSet;
  */
 public class Zone {
     private int id;
-    private HashSet<Product> products;
+    private HashMap<Integer, Product> products;
     
     public Zone(){
     }
 
-    public Zone(int id, HashSet<Product> products) {
+    public Zone(int id, HashMap<Integer, Product> products) {
         this.id = id;
         this.products = products;
     }
@@ -42,14 +42,14 @@ public class Zone {
     /**
      * @return the products
      */
-    public HashSet<Product> getProducts() {
+    public HashMap<Integer, Product> getProducts() {
         return products;
     }
 
     /**
      * @param products the products to set
      */
-    public void setProducts(HashSet<Product> products) {
+    public void setProducts(HashMap<Integer, Product> products) {
         this.products = products;
     }
     

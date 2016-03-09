@@ -13,10 +13,8 @@ import edu.eci.cosw.spademo.supermarket.Supermarket;
 import edu.eci.cosw.spademo.tarea.Tarea;
 import edu.eci.cosw.spademo.zone.Zone;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
+import java.util.HashMap;
 import org.springframework.stereotype.Service;
 
 /**
@@ -27,38 +25,49 @@ import org.springframework.stereotype.Service;
 public class Stub implements IStub{
     List<Tarea> listaTareas=new ArrayList<>();
     
-    Set<Supermarket> listSupermarkets= new HashSet<>();
-    Set<Store> listStores=new HashSet<>();
-    Set<Zone> listZones=new HashSet<>();
-    Set<Product> listProducts=new HashSet<>();
-    Set<Invoice> listInvoices=new HashSet<>();
-    Set<Client> listClients=new HashSet<>();
-    Set<Client> listClientsApp=new HashSet<>();
+    HashMap<Integer, Supermarket> listSupermarkets= new HashMap<>();
+    HashMap<Integer, Store> listStores=new HashMap<>();
+    HashMap<Integer, Zone> listZones=new HashMap<>();
+    HashMap<Integer, Product> listProducts=new HashMap<>();
+    HashMap<Integer, Invoice> listInvoices=new HashMap<>();
+    HashMap<Integer, Client> listClients=new HashMap<>();
+    HashMap<Integer, Client> listClientsApp=new HashMap<>();
     
     public  Stub(){
-        HashSet<Client> setClient=new HashSet<>();
-        Client c1=new Client(69, "Oscar", "Oscar@yo.com", "123", null);
-        setClient.add(c1);
+        Invoice in=new Invoice(110, 11122, 23000);
+        HashMap<Integer, Invoice> set=new HashMap<>();
+        set.put(in.getId(), in);
+        Client c=new Client(16, "Felipe", "Felipe@yo.com", "123", set, null);
+        listClients.put(c.getId(), c);
         
-        Supermarket s=new Supermarket(11, null, setClient, setClient);
-        listSupermarkets.add(s);
+        HashMap<Integer, Client> setClients=new HashMap<>();
+        Client c1=new Client(69, "Oscar", "Oscar@yo.com", "123", null, null);
+        setClients.put(c1.getId(), c1);
+        setClients.put(c.getId(), c);
+        HashMap<Integer, Client> setClientsApp=new HashMap<>();
+        //setClientsApp.put(c1.getId(), c1);
+        setClientsApp.put(c.getId(), c);
+        HashMap<Integer, Client> setClientsApp1=new HashMap<>();
+        Supermarket s=new Supermarket(11, null, setClients, setClientsApp);
+        listSupermarkets.put(s.getId(), s);
+        Supermarket s12=new Supermarket(12, null, setClients, setClientsApp);
+        listSupermarkets.put(s12.getId(), s12);
+        Supermarket s13=new Supermarket(13, null, setClients, setClientsApp1);
+        listSupermarkets.put(s13.getId(), s13);
+        Supermarket s14=new Supermarket(14, null, setClients, setClientsApp1);
+        listSupermarkets.put(s14.getId(), s14);
         
         Zone z=new Zone(13, null);
-        listZones.add(z);
+        listZones.put(z.getId(), z);
         
         Product p=new Product(14, "nada", 1, 2, 3);
-        listProducts.add(p);
+        listProducts.put(p.getId(), p);
         
         Invoice i=new Invoice(15, 112294, 60000);
-        listInvoices.add(i);
+        listInvoices.put(i.getId(), i);
         
-        Invoice in=new Invoice(110, 11122, 23000);
-        HashSet<Invoice> set=new HashSet<>();
-        set.add(in);
-        Client c=new Client(16, "Felipe", "Felipe@yo.com", "123", set);
-        listClients.add(c);
         
-        listClientsApp.add(c);
+        listClientsApp.put(c.getId(), c);
     }
     
     public List<Tarea> getTarea() {
@@ -73,207 +82,132 @@ public class Stub implements IStub{
     }
  
     @Override
-    public Set<Supermarket> getSupermarkets() {
-        /*Supermarket s=new Supermarket(1, null, null);
-        listSupermarkets.add(s);
-        */
+    public HashMap<Integer, Supermarket> getSupermarkets() {
         return listSupermarkets;
     }
 
     @Override
-    public Set<Store> getStores() {
-        /*Store s=new Store(2, null);
-        listStores.add(s);
-        */
+    public HashMap<Integer, Store> getStores() {
         return listStores;
     }
 
     @Override
-    public Set<Zone> getZones() {
-        /*Zone z=new Zone(3, null);
-        listZones.add(z);
-        */
+    public HashMap<Integer, Zone> getZones() {
         return listZones;
     }
 
     @Override
-    public Set<Product> getProducts() {
-        /*Product p=new Product(4, "nada", 1, 2, 3);
-        listProducts.add(p);
-        */
+    public HashMap<Integer, Product> getProducts() {
         return listProducts;
     }
 
     @Override
-    public Set<Invoice> getInvoices() {
-        /*Invoice i=new Invoice(5, 112294, 60000);
-        listInvoices.add(i);
-        */
+    public HashMap<Integer, Invoice> getInvoices() {
         return listInvoices;
     }
     
     @Override
-    public Set<Client> getClients() {
-        /*Invoice i=new Invoice(10, 11122, 23000);
-        HashSet<Invoice> set=new HashSet<>();
-        set.add(i);
-        Client c=new Client(6, "Felipe", "Felipe@yo.com", "123", set);
-        listClients.add(c);
-        */
+    public HashMap<Integer, Client> getClients() {
         return listClients;
     }
 
     @Override
-    public Set<Client> getClientsApp() {
-        /*Invoice i=new Invoice(100, 11122, 23000);
-        HashSet<Invoice> set=new HashSet<>();
-        set.add(i);
-        Client c=new Client(60, "Felipe", "Felipe@yo.com", "123", set);
-        listClients.add(c);
-        */
+    public HashMap<Integer, Client> getClientsApp() {
         return listClientsApp;
     }
     
     @Override
-    public Client getClientById(int id) {
-        System.out.println("Id cliente recibido en stub: "+id);
-        boolean flag=false;
-        Client c=null;
-        for (Iterator<Client> i = listClients.iterator(); i.hasNext();) {
-            if(flag==false){
-                Client f = i.next();
-                if (f.getId()==id){
-                    System.out.println("Client found: "+f);
-                    c=f;
-                }
-            }
+    public Client getClientById(Integer id) {
+        if(listClients.get(id)!=null){
+            return listClients.get(id);
+        }else{
+            return null;
         }
-        return c;
     }
     
     @Override
-    public Supermarket getSupermarketById(int id) {
-        boolean flag=false;
-        Supermarket supermarket=null;
-        for (Iterator<Supermarket> i = listSupermarkets.iterator(); i.hasNext();) {
-            if(flag==false){
-                Supermarket f = i.next();
-                if (f.getId()==id){
-                    System.out.println("Supermarket found: "+f);
-                    supermarket=f;
-                }
-            }
-        }
-        return supermarket;
-    }
-
-    @Override
-    public Store getStoreById(int id) {
-        boolean flag=false;
-        Store s=null;
-        for (Iterator<Store> i = listStores.iterator(); i.hasNext();) {
-            if(flag==false){
-                Store f = i.next();
-                if (f.getId()==id){
-                    System.out.println("Stores found: "+f);
-                    s=f;
-                }
-            }
-        }
-        return s;
-    }
-
-    @Override
-    public Zone getZoneById(int id) {
-        boolean flag=false;
-        Zone z=null;
-        for (Iterator<Zone> i = listZones.iterator(); i.hasNext();) {
-            if(flag==false){
-                Zone f = i.next();
-                if (f.getId()==id){
-                    System.out.println("Zones found: "+f);
-                    z=f;
-                }
-            }
-        }
-        return z;
-    }
-
-    @Override
-    public Product getProductById(int id) {
-        boolean flag=false;
-        Product p=null;
-        for (Iterator<Product> i = listProducts.iterator(); i.hasNext();) {
-            if(flag==false){
-                Product f = i.next();
-                if (f.getId()==id){
-                    System.out.println("Products found: "+f);
-                    p=f;
-                }
-            }
-        }
-        return p;
+    public Supermarket getSupermarketById(Integer id) {
+        return listSupermarkets.get(id);
     }
     
     @Override
-    public Invoice getInvoiceById(int id) {
-        boolean flag=false;
-        Invoice in=null;
-        for (Iterator<Invoice> i = listInvoices.iterator(); i.hasNext();) {
-            if(flag==false){
-                Invoice f = i.next();
-                if (f.getId()==id){
-                    System.out.println("Invoices found: "+f);
-                    in=f;
-                }
-            }
+    public Client getSupermarketByIdClientsById(Integer superm, Integer id) {
+        HashMap clients = getSupermarketById(superm).getClients();
+        if(clients.size()>0){
+            return getSupermarketById(superm).getClients().get(id);
+        }else{
+            return null;
         }
-        return in;
+    }
+
+    @Override
+    public Store getStoreById(Integer id) {
+        return listStores.get(id);
+    }
+
+    @Override
+    public Zone getZoneById(Integer id) {
+        return listZones.get(id);
+    }
+
+    @Override
+    public Product getProductById(Integer id) {
+        return listProducts.get(id);
     }
     
     @Override
-    public Set<Invoice> getInvoiceByClient(int c) {
+    public Invoice getInvoiceById(Integer id) {
+        return listInvoices.get(id);
+    }
+    
+    @Override
+    public HashMap<Integer, Invoice> getInvoiceByClient(Integer c) {
         Client client=getClientById(c);
-        System.out.println("Client stub: "+client.getId());
         return client.getInvoices();        
     }
     
     @Override
     public void postSupermarket(Supermarket s) {
-        listSupermarkets.add(s);
+        listSupermarkets.put(s.getId(), s);
     }
 
     @Override
     public void postStore(Store s) {
-        listStores.add(s);
+        listStores.put(s.getId(), s);
     }
 
     @Override
     public void postZone(Zone z) {
-        listZones.add(z);
+        listZones.put(z.getId(), z);
     }
 
     @Override
     public void postProduct(Product p) {
-        listProducts.add(p);
+        listProducts.put(p.getId(), p);
     }
 
     @Override
     public void postInvoice(Invoice i) {
-        listInvoices.add(i);
+        listInvoices.put(i.getId(), i);
     }
 
     @Override
     public void postClient(Client c) {
-        listClients.add(c);
+        listClients.put(c.getId(), c);
     }
 
     @Override
-    public void postClientApp(Client c) {
-        if(listClients.contains(c)){
-            listClientsApp.add(c);
+    public void postClientApp(int s, Client c) {
+        if (listSupermarkets.get(s).getClients().get(c.getId())!=null){
+            if(listSupermarkets.get(s).getClientsApp().get(c.getId())==null){
+                listSupermarkets.get(s).getClientsApp().put(c.getId(), c);
+            }else{
+                System.out.println("Usuario ya registrado.");
+            }
+            
         }else{
             System.out.println("No se puede agregar cliente.");
         }
     }
 }
+

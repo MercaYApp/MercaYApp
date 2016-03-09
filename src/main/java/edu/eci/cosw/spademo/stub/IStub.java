@@ -12,8 +12,9 @@ import edu.eci.cosw.spademo.product.Product;
 import edu.eci.cosw.spademo.supermarket.Supermarket;
 import edu.eci.cosw.spademo.tarea.Tarea;
 import edu.eci.cosw.spademo.zone.Zone;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 
 /**
  *
@@ -23,24 +24,25 @@ public interface  IStub {
     public List<Tarea> getTarea();
     public void postTarea(Tarea t);
     
-    public Set<Supermarket> getSupermarkets();
-    public Set<Store> getStores();
-    public Set<Zone> getZones();
-    public Set<Product> getProducts();
-    public Set<Invoice> getInvoices();
-    public Set<Client> getClients();
-    public Set<Client> getClientsApp();
+    public HashMap<Integer, Supermarket> getSupermarkets();
+    public HashMap<Integer, Store> getStores();
+    public HashMap<Integer, Zone> getZones();
+    public HashMap<Integer, Product> getProducts();
+    public HashMap<Integer, Invoice> getInvoices();
+    public HashMap<Integer, Client> getClients();
+    public HashMap<Integer, Client> getClientsApp();
+    
+    public Supermarket getSupermarketById(Integer id);
+    public Client getSupermarketByIdClientsById(Integer superm, Integer id);
+    public Store getStoreById(Integer id);
+    public Zone getZoneById(Integer id);
+    public Product getProductById(Integer id);
+    public Invoice getInvoiceById(Integer id);
+    public Client getClientById(Integer id);
     
     
-    public Supermarket getSupermarketById(int id);
-    public Store getStoreById(int id);
-    public Zone getZoneById(int id);
-    public Product getProductById(int id);
-    public Invoice getInvoiceById(int id);
-    public Client getClientById(int id);
     
-    
-    public Set<Invoice> getInvoiceByClient(int c);
+    public Map<Integer, Invoice> getInvoiceByClient(Integer c);
     
     
     public void postSupermarket(Supermarket s);
@@ -49,6 +51,6 @@ public interface  IStub {
     public void postProduct(Product p);
     public void postInvoice(Invoice i);
     public void postClient(Client c);
-    public void postClientApp(Client c);
-    
+    //public void postClientApp(Client c);   
+    public void postClientApp(int s, Client c);   
 }

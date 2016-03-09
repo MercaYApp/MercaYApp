@@ -1,30 +1,50 @@
 <form ng-controller="signUpController" role="form" ng-submit="signUp()">
-    <div ng-show="!check">
-        <div class="form-group">
-            <label for="id">Identificacion:</label> <input type="number"
-                        class="form-control" id="id" name="id" ng-model="id1"/>
+    <div ng-show="!registrado">
+        <div >
+            <div class="form-group" id="selectSuper" >
+                <select ng-model="supermarket">
+                    <option value="11">Exito</option>
+                    <option value="12">Cencosud</option>
+                    <option value="13">Olimpica</option>
+                    <option value="14">Makro</option>
+                </select>
+            </div>       
+
         </div>
-        <button type="submit" class="btn btn-primary" ng-click="consult()">Consult</button>
+        <div ng-show="!check">
+            <div class="form-group">
+                <label for="id">Numero de Identificacion:</label> <input type="number"
+                                                                         class="form-control" id="id" name="id" ng-model="id1"/>
+            </div>
+            <button type="submit" class="btn btn-primary" ng-click="consult()">Consult</button>
+        </div>
+
+        <div ng-show="check" >
+            <div class="form-group">
+                <label for="idR">Identificacion:</label> <input type="number"
+                                                                class="form-control" id="idR" name="id" ng-model="id1" disabled/>
+            </div>
+            <div class="form-group">
+                <label for="nombre">Nombre:</label> <input type="text"
+                                                           class="form-control" id="nombre" name="nombre" ng-model="nombre" disabled/>
+            </div>
+            <div class="form-group">
+                <label for="correo">Correo</label> <input type="text"
+                                                          ng-app=""class="form-control" id="correo" name="correo" ng-model="correo"/>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label> <input type="password"
+                                                               class="form-control" id="password" name="password" ng-model="password"/>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password:</label> <input type="password"
+                                                                              class="form-control" id="confirmPassword" name="confirmPassword" ng-model="confirmPassword"/>
+            </div>
+            <button type="submit" class="btn btn-primary" ng-click="postClientApp()">SignUp</button>
+        </div>
     </div>
-    
-    <div ng-show="check" >
-        <div class="form-group">
-            <label for="idR">Identificacion:</label> <input type="number"
-                        class="form-control" id="idR" name="id" ng-model="id1" disabled/>
-        </div>
-        <div class="form-group">
-            <label for="nombre">Nombre:</label> <input type="text"
-                        class="form-control" id="nombre" name="nombre" ng-model="nombre" disabled/>
-        </div>
-        <div class="form-group">
-            <label for="correo">Correo</label> <input type="text"
-                        ng-app=""class="form-control" id="correo" name="correo" ng-model="correo"/>
-        </div>
-        <div class="form-group">
-            <label for="password">Password:</label> <input type="text"
-                        class="form-control" id="password" name="password" ng-model="password"/>
-        </div>
-        <button type="submit" class="btn btn-primary" ng-click="postClient()">SignUp</button>
+    <div ng-show="registrado">
+        <h1>SE HA REGISTRADO CORRECTAMENTE EL USUARIO CON IDENTIFICACION: " {{id1}} "</h1>
+        <a href="index.html" ><button type="button" class="btn btn-primary" >INICIO</button></a>
     </div>
-    
 </form>

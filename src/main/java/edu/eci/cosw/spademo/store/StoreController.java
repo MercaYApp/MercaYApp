@@ -8,7 +8,7 @@ package edu.eci.cosw.spademo.store;
 import edu.eci.cosw.spademo.product.Product;
 import edu.eci.cosw.spademo.stub.IStub;
 import edu.eci.cosw.spademo.tarea.TaskController;
-import java.util.Set;
+import java.util.Map;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,7 +29,7 @@ public class StoreController {
     IStub stub;
     
     @RequestMapping(method = RequestMethod.GET)
-    public Set<Store> getStores(){
+    public Map<Integer, Store> getStores(){
         return stub.getStores();
     }
     

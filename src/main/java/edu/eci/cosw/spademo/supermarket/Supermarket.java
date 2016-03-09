@@ -7,7 +7,7 @@ package edu.eci.cosw.spademo.supermarket;
 
 import edu.eci.cosw.spademo.client.Client;
 import edu.eci.cosw.spademo.store.Store;
-import java.util.HashSet;
+import java.util.HashMap;
 
 /**
  *
@@ -15,12 +15,12 @@ import java.util.HashSet;
  */
 public class Supermarket {
     private int id;
-    private HashSet<Store> stores;
-    private HashSet<Client> clients;
-    private HashSet<Client> clientsApp;
+    private HashMap<Integer, Store> stores;
+    private HashMap<Integer, Client> clients;
+    private HashMap<Integer, Client> clientsApp;
     
 
-    public Supermarket(Integer id, HashSet<Store> stores,HashSet<Client> clients, HashSet<Client> clientsApp) {
+    public Supermarket(Integer id, HashMap<Integer, Store> stores, HashMap<Integer, Client> clients, HashMap<Integer, Client> clientsApp) {
         this.id = id;
         this.stores = stores;
         this.clients = clients;
@@ -48,42 +48,42 @@ public class Supermarket {
     /**
      * @return the stores
      */
-    public HashSet<Store> getStores() {
+    public HashMap<Integer, Store> getStores() {
         return stores;
     }
 
     /**
      * @param stores the stores to set
      */
-    public void setStores(HashSet<Store> stores) {
+    public void setStores(HashMap<Integer, Store> stores) {
         this.stores = stores;
     }
 
     /**
      * @return the clients
      */
-    public HashSet<Client> getClients() {
+    public HashMap<Integer, Client> getClients() {
         return clients;
     }
 
     /**
      * @param clients the clients to set
      */
-    public void setClients(HashSet<Client> clients) {
+    public void setClients(HashMap<Integer, Client> clients) {
         this.clients = clients;
     }
 
     /**
      * @return the clientsApp
      */
-    public HashSet<Client> getClientsApp() {
+    public HashMap<Integer, Client> getClientsApp() {
         return clientsApp;
     }
 
     /**
      * @param clientsApp the clientsApp to set
      */
-    public void setClientsApp(HashSet<Client> clientsApp) {
+    public void setClientsApp(HashMap<Integer, Client> clientsApp) {
         this.clientsApp = clientsApp;
     }
 }

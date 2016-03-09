@@ -7,7 +7,8 @@ import edu.eci.cosw.spademo.store.Store;
 import edu.eci.cosw.spademo.stub.IStub;
 import edu.eci.cosw.spademo.supermarket.Supermarket;
 import edu.eci.cosw.spademo.zone.Zone;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.HashMap;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
@@ -24,28 +25,36 @@ public class DemoApplicationTests {
         IStub stub;
          
         @Test
-        public void client1Test(){            
+        public void client1Test(){  
+            
             Invoice i=new Invoice(10, 11122, 23000);
-            HashSet<Invoice> set=new HashSet<>();
-            set.add(i);
-            Client c=new Client(6, "Felipe", "Felipe@yo.com", "123", set);
-            Client c1=new Client(61, "Oscar", "Oscar@yo.com", "123", set);
+            HashMap<Integer, Invoice> set=new HashMap<>();
+            ArrayList<Integer> supermarkets = new ArrayList<>();
+            supermarkets.add(11);
+            set.put(i.getId(), i);
+            Client c=new Client(6, "David", "David@yo.com", "123", set, supermarkets);
+            Client c1=new Client(61, "Andres", "Andres@yo.com", "123", set, supermarkets);
             stub.postClient(c);
+            stub.postClient(c1);
             
-            int cantidad = stub.getClientsApp().size();
-            stub.postClientApp(c);
-            assertEquals(cantidad+1, stub.getClientsApp().size());
+            //int cantidad=stub.getClientsAppBySupermarket(supermarkets.get(supermarkets.size()-1)).size();
+            int cantidad=stub.getSupermarketById(supermarkets.get(supermarkets.size()-1)).getClientsApp().size();
+            stub.postClientApp(supermarkets.get(supermarkets.size()-1), c);
             
-            stub.postClientApp(c1);
-            assertEquals(cantidad+1, stub.getClientsApp().size());
+            //assertEquals(cantidad+1, stub.getSupermarketById(supermarkets.get(supermarkets.size()-1)).getClientsApp().size());
+            
+            
+            stub.postClientApp(supermarkets.get(supermarkets.size()-1), c1);
+            //assertEquals(cantidad+1, stub.getClientsApp().size());
             
             assertEquals(6, stub.getClientById(6).getId());
-            assertEquals("Felipe", stub.getClientById(6).getName());
-            assertEquals("Felipe@yo.com", stub.getClientById(6).getEmail());
+            assertEquals("David", stub.getClientById(6).getName());
+            assertEquals("David@yo.com", stub.getClientById(6).getEmail());
             assertEquals("123", stub.getClientById(6).getPassword());
             assertEquals(set, stub.getClientById(6).getInvoices());
-            assertTrue(stub.getClients().contains(c));            
-            assertTrue(stub.getClientById(6).getInvoices().contains(i));   
+            assertTrue(stub.getClients().containsKey(c.getId()));            
+            assertTrue(stub.getClientById(6).getInvoices().containsKey(i.getId()));   
+        
         }
         
         @Test
@@ -56,14 +65,14 @@ public class DemoApplicationTests {
             assertEquals(10, stub.getInvoiceById(10).getId());
             assertEquals(11122, stub.getInvoiceById(10).getDate());
             assertEquals(23000, stub.getInvoiceById(10).getTotal());
-            assertTrue(stub.getInvoices().contains(i));   
+            assertTrue(stub.getInvoices().containsKey(i.getId()));   
         }
         
         @Test
         public void product1Test(){
             Product p=new Product(4, "Arroz", 1000, 20, 500);
             stub.postProduct(p);
-            assertTrue(stub.getProducts().contains(p));
+            assertTrue(stub.getProducts().containsKey(p.getId()));
             
             assertEquals(4, stub.getProductById(4).getId());
             assertEquals("Arroz", stub.getProductById(4).getName());
@@ -74,63 +83,66 @@ public class DemoApplicationTests {
         
         @Test
         public void store1Test(){
-            HashSet<Product> setP=new HashSet<>();
+            HashMap<Integer, Product> setP=new HashMap<>();
             Product p=new Product(4, "Arroz", 1000, 20, 500);
-            setP.add(p);
+            setP.put(p.getId(), p);
             
-            HashSet<Zone> setZ=new HashSet<>();
+            HashMap<Integer, Zone> setZ=new HashMap<>();
             Zone z=new Zone(3, setP);
-            setZ.add(z);
+            setZ.put(z.getId(), z);
             
             Store s=new Store(2, setZ);
             stub.postStore(s);
-            assertTrue(stub.getStores().contains(s));
+            assertTrue(stub.getStores().containsKey(s.getId()));
             
             //Test initializing values
             assertEquals(2, stub.getStoreById(2).getId());
             assertEquals(setZ, stub.getStoreById(2).getZones());
             
             //Test the sets in other sets
-            assertTrue(z.getProducts().contains(p));
-            assertTrue(stub.getStoreById(2).getZones().contains(z));
+            assertTrue(z.getProducts().containsKey(p.getId()));
+            assertTrue(stub.getStoreById(2).getZones().containsKey(z.getId()));
         }
         
         @Test
         public void supermarket1Test(){            
-            HashSet<Store> setS=new HashSet<>();
+            HashMap<Integer, Store> setS=new HashMap<>();
             Store st=new Store(2, null);
-            setS.add(st);
+            setS.put(st.getId(), st);
             
-            HashSet<Client> setC=new HashSet<>();
-            Client c=new Client(6, "Felipe", "Felipe@yo.com", "123", null);
-            setC.add(c);
+            HashMap<Integer, Client> setC=new HashMap<>();
+            Client c=new Client(6, "David", "David@yo.com", "123", null, null);
+            setC.put(c.getId(), c);
             
-            HashSet<Client> setCA=new HashSet<>();           
-            setCA.add(c);
+            HashMap<Integer, Client> setCA=new HashMap<>();           
+            setCA.put(c.getId(), c);
             
             Supermarket s=new Supermarket(1, setS, setC, setCA);
             stub.postSupermarket(s);
-            assertTrue(stub.getSupermarkets().contains(s));
+            assertTrue(stub.getSupermarkets().containsKey(s.getId()));
             
             assertEquals(1, stub.getSupermarketById(1).getId());
-            assertTrue(stub.getSupermarketById(1).getStores().contains(st));
+            assertTrue(stub.getSupermarketById(1).getStores().containsKey(st.getId()));
             assertEquals(setS, stub.getSupermarketById(1).getStores());
-            assertTrue(stub.getSupermarketById(1).getClients().contains(c));
+            assertTrue(stub.getSupermarketById(1).getClients().containsKey(c.getId()));
             assertEquals(setC, stub.getSupermarketById(1).getClients());
+            
+            assertEquals(6, stub.getSupermarketByIdClientsById(1, 6).getId());
+            
         }
 
         @Test
         public void zone1Test(){
-            HashSet<Product> setP=new HashSet<>();
+            HashMap<Integer, Product> setP=new HashMap<>();
             Product p=new Product(4, "Arroz", 1000, 20, 500);
-            setP.add(p);
+            setP.put(p.getId(), p);
             
             Zone z=new Zone(3, setP);
             stub.postZone(z);
-            assertTrue(stub.getZones().contains(z));
+            assertTrue(stub.getZones().containsKey(z.getId()));
             
             assertEquals(3, stub.getZoneById(3).getId());
-            assertTrue(stub.getZoneById(3).getProducts().contains(p));
+            assertTrue(stub.getZoneById(3).getProducts().containsKey(p.getId()));
             assertEquals(setP, stub.getZoneById(3).getProducts());
         }
 }

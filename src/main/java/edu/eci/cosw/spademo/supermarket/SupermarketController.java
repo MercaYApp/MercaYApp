@@ -8,7 +8,7 @@ package edu.eci.cosw.spademo.supermarket;
 import edu.eci.cosw.spademo.client.Client;
 import edu.eci.cosw.spademo.stub.IStub;
 import edu.eci.cosw.spademo.tarea.TaskController;
-import java.util.Set;
+import java.util.Map;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
- * @author Felipe Brasil
+ * @author Felipe Gómez
  */
 @RestController
 @RequestMapping("/supermarkets")
@@ -29,14 +29,13 @@ public class SupermarketController {
     IStub stub;
     
     @RequestMapping(method = RequestMethod.GET)
-    public Set<Supermarket> getSupermarket(){
+    public Map<Integer, Supermarket> getSupermarket(){
        return stub.getSupermarkets();
     }
     
     @RequestMapping(method = RequestMethod.POST)
     public void postSupermarket(@RequestBody Supermarket supermarket){
         stub.postSupermarket(supermarket);
-        LOG.info("Agrego supermarket; "+supermarket.getId());
     }
     
     @RequestMapping(value="/{id}", method = RequestMethod.GET)
@@ -45,15 +44,26 @@ public class SupermarketController {
     }
     
     @RequestMapping(value="/{id}/clients", method = RequestMethod.GET)
-    public Set<Client> getSupermarketClientsById(@PathVariable int id){
+    public Map<Integer, Client> getSupermarketClientsById(@PathVariable int id){
         return stub.getSupermarketById(id).getClients();  
     }
     
     @RequestMapping(value="/{id}/clientsApp", method = RequestMethod.GET)
-    public Set<Client> getSupermarketClientsAppById(@PathVariable int id){
-        return stub.getSupermarketById(id).getClientsApp();  
+    public Map<Integer, Client> getSupermarketClientsAppById(@PathVariable int id){
+        return stub.getSupermarketById(id).getClientsApp();
+        
     }
     
+    @RequestMapping(value="/{superm}/clients/{id}", method = RequestMethod.GET)
+    public Client getSupermarketByIdClientsById(@PathVariable int superm, @PathVariable int id){
+        return stub.getSupermarketByIdClientsById(superm, id);
+    }
+    
+    
+    @RequestMapping(value="/clientsAppPost", method = RequestMethod.POST)
+    public void postSupermarketClientsApp(@RequestBody Client client){
+        stub.postClientApp(client.getSupermarkets().get(client.getSupermarkets().size()-1), client);
+    }
     
     private static final Logger LOG = Logger.getLogger(TaskController.class.getName());
 

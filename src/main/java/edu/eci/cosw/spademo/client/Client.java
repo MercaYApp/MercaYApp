@@ -5,27 +5,29 @@
  */
 package edu.eci.cosw.spademo.client;
 
-
 import edu.eci.cosw.spademo.invoice.Invoice;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
- * @author Felipe Brasil
+ * @author Felipe Gomez
  */
 public class Client {
     private int id;
     private String name;
     private String email;
     private String password;
-    private HashSet<Invoice> invoices;
+    private HashMap<Integer, Invoice> invoices;
+    private ArrayList<Integer> supermarkets;
 
-    public Client(int id, String name, String email, String password, HashSet<Invoice> invoices) {
+    public Client(int id, String name, String email, String password, HashMap<Integer, Invoice> invoices, ArrayList<Integer> supermarkets) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
         this.invoices = invoices;
+        this.supermarkets = supermarkets;
     }
 
     public Client() {
@@ -63,12 +65,20 @@ public class Client {
         this.password = password;
     }
 
-    public HashSet<Invoice> getInvoices() {
+    public HashMap<Integer, Invoice> getInvoices() {
         return invoices;
     }
 
-    public void setInvoices(HashSet<Invoice> invoices) {
+    public void setInvoices(HashMap<Integer, Invoice> invoices) {
         this.invoices = invoices;
+    }
+    
+    public ArrayList<Integer> getSupermarkets() {
+        return supermarkets;
+    }
+
+    public void setSupermarkets(ArrayList<Integer> supermarkets) {
+        this.supermarkets = supermarkets;
     }
     
     

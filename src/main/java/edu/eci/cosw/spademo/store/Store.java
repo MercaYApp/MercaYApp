@@ -6,7 +6,7 @@
 package edu.eci.cosw.spademo.store;
 
 import edu.eci.cosw.spademo.zone.Zone;
-import java.util.HashSet;
+import java.util.HashMap;
 
 /**
  *
@@ -14,12 +14,12 @@ import java.util.HashSet;
  */
 public class Store {
     private int id;
-    private HashSet<Zone> zones;
+    private HashMap<Integer, Zone> zones;
     
     public Store(){
     }
 
-    public Store(int id, HashSet<Zone> zones) {
+    public Store(int id, HashMap<Integer, Zone> zones) {
         this.id = id;
         this.zones = zones;
     }
@@ -43,14 +43,14 @@ public class Store {
     /**
      * @return the zones
      */
-    public HashSet<Zone> getZones() {
+    public HashMap<Integer, Zone> getZones() {
         return zones;
     }
 
     /**
      * @param zones the zones to set
      */
-    public void setZones(HashSet<Zone> zones) {
+    public void setZones(HashMap<Integer, Zone> zones) {
         this.zones = zones;
     }
     

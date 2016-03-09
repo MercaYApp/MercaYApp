@@ -7,7 +7,7 @@ package edu.eci.cosw.spademo.invoice;
 
 import edu.eci.cosw.spademo.stub.IStub;
 import edu.eci.cosw.spademo.tarea.TaskController;
-import java.util.Set;
+import java.util.Map;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,7 +28,7 @@ public class InvoiceController {
     IStub stub;
     
     @RequestMapping(method = RequestMethod.GET)
-    public Set<Invoice> getInvoices(){
+    public Map<Integer, Invoice> getInvoices(){
         LOG.info("lista invoicessss.");
         return stub.getInvoices();
     }
@@ -45,7 +45,7 @@ public class InvoiceController {
     }
     
     @RequestMapping(value="/client/{client}", method = RequestMethod.GET)
-    public Set<Invoice> getInvoiceByClient(@PathVariable int client){
+    public Map<Integer, Invoice> getInvoiceByClient(@PathVariable int client){
         return stub.getInvoiceByClient(client);
     }
     
