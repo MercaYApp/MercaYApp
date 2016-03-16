@@ -1,0 +1,28 @@
+<div ng-show="authenticated" ng-controller="View2Ctrl">
+    <p>
+        Showing of 'interpolate' filter:
+        {{ 'Current version is v%VERSION%.' | interpolate }}
+    </p>
+
+    <table class="table table-striped table-hover">
+        <tbody>
+        <th>
+            <button ng-click="order('nombre')">Nombre</button>
+            <span class="sortorder" ng-show="predicate === 'nombre'" ng-class="{reverse:reverse}"></span>
+        </th>
+        <th>
+            <button ng-click="order('prioridad')">Prioridad</button>
+            <span class="sortorder" ng-show="predicate === 'prioridad'" ng-class="{reverse:reverse}"></span>
+        </th>
+        <tr ng-repeat="todo in listado">
+            <td>{{todo.nombre}}</td>
+            <td>{{todo.prioridad}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div  ng-show="!authenticated">
+    <p>
+        Debe estar autenticado para hacer uso de esta vista.
+    </p>
+</div>
