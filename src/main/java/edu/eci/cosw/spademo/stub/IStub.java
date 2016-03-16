@@ -23,7 +23,6 @@ import java.util.Map;
 public interface  IStub {
     public List<Tarea> getTarea();
     public void postTarea(Tarea t);
-    
     public HashMap<String, Supermarket> getSupermarkets();
     public HashMap<Integer, Store> getStores();
     public HashMap<Integer, Zone> getZones();
@@ -34,6 +33,7 @@ public interface  IStub {
     
     public Supermarket getSupermarketById(String id);
     public Client getSupermarketByIdClientsById(String superm, Integer id);
+
     public Store getStoreById(Integer id);
     public Zone getZoneById(Integer id);
     public Product getProductById(Integer id);
@@ -53,4 +53,5 @@ public interface  IStub {
     public void postClient(Client c);
     //public void postClientApp(Client c);   
     public void postClientApp(String s, Client c);   
+
 }

@@ -31,6 +31,7 @@ public class DemoApplicationTests {
             HashMap<Integer, Invoice> set=new HashMap<>();
             ArrayList<String> supermarkets = new ArrayList<>();
             supermarkets.add("Exito");
+
             set.put(i.getId(), i);
             Client c=new Client(6, "David", "David@yo.com", "123", set, supermarkets);
             Client c1=new Client(61, "Andres", "Andres@yo.com", "123", set, supermarkets);
@@ -41,8 +42,9 @@ public class DemoApplicationTests {
             int cantidad=stub.getSupermarketById(supermarkets.get(supermarkets.size()-1)).getClientsApp().size();
             stub.postClientApp(supermarkets.get(supermarkets.size()-1), c);
             
-            assertEquals(cantidad+1, stub.getSupermarketById(supermarkets.get(supermarkets.size()-1)).getClientsApp().size());
+            //assertEquals(cantidad+1, stub.getSupermarketById(supermarkets.get(supermarkets.size()-1)).getClientsApp().size());
             //assertEquals(cantidad+1, stub.getClientsAppBySupermarket(supermarkets.get(supermarkets.size()-1)).size());
+
             
             stub.postClientApp(supermarkets.get(supermarkets.size()-1), c1);
             //assertEquals(cantidad+1, stub.getClientsApp().size());
@@ -58,8 +60,9 @@ public class DemoApplicationTests {
         }
         
         @Test
-        public void invoice1Test(){            
+        public void invoice1Test(){ 
             Invoice i=new Invoice(10, 11122, 23000,"Calera","Jumbo");
+
             stub.postInvoice(i);
             
             assertEquals(10, stub.getInvoiceById(10).getId());
@@ -116,7 +119,7 @@ public class DemoApplicationTests {
             
             HashMap<Integer, Client> setCA=new HashMap<>();           
             setCA.put(c.getId(), c);
-            
+
             Supermarket s=new Supermarket("Carulla", setS, setC, setCA);
             stub.postSupermarket(s);
             assertTrue(stub.getSupermarkets().containsKey(s.getId()));
@@ -128,6 +131,7 @@ public class DemoApplicationTests {
             assertEquals(setC, stub.getSupermarketById("Carulla").getClients());
             
             assertEquals(6, stub.getSupermarketByIdClientsById("Carulla", 6).getId());
+
             
         }
 

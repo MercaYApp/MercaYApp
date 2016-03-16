@@ -19,7 +19,6 @@ public class Supermarket {
     private HashMap<Integer, Client> clients;
     private HashMap<Integer, Client> clientsApp;
     
-
     public Supermarket(String id, HashMap<Integer, Store> stores, HashMap<Integer, Client> clients, HashMap<Integer, Client> clientsApp) {
         this.id = id;
         this.stores = stores;
@@ -41,6 +40,7 @@ public class Supermarket {
     /**
      * @param id the id to set
      */
+
     public void setId(String id) {
         this.id = id;
     }

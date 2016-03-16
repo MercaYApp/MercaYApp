@@ -13,7 +13,6 @@ angular.module('service.modulo1', ['ngRoute', 'ngResource'])
                     });
         })
 
-
         //---------------Get clients---------------
         .factory('GetClient', function ($resource) {
             var cliente = $resource('/supermarkets/:superm/clients/:id', {super:"@superm", id: "@id"},
@@ -27,7 +26,6 @@ angular.module('service.modulo1', ['ngRoute', 'ngResource'])
         .factory('PostClientApp', function ($resource) {
             //return $resource('/supermarkets/:superm/clientsApp', {superm: "@superm"});
             return $resource('/supermarkets/clientsAppPost');
-         
         })
         
         
@@ -38,6 +36,5 @@ angular.module('service.modulo1', ['ngRoute', 'ngResource'])
             );
             return invoices;
             
-        })
-        
-        ;
+        });
+

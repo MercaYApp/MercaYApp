@@ -13,7 +13,7 @@ package edu.eci.cosw.spademo.invoice;
 public class Invoice {
     private int id;
     private int date;
-    private int total;
+    private int total; 
     private String store;
     private String market;
 
@@ -22,7 +22,7 @@ public class Invoice {
         this.date = date;
         this.total = total;
         this.market=market;
-        this.store=store;
+        this.store=store; 
     }
     
     public Invoice(){

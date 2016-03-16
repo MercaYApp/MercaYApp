@@ -49,7 +49,7 @@ public class Stub implements IStub{
         HashMap<Integer, Client> setClientsApp=new HashMap<>();
         //setClientsApp.put(c1.getId(), c1);
         setClientsApp.put(c.getId(), c);
-        
+
         Supermarket s=new Supermarket("Exito", null, setClients, setClientsApp);
         listSupermarkets.put(s.getId(), s);
         Supermarket s12=new Supermarket("Cencosud", null, setClients, null);
@@ -57,6 +57,7 @@ public class Stub implements IStub{
         Supermarket s13=new Supermarket("Olimpica", null, setClients, null);
         listSupermarkets.put(s13.getId(), s13);
         Supermarket s14=new Supermarket("Makro", null, setClients, null);
+
         listSupermarkets.put(s14.getId(), s14);
         
         Zone z=new Zone(13, null);
@@ -66,6 +67,7 @@ public class Stub implements IStub{
         listProducts.put(p.getId(), p);
         
         Invoice i=new Invoice(15, 112294, 60000,"calera","jumbo");
+
         listInvoices.put(i.getId(), i);
         
         
@@ -85,6 +87,7 @@ public class Stub implements IStub{
  
     @Override
     public HashMap<String, Supermarket> getSupermarkets() {
+
         return listSupermarkets;
     }
 
@@ -129,6 +132,7 @@ public class Stub implements IStub{
     
     @Override
     public Supermarket getSupermarketById(String id) {
+
         return listSupermarkets.get(id);
     }
     
@@ -198,15 +202,19 @@ public class Stub implements IStub{
         listClients.put(c.getId(), c);
     }
 
-    @Override
-    //public void postClientApp( Client c) {          
+    @Override        
     public void postClientApp(String s, Client c) {
-        /*if (listSupermarkets.get(s).getClients().get(c.getId())!=null){
-            listSupermarkets.get(s).getClientsApp().put(c.getId(), c);
+        if (listSupermarkets.get(s).getClients().get(c.getId())!=null){
+            if(listSupermarkets.get(s).getClientsApp().get(c.getId())==null){
+                listSupermarkets.get(s).getClientsApp().put(c.getId(), c);
+                listClientsApp.put(c.getId(), c);
+            }else{
+                System.out.println("Usuario ya registrado.");
+            }
+            
         }else{
             System.out.println("No se puede agregar cliente.");
-        }*/
-        listSupermarkets.get(s).getClientsApp().put(c.getId(), c);
+        }
     }
 }
 

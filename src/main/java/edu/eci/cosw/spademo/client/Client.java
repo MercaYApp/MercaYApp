@@ -22,6 +22,7 @@ public class Client {
     private ArrayList<String> supermarkets;
 
     public Client(int id, String name, String email, String password, HashMap<Integer, Invoice> invoices, ArrayList<String> supermarkets) {
+
         this.id = id;
         this.name = name;
         this.email = email;

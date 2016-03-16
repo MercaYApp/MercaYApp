@@ -66,7 +66,6 @@ public class SupermarketController {
     
     
     @RequestMapping(value="/clientsAppPost", method = RequestMethod.POST)
-    //@RequestMapping(value="/{superm}/clientsApp", method = RequestMethod.POST)
     public void postSupermarketClientsApp(@RequestBody Client client){
         stub.postClientApp(client.getSupermarkets().get(client.getSupermarkets().size()-1), client);
         LOG.info("Agrego client; "+client.getName());
