@@ -3,9 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.eci.cosw.spademo.store;
+package edu.eci.cosw.spademo.mail;
 
-import edu.eci.cosw.spademo.product.Product;
+import edu.eci.cosw.spademo.client.*;
+import edu.eci.cosw.spademo.invoice.Invoice;
+import edu.eci.cosw.spademo.stub.IStub;
+import edu.eci.cosw.spademo.tarea.TaskController;
+import java.util.HashMap;
 import edu.eci.cosw.spademo.stub.IStub;
 import edu.eci.cosw.spademo.tarea.TaskController;
 import java.util.Map;
@@ -19,30 +23,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
- * @author Felipe Gomez
+ * @author Felipe 
  */
 @RestController
-@RequestMapping("/stores")
+@RequestMapping("/email")
 
-public class StoreController {
+
+public class EnviadorMailController {
     @Autowired
     IStub stub;
     
-    @RequestMapping(method = RequestMethod.GET)
-    public Map<Integer, Store> getStores(){
-        return stub.getStores();
-    }
-    
+   
     @RequestMapping(method = RequestMethod.POST)
-    public void postStore(@RequestBody Store store){
-        stub.postStore(store);
-        LOG.info("Add store; "+store.getId());
-    }
-    
-    @RequestMapping(value="/{id}", method = RequestMethod.GET)
-    public Store getStoreById(@PathVariable int id){
-        return stub.getStoreById(id);
-    }
-    
+    public void postCorreoOlvidado(@RequestBody String email){
+        stub.postEmail(email);
+        
+    }    
+
     private static final Logger LOG = Logger.getLogger(TaskController.class.getName());
 }

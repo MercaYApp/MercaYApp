@@ -6,7 +6,6 @@
 package edu.eci.cosw.spademo.product;
 
 import edu.eci.cosw.spademo.stub.IStub;
-import edu.eci.cosw.spademo.supermarket.Supermarket;
 import edu.eci.cosw.spademo.tarea.TaskController;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -19,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
- * @author Felipe Brasil
+ * @author Felipe Gomez
  */
 @RestController
 @RequestMapping("/products")

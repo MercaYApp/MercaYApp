@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
- * @author Felipe Brasil
+ * @author Felipe Gomez
  */
 @RestController
 @RequestMapping("/invoices")

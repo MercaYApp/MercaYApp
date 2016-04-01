@@ -7,9 +7,9 @@ angular.module('myApp.viewLogin', ['ngRoute'])
                     templateUrl: 'viewLogin/viewLogin.html',
                     controller: 'ViewLoginCtrl'
                 });
-        }])
+            }])
 
-        .controller('ViewLoginCtrl', ['$rootScope', '$scope', '$http', '$location', function ($rootScope, $scope, $http, $location) {
+        .controller('ViewLoginCtrl', ['$rootScope', '$scope', '$http', '$location', 'PostEmail', function ($rootScope, $scope, $http, $location, PostEmail) {
                 var authenticate = function (credentials, callback) {
 
                     var headers = credentials ? {authorization: "Basic "
@@ -17,32 +17,52 @@ angular.module('myApp.viewLogin', ['ngRoute'])
                     } : {};
                     $http.get('user', {headers: headers}).success(function (data) {
                         if (data.name) {
-                            $rootScope.authenticated = true;                            
+                            $rootScope.authenticated = true;
                         } else {
                             $rootScope.authenticated = false;
                         }
                         callback && callback();
-                    }).error(function () {                                               
+                    }).error(function () {
                         $rootScope.authenticated = false;
                         callback && callback();
                     });
-
                 };
 
                 authenticate();
                 $scope.credentials = {};
-                $scope.login = function () {                    
+                $scope.login = function () {
                     authenticate($scope.credentials, function () {
-                        alert("internooooto autenticar: "+ $scope.credentials.password);
                         if ($rootScope.authenticated) {
+                            alert("Autentico: " + $scope.credentials.password);
                             $location.path("/");
                             $scope.error = false;
                         } else {
-                            $location.path("/login");
+                            $scope.credentials.password="";
+                            alert("Usuario o contraseña incorrectos!");
+                            
+                            //$location.path("/login");
                             $scope.error = true;
                         }
                     });
                 };
 
-
+                $scope.olvidoContrasena = false;
+                $scope.correoOlvidado = "";
+                //Ocultar datos de login
+                $scope.olvideContrasena = function () {
+                    $scope.olvidoContrasena = true;
+                }
+                //Enviar correo para recuperacion de contraseña, y mostrar datos para el login
+                $scope.correoContrasena = function () {
+                    alert($scope.correoOlvidado);
+                    var postData = {};
+                        //Crear objeto JSON para envio de correo
+                        postData={mailReceptor:$scope.correoOlvidado};
+                            PostEmail.save(postData.mailReceptor, function(){
+                                //alert("El usuario con correo '" + postData.mailReceptor + " olvidó contraseña!");
+                                $scope.registrado = true;
+                                }
+                            );
+                    $scope.olvidoContrasena = false;
+                 };
             }]);

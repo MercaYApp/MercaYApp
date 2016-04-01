@@ -5,8 +5,6 @@
  */
 package edu.eci.cosw.spademo.zone;
 
-import edu.eci.cosw.spademo.product.Product;
-import edu.eci.cosw.spademo.store.Store;
 import edu.eci.cosw.spademo.stub.IStub;
 import edu.eci.cosw.spademo.tarea.TaskController;
 import java.util.Map;
@@ -20,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
- * @author Felipe Brasil
+ * @author Felipe Gomez
  */
 @RestController
 @RequestMapping("/zones")

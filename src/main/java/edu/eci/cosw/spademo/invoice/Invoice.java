@@ -8,7 +8,7 @@ package edu.eci.cosw.spademo.invoice;
 
 /**
  *
- * @author Felipe Brasil
+ * @author Felipe Gomez
  */
 public class Invoice {
     private int id;

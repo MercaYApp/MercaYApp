@@ -3,10 +3,11 @@
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
     'ngRoute',
-    //'myApp.viewLogin',
+    'myApp.viewLogin',
     'myApp.viewSignUp',
     'myApp.view1',
     'myApp.ConsultarCompras',
+    'myApp.viewConfiguracion',
     'service.modulo1',
     'myApp.version'
 ])
@@ -16,14 +17,15 @@ angular.module('myApp', [
                 $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
             }])
 
-        /*.controller('ViewPrincipal', ['$rootScope', '$scope', '$http', '$location', function ($rootScope, $scope, $http, $location) {
+        .controller('ViewPrincipal', ['$rootScope', '$scope', '$http', '$location', function ($rootScope, $scope, $http, $location) {
                 $scope.logout = function () {
                     $http.post('/logout', {}).success(function () {
                         $rootScope.authenticated = false;
-                        $location.path("/");
+                        alert("HIZO LOGOUT");
+                        $location.path("/viewLogin");
                     }).error(function () {
                         $rootScope.authenticated = false;
                     });
                 };
             }]);
-            */
+            

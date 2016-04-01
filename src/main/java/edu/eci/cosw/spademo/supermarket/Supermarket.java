@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 /**
  *
- * @author Felipe Brasil
+ * @author Felipe Gomez
  */
 public class Supermarket {
     private String id;

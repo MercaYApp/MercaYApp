@@ -10,6 +10,7 @@ import edu.eci.cosw.spademo.stub.IStub;
 import edu.eci.cosw.spademo.tarea.TaskController;
 import java.util.HashMap;
 import edu.eci.cosw.spademo.stub.IStub;
+import edu.eci.cosw.spademo.supermarket.Supermarket;
 import edu.eci.cosw.spademo.tarea.TaskController;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -55,6 +56,12 @@ public class ClientController {
         return getClientById(id).getInvoices();
     }
     
-
+    @RequestMapping(value="/clientsAppDelete/{id}", method = RequestMethod.DELETE)
+    public void deleteSupermarketClientsApp(@PathVariable int id){
+        System.out.println("AQUI SI delete: "+id);
+        stub.deleteClientApp(id);
+        LOG.info("elimino client; "+id);
+    }
+    
     private static final Logger LOG = Logger.getLogger(TaskController.class.getName());
 }

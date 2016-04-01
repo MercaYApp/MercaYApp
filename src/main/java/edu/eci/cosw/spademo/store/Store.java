@@ -10,7 +10,7 @@ import java.util.HashMap;
 
 /**
  *
- * @author Felipe Brasil
+ * @author Felipe Gomez
  */
 public class Store {
     private int id;

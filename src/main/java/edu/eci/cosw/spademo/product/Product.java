@@ -7,7 +7,7 @@ package edu.eci.cosw.spademo.product;
 
 /**
  *
- * @author Felipe Brasil
+ * @author Felipe Gomez
  */
 public class Product {
     private int id;

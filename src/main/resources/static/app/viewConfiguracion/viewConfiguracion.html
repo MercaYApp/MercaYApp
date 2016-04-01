@@ -1,0 +1,67 @@
+<form ng-controller="ViewConfiguracionController" role="form">
+    <div ng-show="!banderaAgregaSuper">
+        <div class="form-group">
+            <select ng-click="cargarDatosClientesConfiguracion()"  ng-model="selectConfiguracion">
+                <option value="selectAgregar">Agregar supermercado</option>
+                <option value="selectActualizar">Actualizar datos</option>
+                <option ng-controller="ViewLoginCtrl" value="nada">{{credentials.password}}</option>
+
+            </select>
+        </div> 
+
+        <div ng-show="selectConfiguracion === 'selectAgregar'">
+            <div>
+                <div class="form-group" id="selectSuperConfiguracion" >
+                    <select ng-model="supermarketConfiguracion">
+                        <option value="Exito">Exito</option>
+                        <option value="Cencosud">Cencosud</option>
+                        <option value="Olimpica">Olimpica</option>
+                        <option value="Makro">Makro</option>
+
+                    </select>
+                </div>       
+
+            </div>
+            <div>
+                <div class="form-group">
+                    <label for="id">Numero de Identificacion:</label> <input type="number"
+                                                                             class="form-control" id="idConfiguracion" name="id" ng-model="idConfiguracion"/>
+                </div>
+                <button type="submit" class="btn btn-primary" ng-click="agregarMasSupermercadosConfiguracion()">Agregar supermercado</button>
+                <button type="submit" class="btn btn-primary" ng-click="cancelarConfiguracion()">Cancelar</button>
+            </div>
+        </div>
+        
+        
+        <div ng-show="selectConfiguracion === 'selectActualizar'">
+            <div class="form-group">
+                <label for="idR">Número de Identificacion:</label> <input type="number"
+                                                                class="form-control" id="idConfiguracion" ng-model="idConfiguracion" disabled/>
+            </div>
+            <div class="form-group">
+                <label for="nombre">Nombre:</label> <input type="text"
+                                                           class="form-control" id="nombreConfiguracion" ng-model="nombreConfiguracion" disabled/>
+            </div>
+            <div class="form-group">
+                <label for="correo">Correo</label> <input type="text"
+                                                          ng-app=""class="form-control" id="correoConfiguracion" ng-model="correoConfiguracion"/>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label> <input type="password"
+                                                               class="form-control" id="passwordConfiguracion" ng-model="passwordConfiguracion"/>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password:</label> <input type="password"
+                                                                              class="form-control" id="confirmPasswordConfiguracion" ng-model="confirmPasswordConfiguracion"/>
+            </div>
+            <button type="submit" class="btn btn-primary" ng-click="actualizarDatosClienteConfiguracion()">Actualizar</button>
+            <button type="submit" class="btn btn-primary" ng-click="cancelarConfiguracion()">Cancelar</button>
+        </div>
+        
+    </div>
+
+    <div ng-show="banderaAgregaSuper">
+        <h1>SE HA AGREGADO CORRECTAMENTE EL SUPERMERCADO {{supermarketConfiguracion}} A EL USUARIO</h1>
+        <a href="index.html" ><button type="button" class="btn btn-primary" >INICIO</button></a>
+    </div>
+</form>

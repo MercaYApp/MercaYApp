@@ -1,11 +1,21 @@
-<form role="form" ng-submit="login()">
-    <div class="form-group">
-        <label for="username">Username:</label> <input type="text"
-                                                       class="form-control" id="username" name="username" ng-model="credentials.username"/>
+<form role="form" >
+    <div ng-show="!olvidoContrasena">
+        <div  class="form-group">
+            <label for="username">Username:</label> <input type="text"
+                                                           class="form-control" id="username" name="username" ng-model="credentials.username"/>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label> <input type="password"
+                                                           class="form-control" id="password" name="password" ng-model="credentials.password"/>
+        </div>
+        <button type="submit" class="btn btn-primary" ng-click="login()">Submit</button>
+        <button type="submit" class="btn btn-primary" ng-click="olvideContrasena()">Olvide contraseña</button>
     </div>
-    <div class="form-group">
-        <label for="password">Password:</label> <input type="password"
-                                                       class="form-control" id="password" name="password" ng-model="credentials.password"/>
+    <div ng-show="olvidoContrasena">
+        <div  class="form-group">
+            <label for="correoOlvidado">Correo olvidado: </label> <input type="text"
+                                                           class="form-control" id="username" name="correoOlvidado" ng-model="correoOlvidado"/>
+        </div>
+        <button type="submit" class="btn btn-primary" ng-click="correoContrasena()">Recuperar contraseña</button>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
 </form>

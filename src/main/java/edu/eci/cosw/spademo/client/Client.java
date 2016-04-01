@@ -82,5 +82,9 @@ public class Client {
         this.supermarkets = supermarkets;
     }
     
+    public void addSupermarkets(String s) {
+        this.supermarkets.add(s);
+    }
+    
     
 }

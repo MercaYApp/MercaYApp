@@ -39,12 +39,11 @@ public interface  IStub {
     public Product getProductById(Integer id);
     public Invoice getInvoiceById(Integer id);
     public Client getClientById(Integer id);
-    
-    
-    
+
+
     public Map<Integer, Invoice> getInvoiceByClient(Integer c);
-    
-    
+
+
     public void postSupermarket(Supermarket s);
     public void postStore(Store s);
     public void postZone(Zone z);
@@ -52,6 +51,8 @@ public interface  IStub {
     public void postInvoice(Invoice i);
     public void postClient(Client c);
     //public void postClientApp(Client c);   
-    public void postClientApp(String s, Client c);   
+    public void postClientApp(String s, Client c); 
+    public void deleteClientApp(int c); 
+    public void postEmail(String email);
 
 }
