@@ -5,39 +5,35 @@
  */
 package edu.eci.cosw.spademo.stub;
 
-import edu.eci.cosw.spademo.client.Client;
-import edu.eci.cosw.spademo.invoice.Invoice;
+import edu.eci.cosw.spademo.model.ClientApp;
+import edu.eci.cosw.spademo.model.Invoice;
 import edu.eci.cosw.spademo.mail.EnviadorMail;
-import edu.eci.cosw.spademo.store.Store;
-import edu.eci.cosw.spademo.product.Product;
-import edu.eci.cosw.spademo.supermarket.Supermarket;
-import edu.eci.cosw.spademo.tarea.Tarea;
-import edu.eci.cosw.spademo.zone.Zone;
+import edu.eci.cosw.spademo.model.Store;
+import edu.eci.cosw.spademo.model.Product;
+import edu.eci.cosw.spademo.model.Supermarket;
+import edu.eci.cosw.spademo.model.Zone;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.Set;
 import org.springframework.stereotype.Service;
 
 /**
  *
- * @author Felipe Gomez - Oscar Ardila
+ * @author MercaYApp
  */
 @Service
 public class Stub implements IStub {
 
-    List<Tarea> listaTareas = new ArrayList<>();
-
-    HashMap<String, Supermarket> listSupermarkets = new HashMap<>();
-    HashMap<Integer, Store> listStores = new HashMap<>();
-    HashMap<Integer, Zone> listZones = new HashMap<>();
-    HashMap<Integer, Product> listProducts = new HashMap<>();
-    HashMap<Integer, Invoice> listInvoices = new HashMap<>();
-    HashMap<Integer, Client> listClients = new HashMap<>();
-    HashMap<Integer, Client> listClientsApp = new HashMap<>();
+    List<Supermarket> listSupermarkets = new ArrayList<>();
+    List<Store> listStores = new ArrayList<>();
+    List<Zone> listZones = new ArrayList<>();
+    List<Product> listProducts = new ArrayList<>();
+    List<Invoice> listInvoices = new ArrayList<>();
+    List<ClientApp> listClients = new ArrayList<>();
+    List<ClientApp> listClientsApp = new ArrayList<>();
 
     public Stub() {
+        /*Invoice in = new Invoice(110, new Date(), "chapinero", client)
         Invoice in = new Invoice(110, 110122, 23000, "chapinero", "Jumbo");
         Invoice in1 = new Invoice(111, 120221, 299000, "galerias", "Exito");
         HashMap<Integer, Invoice> set = new HashMap<>();
@@ -77,57 +73,43 @@ public class Stub implements IStub {
         listInvoices.put(i.getId(), i);
 
         listClientsApp.put(c.getId(), c);
+        
+*/
     }
 
-    public List<Tarea> getTarea() {
-        Tarea t = new Tarea("Estudiar", 2);
-
-        listaTareas.add(t);
-        return listaTareas;
-    }
-
-    public void postTarea(Tarea t) {
-        listaTareas.add(t);
-    }
-
-    @Override
+  /*  @Override
     public HashMap<String, Supermarket> getSupermarkets() {
 
         return listSupermarkets;
     }
-
+*/
     @Override
-    public HashMap<Integer, Store> getStores() {
+    public List<Store> getStores() {
         return listStores;
     }
 
     @Override
-    public HashMap<Integer, Zone> getZones() {
+    public List<Zone> getZones() {
         return listZones;
     }
 
     @Override
-    public HashMap<Integer, Product> getProducts() {
+    public List<Product> getProducts() {
         return listProducts;
     }
 
     @Override
-    public HashMap<Integer, Invoice> getInvoices() {
+    public List<Invoice> getInvoices() {
         return listInvoices;
     }
 
     @Override
-    public HashMap<Integer, Client> getClients() {
+    public List<ClientApp> getClientsApp() {
         return listClients;
     }
 
     @Override
-    public HashMap<Integer, Client> getClientsApp() {
-        return listClientsApp;
-    }
-
-    @Override
-    public Client getClientById(Integer id) {
+    public ClientApp getClientAppById(Integer id) {
         if (listClients.get(id) != null) {
             return listClients.get(id);
         } else {
@@ -136,13 +118,13 @@ public class Stub implements IStub {
     }
 
     @Override
-    public Supermarket getSupermarketById(String id) {
-
-        return listSupermarkets.get(id);
+    public Supermarket getSupermarketById(int s) {
+        return listSupermarkets.get(s);
     }
 
+    /*
     @Override
-    public Client getSupermarketByIdClientsById(String superm, Integer id) {
+    public ClientApp getSupermarketByIdClientsById(String superm, Integer id) {
         HashMap clients = getSupermarketById(superm).getClients();
         if (clients.size() > 0) {
             return getSupermarketById(superm).getClients().get(id);
@@ -150,7 +132,7 @@ public class Stub implements IStub {
             return null;
         }
     }
-
+*/
     @Override
     public Store getStoreById(Integer id) {
         return listStores.get(id);
@@ -172,43 +154,48 @@ public class Stub implements IStub {
     }
 
     @Override
-    public HashMap<Integer, Invoice> getInvoiceByClient(Integer c) {
-        Client client = getClientById(c);
-        return client.getInvoices();
+    public Set<Invoice> getInvoiceByClient(Integer c) {
+        ClientApp client = getClientAppById(c);
+        //return client.getInvoices();
+        return null;
     }
-
+    
+    /*
     @Override
     public void postSupermarket(Supermarket s) {
         listSupermarkets.put(s.getId(), s);
     }
+    */
 
     @Override
     public void postStore(Store s) {
-        listStores.put(s.getId(), s);
+        listStores.add(s);
     }
 
     @Override
     public void postZone(Zone z) {
-        listZones.put(z.getId(), z);
+        listZones.add(z);
     }
 
     @Override
     public void postProduct(Product p) {
-        listProducts.put(p.getId(), p);
+        listProducts.add(p);
     }
 
+    /*
     @Override
     public void postInvoice(Invoice i) {
         listInvoices.put(i.getId(), i);
-    }
+    }*/
 
     @Override
-    public void postClient(Client c) {
-        listClients.put(c.getId(), c);
+    public void postClient(ClientApp c) {
+        listClients.add(c);
     }
 
+    /*
     @Override
-    public void postClientApp(String s, Client c) {
+    public void postClientApp(String s, ClientApp c) {
         if (listSupermarkets.get(s).getClients().get(c.getId()) != null) {
             if (listSupermarkets.get(s).getClientsApp().get(c.getId()) == null) {
                 listSupermarkets.get(s).getClientsApp().put(c.getId(), c);
@@ -223,15 +210,20 @@ public class Stub implements IStub {
             System.out.println("No se puede agregar cliente.");
         }
     }
-
+    */
     @Override
     public void postEmail(String email) {
+        /*if(listClientsApp.get(listClientsApp.indexOf(getClientAppById(id))).getEmail().equals(email)){
+            String asunto = "Este es el correo de recuperacion de contraseña!";
+                String mensaje = "El mensaje de recuperación de su contraseña";
+                EnviadorMail en = new EnviadorMail(email, asunto, mensaje);
+                System.out.println("Envió email a: " + email);
+        }else{
+            System.out.println("NO coinciden los datos");
+        }*/
         boolean banderita = false;
-        Iterator i = listClientsApp.entrySet().iterator();
-        while (i.hasNext() && !banderita) {
-            Map.Entry e = (Map.Entry)i.next();
-            Client c = (Client)e.getValue();
-            if (c.getEmail().equals(email)) {
+        for(int i=0; i<listClientsApp.size() && !banderita; i++){
+            if(listClientsApp.get(i).getEmail().equals(email)){
                 String asunto = "Este es el correo de recuperacion de contraseña!";
                 String mensaje = "El mensaje de recuperación de su contraseña";
                 EnviadorMail en = new EnviadorMail(email, asunto, mensaje);
@@ -242,13 +234,26 @@ public class Stub implements IStub {
         if (banderita == false){
             System.out.println("NO EXISTE EL CORREO");
         }
-
     }
-
+    
     @Override
     public void deleteClientApp(int c) {
+        boolean banderita = false;
+        ClientApp client= null;
         System.out.println("deleteStub:elimina "+ c);
-        listClientsApp.remove(c);
-        listSupermarkets.get("Exito").getClientsApp().remove(c);
+     
+        for(int i=0; i<listClientsApp.size() && !banderita; i++){
+            if(listClientsApp.get(i).getId()==c){
+                banderita=true;
+                client=listClientsApp.get(i);
+            }
+        }
+       
+        if(client!=null){
+            listClientsApp.remove(listClientsApp.indexOf(client));
+            Supermarket s= new Supermarket(1, "Exito", 1, 1);
+            listSupermarkets.get(listSupermarkets.indexOf(s)).getClients().remove(client);
+        }
     }
+
 }

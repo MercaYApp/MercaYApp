@@ -5,13 +5,10 @@
  */
 package edu.eci.cosw.spademo.mail;
 
-import edu.eci.cosw.spademo.client.*;
-import edu.eci.cosw.spademo.invoice.Invoice;
+import edu.eci.cosw.spademo.model.Invoice;
 import edu.eci.cosw.spademo.stub.IStub;
-import edu.eci.cosw.spademo.tarea.TaskController;
 import java.util.HashMap;
 import edu.eci.cosw.spademo.stub.IStub;
-import edu.eci.cosw.spademo.tarea.TaskController;
 import java.util.Map;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
- * @author Felipe 
+ * @author MercaYApp 
  */
 @RestController
 @RequestMapping("/email")
@@ -40,5 +37,4 @@ public class EnviadorMailController {
         
     }    
 
-    private static final Logger LOG = Logger.getLogger(TaskController.class.getName());
 }

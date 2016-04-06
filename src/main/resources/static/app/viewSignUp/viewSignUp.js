@@ -42,8 +42,9 @@ angular.module('myApp.viewSignUp', ['ngRoute'])
                     if($scope.password!=="" && $scope.confirmPassword === $scope.password){
                         
                         var postData = {};
+                        postData={id:$scope.id1, name:$scope.nombre, email:$scope.correo, password:$scope.password, rol:{}};
 
-                        postData={id:$scope.id1, name:$scope.nombre, email:$scope.correo, password:$scope.password, invoices:{}, supermarkets:[$scope.supermarket]};
+                        //postData={id:$scope.id1, name:$scope.nombre, email:$scope.correo, password:$scope.password, invoices:{}, supermarkets:[$scope.supermarket]};
                             PostClientApp.save(postData, function(){
                                 alert("El usuario con identificacion '"+ postData.id + "' ha sido registrado exitosamente!");
                                 $scope.registrado = true;
