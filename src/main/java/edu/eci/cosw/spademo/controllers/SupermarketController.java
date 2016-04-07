@@ -8,8 +8,8 @@ package edu.eci.cosw.spademo.controllers;
 import edu.eci.cosw.spademo.model.Supermarket;
 import edu.eci.cosw.spademo.model.ClientApp;
 import edu.eci.cosw.spademo.stub.IStub;
-import java.util.Map;
-import java.util.logging.Logger;
+import java.util.List;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,10 +29,9 @@ public class SupermarketController {
     IStub stub;
     
     @RequestMapping(method = RequestMethod.GET)
-    public Map<String, Supermarket> getSupermarket(){
-       //return stub.getSupermarkets();
-        System.out.println("entro a getSupermarket");
-       return null;
+    public List<Supermarket> getSupermarket(){
+       return stub.getSupermarkets();
+       
     }
     
     @RequestMapping(method = RequestMethod.POST)
@@ -42,42 +41,42 @@ public class SupermarketController {
     }
     
     @RequestMapping(value="/{id}", method = RequestMethod.GET)
-    public Supermarket getSupermarketById(@PathVariable String id){
-        //return stub.getSupermarketById(id);
-        System.out.println("/{id}");
-        return null;
+    public Supermarket getSupermarketById(@PathVariable int id){
+        return stub.getSupermarketById(id);
+        
     }
     
     @RequestMapping(value="/{id}/clients", method = RequestMethod.GET)
-    public Map<Integer, ClientApp> getSupermarketClientsById(@PathVariable String id){
-        //return stub.getSupermarketById(id).getClients();  
-        System.out.println("entro a /{id}/clients");
-        return null;
+    public Set<ClientApp> getSupermarketClientsById(@PathVariable String id){
+        return stub.getSupermarketByName(id).getClients();
+        
+        /*System.out.println("entro a /{id}/clients");
+        return null;*/
     }
     
     @RequestMapping(value="/{id}/clientsApp", method = RequestMethod.GET)
-    public Map<Integer, ClientApp> getSupermarketClientsAppById(@PathVariable String id){
-        //return stub.getSupermarketById(id).getClientsApp();
-        System.out.println("/{id}/clientsApp");
-        return null;
+    public Set<ClientApp> getSupermarketClientsAppById(@PathVariable String id){
+        return stub.getSupermarketByName(id).getClients();
+        /*System.out.println("/{id}/clientsApp");
+        return null;*/
         
     }
     
     @RequestMapping(value="/{superm}/clients/{id}", method = RequestMethod.GET)
     public ClientApp getSupermarketByIdClientsById(@PathVariable String superm, @PathVariable int id){
-        /*ClientApp c=null;
-        if(stub.getSupermarketById(superm)!=null){
+        ClientApp c=null;
+        if(stub.getSupermarketByName(superm)!=null){
             c = stub.getSupermarketByIdClientsById(superm, id);
         }
-        return c;*/
-        System.out.println("entro a /{superm}/clients/{id}");
-        return null;
+        
+        return c;
+       
     }
     
     
     @RequestMapping(value="/clientsAppPost", method = RequestMethod.POST)
     public void postSupermarketClientsApp(@RequestBody ClientApp client){
-        System.out.println("Entro a a /clientsAppPost");
+        System.out.println("entro a postSupermarketClientsApp");
         //stub.postClientApp(client.getSupermarkets().get(client.getSupermarkets().size()-1), client);
         
     }

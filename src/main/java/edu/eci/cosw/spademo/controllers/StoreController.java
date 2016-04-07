@@ -8,6 +8,7 @@ package edu.eci.cosw.spademo.controllers;
 import edu.eci.cosw.spademo.model.Store;
 import edu.eci.cosw.spademo.model.Product;
 import edu.eci.cosw.spademo.stub.IStub;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,22 +30,21 @@ public class StoreController {
     IStub stub;
     
     @RequestMapping(method = RequestMethod.GET)
-    public Map<Integer, Store> getStores(){
-        //return stub.getStores();
-        return null;
+    public List<Store> getStores(){
+        return stub.getStores();
+        
     }
     
     @RequestMapping(method = RequestMethod.POST)
     public void postStore(@RequestBody Store store){
-        //stub.postStore(store);
+        stub.postStore(store);
         
         
     }
     
     @RequestMapping(value="/{id}", method = RequestMethod.GET)
     public Store getStoreById(@PathVariable int id){
-        //return stub.getStoreById(id);
-        return null;
+        return stub.getStoreById(id);
     }
     
    

@@ -66,7 +66,7 @@ public class ClientApp implements Serializable {
         this.id = id;
     }
 
-    @Column(name="name")
+    @Column(name="name_client_app")
     public String getName() {
         return name;
     }

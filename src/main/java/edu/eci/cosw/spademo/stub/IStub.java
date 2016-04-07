@@ -5,15 +5,8 @@
  */
 package edu.eci.cosw.spademo.stub;
 
-import edu.eci.cosw.spademo.model.ClientApp;
-import edu.eci.cosw.spademo.model.Invoice;
-import edu.eci.cosw.spademo.model.Store;
-import edu.eci.cosw.spademo.model.Product;
-import edu.eci.cosw.spademo.model.Supermarket;
-import edu.eci.cosw.spademo.model.Zone;
-import java.util.HashMap;
+import edu.eci.cosw.spademo.model.*;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 /**
@@ -21,16 +14,17 @@ import java.util.Set;
  * @author MercaYApp
  */
 public interface  IStub {
-    //public HashMap<String, Supermarket> getSupermarkets();
+    public List<Supermarket> getSupermarkets();
     public List<Store> getStores();
     public List<Zone> getZones();
     public List<Product> getProducts();
     public List<Invoice> getInvoices();
-    //public HashMap<Integer, ClientApp> getClients();
+    //public List<ClientApp> getClients();
     public List<ClientApp> getClientsApp();
     
+    public Supermarket getSupermarketByName(String name);
     public Supermarket getSupermarketById(int id);
-    //public ClientApp getSupermarketByIdClientsById(String superm, Integer id);
+    public ClientApp getSupermarketByIdClientsById(String superm, Integer id);
 
     public Store getStoreById(Integer id);
     public Zone getZoneById(Integer id);
@@ -38,17 +32,15 @@ public interface  IStub {
     public Invoice getInvoiceById(Integer id);
     public ClientApp getClientAppById(Integer id);
 
-
     public Set<Invoice> getInvoiceByClient(Integer c);
 
-
-    //public void postSupermarket(Supermarket s);
+    public void postSupermarket(Supermarket s);
     public void postStore(Store s);
     public void postZone(Zone z);
     public void postProduct(Product p);
     //public void postInvoice(Invoice i);
     public void postClient(ClientApp c);
-    //public void postClientApp(String s, ClientApp c); 
+    public void postClientApp(Supermarket s, ClientApp c); 
     public void deleteClientApp(int c);
     public void postEmail(String email);
 

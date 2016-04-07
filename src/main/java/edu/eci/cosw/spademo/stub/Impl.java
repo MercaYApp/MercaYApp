@@ -9,17 +9,12 @@ import edu.eci.cosw.spademo.model.*;
 import edu.eci.cosw.spademo.persistence.*;
 import edu.eci.cosw.spademo.mail.EnviadorMail;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- *
  * @author MercaYApp
  */
 //@Service
@@ -38,66 +33,16 @@ public class Impl implements IStub {
     @Autowired
     SupermarketsRepository supermarketsR;
 
-    /*
-    HashMap<String, Supermarket> listSupermarkets = new HashMap<>();
-    HashMap<Integer, Store> listStores = new HashMap<>();
-    HashMap<Integer, Zone> listZones = new HashMap<>();
-    HashMap<Integer, Product> listProducts = new HashMap<>();
-    HashMap<Integer, Invoice> listInvoices = new HashMap<>();
-    HashMap<Integer, ClientApp> listClients = new HashMap<>();
-    HashMap<Integer, ClientApp> listClientsApp = new HashMap<>();
-     */
+   
     public Impl() {
-        /*Invoice in = new Invoice(110, new Date(), "chapinero", client)
-        Invoice in = new Invoice(110, 110122, 23000, "chapinero", "Jumbo");
-        Invoice in1 = new Invoice(111, 120221, 299000, "galerias", "Exito");
-        HashMap<Integer, Invoice> set = new HashMap<>();
-        set.put(in.getId(), in);
-        set.put(in1.getId(), in1);
-        ArrayList<String> listSuper = new ArrayList<>();
-        listSuper.add("Exito");
-        Client c = new Client(16, "Felipe", "juan.pipe1122@gmail.com", "123", set, listSuper);
-        listClients.put(c.getId(), c);
-
-        HashMap<Integer, Client> setClients = new HashMap<>();
-        Client c1 = new Client(69, "Oscar", "Oscar@yo.com", "123", null, null);
-        setClients.put(c1.getId(), c1);
-        setClients.put(c.getId(), c);
-        HashMap<Integer, Client> setClientsApp = new HashMap<>();
-        //setClientsApp.put(c1.getId(), c1);
-        setClientsApp.put(c.getId(), c);
-
-        Supermarket s = new Supermarket("Exito", null, setClients, setClientsApp);
-        listSupermarkets.put(s.getId(), s);
-        Supermarket s12 = new Supermarket("Cencosud", null, setClients, null);
-        listSupermarkets.put(s12.getId(), s12);
-        Supermarket s13 = new Supermarket("Olimpica", null, setClients, null);
-        listSupermarkets.put(s13.getId(), s13);
-        Supermarket s14 = new Supermarket("Makro", null, setClients, null);
-
-        listSupermarkets.put(s14.getId(), s14);
-
-        Zone z = new Zone(13, null);
-        listZones.put(z.getId(), z);
-
-        Product p = new Product(14, "nada", 1, 2, 3);
-        listProducts.put(p.getId(), p);
-
-        Invoice i = new Invoice(15, 112294, 60000, "calera", "jumbo");
-
-        listInvoices.put(i.getId(), i);
-
-        listClientsApp.put(c.getId(), c);
-        
-         */
+       
     }
 
-    /*  @Override
-    public HashMap<String, Supermarket> getSupermarkets() {
-
-        return listSupermarkets;
+    @Override
+    public List<Supermarket> getSupermarkets() {
+        return supermarketsR.findAll();
     }
-     */
+     
     @Override
     public List<Store> getStores() {
         return storesR.findAll();
@@ -129,22 +74,24 @@ public class Impl implements IStub {
     }
 
     @Override
-    public Supermarket getSupermarketById(int s) {
-
-        return supermarketsR.findOne(s);
+    public Supermarket getSupermarketByName(String s) {
+        return null;
+        //return supermarketsR.getByName(s);
     }
 
-    /*
+    @Override
+    public Supermarket getSupermarketById(int id) {
+        return supermarketsR.findOne(id);
+    }
+    
+    
     @Override
     public ClientApp getSupermarketByIdClientsById(String superm, Integer id) {
-        HashMap clients = getSupermarketById(superm).getClients();
-        if (clients.size() > 0) {
-            return getSupermarketById(superm).getClients().get(id);
-        } else {
-            return null;
-        }
+        System.out.println("entro a getSupermarketByIdClientsById");
+        return null;
+        //return supermarketsR.getByIdClientsById(superm, id);
     }
-     */
+     
     @Override
     public Store getStoreById(Integer id) {
         return storesR.findOne(id);
@@ -168,16 +115,15 @@ public class Impl implements IStub {
     @Override
     public Set<Invoice> getInvoiceByClient(Integer c) {
         ClientApp client = getClientAppById(c);
-        //return client.getInvoices();
         return client.getInvoice();
     }
 
-    /*
+   
     @Override
     public void postSupermarket(Supermarket s) {
-        listSupermarkets.put(s.getId(), s);
+        supermarketsR.save(s);
     }
-     */
+     
     @Override
     public void postStore(Store s) {
         storesR.save(s);
@@ -203,22 +149,11 @@ public class Impl implements IStub {
         clientsR.save(c);
     }
 
-    /*@Override
+    @Override
     public void postClientApp(Supermarket s, ClientApp c) {
-        if (listSupermarkets.get(s).getClients().get(c.getId()) != null) {
-            if (listSupermarkets.get(s).getClientsApp().get(c.getId()) == null) {
-                listSupermarkets.get(s).getClientsApp().put(c.getId(), c);
-                //listClientsApp.put(c.getId(), c);
-                
-                listClientsApp.get(c.getId()).addSupermarkets(s);
-            } else {
-                System.out.println("Usuario ya registrado.");
-            }
-
-        } else {
-            System.out.println("No se puede agregar cliente.");
-        }
-    }*/
+        //clientsR.save(c);
+        System.out.println("ENTRO AL POST CLIENT APP");
+    }
     @Override
     public void postEmail(String email) {
         /*ClientApp c = clientsR.findOne(id);

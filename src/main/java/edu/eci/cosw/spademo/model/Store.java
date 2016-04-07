@@ -30,21 +30,27 @@ public class Store implements Serializable {
     private Supermarket supermarketId;
     private Set<Zone> zones= new HashSet<>(0);
     private Set<Invoice> invoices= new HashSet<>(0);
-    
+    private String name;
     
     public Store(){
     }
 
-    public Store(int id, Supermarket supermarketId) {
+    public Store(int id, Supermarket supermarketId, int longitud, int latitud, String name) {
         this.id = id;
         this.supermarketId=supermarketId;
+        this.longitud = longitud;
+        this.latitud = latitud;
+        this.name = name;
     }
 
-    public Store(int id, Supermarket supermarketId, Set<Invoice> invoices, Set<Zone> zones) {
+    public Store(int id, Supermarket supermarketId, int longitud, int latitud, Set<Invoice> invoices, Set<Zone> zones, String name) {
         this.id = id;
         this.supermarketId=supermarketId;
+        this.longitud = longitud;
+        this.latitud = latitud;
         this.invoices = invoices;
         this.zones = zones;
+        this.name = name;
     }
     
     /**
@@ -139,6 +145,21 @@ public class Store implements Serializable {
      */
     public void setZone(Set<Zone> zones) {
         this.zones = zones;
+    }
+
+    /**
+     * @return the name
+     */
+    @Column(name="name_store")
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
     }
     
 }

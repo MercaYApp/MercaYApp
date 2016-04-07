@@ -21,7 +21,18 @@ import org.springframework.data.repository.query.Param;
  * @author MercaYApp
  */
 public interface SupermarketsRepository extends JpaRepository<Supermarket, Integer> {
-
+    
+    /**
+     *
+     * @param s
+     * @return
+     */
+    /*@Query("from Supermarket super where super.name_supermarket = :s")
+    Supermarket getByName(@Param(value="s") String s);
     /*@Query("from Paciente p where size(p.consultas) >= :n")
     List<Paciente> listaPacientes(@Param(value="n") int n);    */
+
+    /*@Query("select s.clients from Supermarket s where s.clients  == :id ")
+    public ClientApp getByIdClientsById(Supermarket superm, Integer id);
+*/
 }

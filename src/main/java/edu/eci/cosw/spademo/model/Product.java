@@ -94,7 +94,7 @@ public class Product implements Serializable {
     /**
      * @return the name
      */
-    @Column(name = "name")
+    @Column(name = "name_product")
     public String getName() {
         return name;
     }
@@ -172,7 +172,7 @@ public class Product implements Serializable {
      * @return the zone
      */
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ZONES_id", nullable = false, insertable=false, updatable=false)
+    @JoinColumn(name = "ZONES_id_zones", nullable = false, insertable=false, updatable=false)
     public Zone getZone() {
         return zone;
     }

@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -13,6 +13,7 @@ import edu.eci.cosw.spademo.stub.IStub;
 import edu.eci.cosw.spademo.model.Supermarket;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -51,10 +52,8 @@ public class ClientController {
     }
 
     @RequestMapping(value="/{id}/invoices", method = RequestMethod.GET)
-    public HashMap<Integer, Invoice> getClientInvoicetById(@PathVariable int id){
-        //return getClientById(id).getInvoices();
-        System.out.println("entro a /{id}/invoices");
-        return null;
+    public Set<Invoice> getClientInvoicetById(@PathVariable int id){
+        return stub.getInvoiceByClient(id);
     }
     
     @RequestMapping(value="/clientsAppDelete/{id}", method = RequestMethod.DELETE)

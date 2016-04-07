@@ -35,8 +35,9 @@ public class Supermarket implements Serializable {
     public Supermarket() {
     }
 
-    public Supermarket(int id, String name, int longitud, int latitud) {
+    public Supermarket(int id, String name) {
         this.id = id;
+        this.name = name;
     }
 
     /**
@@ -93,7 +94,7 @@ public class Supermarket implements Serializable {
     /**
      * @return the name
      */
-    @Column(name="name")
+    @Column(name="name_supermarket")
     public String getName() {
         return name;
     }
