@@ -38,7 +38,7 @@ public interface  IStub {
     public void postStore(Store s);
     public void postZone(Zone z);
     public void postProduct(Product p);
-    //public void postInvoice(Invoice i);
+    public void postInvoice(Invoice i);
     public void postClient(ClientApp c);
     public void postClientApp(Supermarket s, ClientApp c); 
     public void deleteClientApp(int c);

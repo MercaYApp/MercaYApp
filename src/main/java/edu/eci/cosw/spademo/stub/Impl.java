@@ -139,11 +139,11 @@ public class Impl implements IStub {
         productsR.save(p);
     }
 
-    /*
     @Override
     public void postInvoice(Invoice i) {
-        listInvoices.put(i.getId(), i);
-    }*/
+        invoicesR.save(i);
+    }
+    
     @Override
     public void postClient(ClientApp c) {
         clientsR.save(c);

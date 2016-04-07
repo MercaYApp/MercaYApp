@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
  *
  * @author MercaYApp
  */
+
 @Service
 public class Stub implements IStub {
 
@@ -67,7 +68,7 @@ public class Stub implements IStub {
         Zone z = new Zone(13, null);
         listZones.add(z);
 
-        Product p = new Product(1, "Jabon", 1000, 30, 150, z);
+        Product p = new Product(2, "Jabon", 1000, 30, 150, z);
         listProducts.add(p);
 
         Invoice i = new Invoice(15, new Date(), s0, c1);
@@ -159,14 +160,17 @@ public class Stub implements IStub {
                 banderita1 = true;
             }
         }
+        
         //buscar cliente en supermercado
-        Set<ClientApp> listClients = getSupermarketById(superm.getId()).getClients();
-        Iterator<ClientApp> iterator = listClients.iterator();
+        Set<ClientApp> setClients = getSupermarketById(superm.getId()).getClients();
+        
+        Iterator<ClientApp> iterator = setClients.iterator();
         ClientApp client=null;
         boolean banderita=false;
         while (iterator.hasNext() && !banderita) {
+            
             client = iterator.next();
-            if (client.getId() == id) {
+            if (client.getId()==id) {
                 banderita=true;
             }
         }
@@ -255,11 +259,12 @@ public class Stub implements IStub {
         listProducts.add(p);
     }
 
-    /*
+    
     @Override
     public void postInvoice(Invoice i) {
-        listInvoices.put(i.getId(), i);
-    }*/
+        listInvoices.add(i);
+    }
+    
     @Override
     public void postClient(ClientApp c) {
         listClients.add(c);
@@ -268,8 +273,8 @@ public class Stub implements IStub {
     @Override
     public void postClientApp(Supermarket s, ClientApp c) {
         System.out.println("ENTRO A ESTO==");
-        listSupermarkets.get(listSupermarkets.indexOf(s)).getClients().add(c);
-        listClientsApp.add(c);
+                        //listSupermarkets.get(listSupermarkets.indexOf(s)).getClients().add(c);
+                        //listClientsApp.add(c);
     }
 
     @Override
