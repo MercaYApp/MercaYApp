@@ -89,7 +89,8 @@ public class Invoice implements Serializable {
      * @return the store
      */
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "Store_id", nullable = false, insertable=false, updatable=false)
+    //@JoinColumn(name = "Store_id", nullable = false, insertable=false, updatable=false)
+    @JoinColumn(name = "Store_id", nullable = false)
     public Store getStore() {
         return store;
     }
@@ -105,7 +106,7 @@ public class Invoice implements Serializable {
      * @return the client
      */
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "CLIENTS_APP_id", nullable = false, insertable=false, updatable=false)
+    @JoinColumn(name = "CLIENTS_APP_id", nullable = true)
     public ClientApp getClient() {
         return client;
     }

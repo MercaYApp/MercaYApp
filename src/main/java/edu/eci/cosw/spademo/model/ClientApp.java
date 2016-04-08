@@ -97,7 +97,7 @@ public class ClientApp implements Serializable {
      * @return the rol
      */
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "Roles_id", nullable = false, insertable=false, updatable=false)
+    @JoinColumn(name = "Roles_id", nullable = false)
     public Rol getRol() {
         return rol;
     }
@@ -128,7 +128,7 @@ public class ClientApp implements Serializable {
      * @return the invoice
      */
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "invoicesClintsApp", nullable = false)
+    @JoinColumn(name = "invoicesClientsApp", nullable = false)
     public Set<Invoice> getInvoice() {
         return invoice;
     }

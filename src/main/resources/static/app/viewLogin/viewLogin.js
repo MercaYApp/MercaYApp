@@ -38,7 +38,7 @@ angular.module('myApp.viewLogin', ['ngRoute'])
                             $scope.error = false;
                         } else {
                             $scope.credentials.password="";
-                            alert("Usuario o contraseña incorrectos!");
+                            alert("Usuario o contrase??a incorrectos!");
                             
                             //$location.path("/login");
                             $scope.error = true;
@@ -52,14 +52,14 @@ angular.module('myApp.viewLogin', ['ngRoute'])
                 $scope.olvideContrasena = function () {
                     $scope.olvidoContrasena = true;
                 }
-                //Enviar correo para recuperacion de contraseña, y mostrar datos para el login
+                //Enviar correo para recuperacion de contrase??a, y mostrar datos para el login
                 $scope.correoContrasena = function () {
                     alert($scope.correoOlvidado);
                     var postData = {};
                         //Crear objeto JSON para envio de correo
                         postData={mailReceptor:$scope.correoOlvidado};
                             PostEmail.save(postData.mailReceptor, function(){
-                                //alert("El usuario con correo '" + postData.mailReceptor + " olvidó contraseña!");
+                                //alert("El usuario con correo '" + postData.mailReceptor + " olvid?? contrase??a!");
                                 $scope.registrado = true;
                                 }
                             );

@@ -25,21 +25,19 @@ import javax.persistence.Table;
 @Table(name = "ZONES")
 public class Zone implements Serializable {
     private int id;
-    private String storeId;
     private Set<Product> products = new HashSet<>(0);
     private Store store;
     
     public Zone(){
     }
 
-    public Zone(int id, String storeId) {
+    public Zone(int id, Store store) {
         this.id = id;
-        this.storeId = storeId;
+        this.store = store;
     }
     
-    public Zone(int id, String storeId, Set<Product> products, Store store ) {
+    public Zone(int id, Store store, Set<Product> products) {
         this.id = id;
-        this.storeId = storeId;
         this.products = products;
         this.store = store;
     }
@@ -61,25 +59,10 @@ public class Zone implements Serializable {
     }    
 
     /**
-     * @return the storeId
-     */
-    @Column(name = "Store_id")
-    public String getStoreId() {
-        return storeId;
-    }
-
-    /**
-     * @param storeId the storeId to set
-     */
-    public void setStoreId(String storeId) {
-        this.storeId = storeId;
-    }
-
-    /**
      * @return the products
      */
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "productos", nullable = false)
+    @JoinColumn(name = "productos", nullable = true)
     public Set<Product> getProducts() {
         return products;
     }
@@ -95,7 +78,7 @@ public class Zone implements Serializable {
      * @return the store
      */
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "Store_id", nullable = false, insertable=false, updatable=false)
+    @JoinColumn(name = "STORE_id_stores", nullable = false)
     public Store getStore() {
         return store;
     }

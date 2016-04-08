@@ -70,6 +70,7 @@ public class DemoApplication {
             
             builder.inMemoryAuthentication().withUser("user").password("password").roles("USER");
             //builder.inMemoryAuthentication().withUser("yo").password("yo").roles("USER");
+            
         }
 
         @Override
@@ -81,6 +82,9 @@ public class DemoApplication {
                     .antMatchers("/app/**").permitAll()
                     .anyRequest().authenticated().and()
                     .logout().logoutSuccessUrl("/app/index.html#/viewLogin")
+                    
+                    .permitAll()
+                    
                     .and().csrf()
                     .csrfTokenRepository(csrfTokenRepository()).and()
                     .addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);

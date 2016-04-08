@@ -26,15 +26,9 @@ public class DemoApplicationTests {
     @Autowired
     IStub stub;
 
-    
-    @Test
-    public void noEsPrueba(){
-        assertEquals(2,2);
-    }
-
     @Test
     public void client1Test() {
-       /* List<ClientApp> clients = new ArrayList<>();
+        List<ClientApp> clients = new ArrayList<>();
         Set<Supermarket> supermarkets = new HashSet<>();
         Set<Invoice> setInvoice0 = new HashSet<>();
         //Crear cliente0
@@ -101,8 +95,9 @@ public class DemoApplicationTests {
     public void product1Test() {
         Supermarket super0 = new Supermarket(1, "Exito");
         Store s0 = new Store(1, super0, 10, 10, "Exito 80");
-        Zone z = new Zone(1, "Exito 80");
-//Zone z = new Zone(1, s0);
+        
+//Zone z = new Zone(1, "Exito 80");
+        Zone z = new Zone(1, s0);
         
         Product p = new Product(1, "Arroz", 1000, 30, 500, z);
         stub.postProduct(p);
@@ -121,8 +116,8 @@ public class DemoApplicationTests {
         Store s0 = new Store(1, super0, 10, 10, "Exito 80");
         
         Set<Zone> setZ = new HashSet<>();
-        Zone z = new Zone(1, "Exito 80");
-//Zone z = new Zone(1, s0);        
+//Zone z = new Zone(1, "Exito 80");
+        Zone z = new Zone(1, s0);        
         
         Set<Product> setP = new HashSet<>();
         Product p = new Product(1, "Arroz", 1000, 30, 500, z);
@@ -187,8 +182,8 @@ public class DemoApplicationTests {
         Store s0 = new Store(21, super0, 10, 10, "Exito 80");
         
         Set<Zone> setZ = new HashSet<>();
-        Zone z = new Zone(21, "Exito 80");
-//Zone z = new Zone(1, s0);        
+//Zone z = new Zone(21, "Exito 80");
+        Zone z = new Zone(1, s0);        
         
         Set<Product> setP = new HashSet<>();
         Product p = new Product(21, "Papaya", 1000, 30, 500, z);

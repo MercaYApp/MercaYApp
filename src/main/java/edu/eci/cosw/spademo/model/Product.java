@@ -172,7 +172,7 @@ public class Product implements Serializable {
      * @return the zone
      */
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ZONES_id_zones", nullable = false, insertable=false, updatable=false)
+    @JoinColumn(name = "ZONES_id_zones", nullable = false)
     public Zone getZone() {
         return zone;
     }

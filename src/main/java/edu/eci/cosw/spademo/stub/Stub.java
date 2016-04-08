@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
  * @author MercaYApp
  */
 
-@Service
+//@Service
 public class Stub implements IStub {
 
     List<Supermarket> listSupermarkets = new ArrayList<>();
@@ -32,31 +32,36 @@ public class Stub implements IStub {
     List<ClientApp> listClientsApp = new ArrayList<>();
 
     public Stub() {
-        Supermarket super0 = new Supermarket(1, "Exito");
+        Supermarket super0 = new Supermarket(1, "Exito");        
         Store s0 = new Store(1, super0, 10, 10, "Exito 80");
         Rol r0 = new Rol(1, "Admin");
         ClientApp c0 = new ClientApp(1122, "Felipe", "yo@yo.com", "123", r0);
         Invoice in = new Invoice(110, new Date(), s0, c0);
-
         Invoice in1 = new Invoice(111, new Date(), s0, c0);
-        Set<Invoice> set = new HashSet<>();
-        set.add(in);
-        set.add(in1);
+        Set<Invoice> setInvoice = new HashSet<>();
+        Set<Store> setStores = new HashSet<>();
+        setInvoice.add(in);
+        setInvoice.add(in1);
+        c0.setInvoice(setInvoice);
+        listClients.add(c0);
+        
+        
         ArrayList<String> listSuper = new ArrayList<>();
         listSuper.add("Exito");
+        
         ClientApp c = new ClientApp(16, "Felipe", "juan.pipe1122@gmail.com", "123", r0);
-        c.setInvoice(set);
+        c.setInvoice(setInvoice);
         listClients.add(c);
 
-        List<ClientApp> setClients = new ArrayList<>();
+        Set<ClientApp> setClients = new HashSet<>();
         ClientApp c1 = new ClientApp(69, "Oscar", "Oscar@yo.com", "123", r0);
         setClients.add(c1);
         setClients.add(c);
-        List<ClientApp> setClientsApp = new ArrayList<>();
-        setClientsApp.add(c1);
+        super0.setClients(setClients);
+        super0.setStores(setStores);
 
-        Supermarket s = new Supermarket(1, "Exito");
-        listSupermarkets.add(s);
+       
+        listSupermarkets.add(super0);
         Supermarket s12 = new Supermarket(2, "Cencosud");
         listSupermarkets.add(s12);
         Supermarket s13 = new Supermarket(3, "Olimpica");
@@ -76,6 +81,7 @@ public class Stub implements IStub {
         listInvoices.add(i);
 
         listClientsApp.add(c);
+        listClientsApp.add(c1);
 
     }
 
@@ -273,8 +279,8 @@ public class Stub implements IStub {
     @Override
     public void postClientApp(Supermarket s, ClientApp c) {
         System.out.println("ENTRO A ESTO==");
-                        //listSupermarkets.get(listSupermarkets.indexOf(s)).getClients().add(c);
-                        //listClientsApp.add(c);
+        listSupermarkets.get(listSupermarkets.indexOf(s)).getClients().add(c);
+        listClientsApp.add(c);
     }
 
     @Override

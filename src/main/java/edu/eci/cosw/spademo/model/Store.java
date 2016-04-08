@@ -103,7 +103,7 @@ public class Store implements Serializable {
      * @return the supermarketId
      */
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "SuperMarket_id", nullable = false, insertable=false, updatable=false)
+    @JoinColumn(name = "SuperMarket_id", nullable = false)
     public Supermarket getSupermarketId() {
         return supermarketId;
     }
