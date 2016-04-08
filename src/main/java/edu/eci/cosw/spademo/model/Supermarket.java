@@ -12,12 +12,17 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 
 /**
@@ -44,6 +49,7 @@ public class Supermarket implements Serializable {
      * @return the id
      */
     @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     @Column(name="id_supermarkets")
     public int getId() {
         return id;
@@ -60,6 +66,7 @@ public class Supermarket implements Serializable {
      * @return the clients
      */
     @ManyToMany
+    @Fetch(FetchMode.JOIN)
     @JoinTable(name="CLIENTS_MARKETS",            
             joinColumns = @JoinColumn(name = "SUPERMARKETS_id", referencedColumnName = "id_supermarkets"),
             inverseJoinColumns = @JoinColumn(name = "CLIENTS_APP_id", referencedColumnName = "id_clients")
@@ -79,6 +86,7 @@ public class Supermarket implements Serializable {
      * @return the stores
      */
     @OneToMany(cascade = CascadeType.ALL)
+    @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "storesSupermarket", nullable = false)
     public Set<Store> getStores() {
         return stores;

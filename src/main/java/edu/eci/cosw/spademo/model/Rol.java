@@ -11,10 +11,15 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 /**
  *
@@ -45,6 +50,7 @@ public class Rol implements Serializable {
      * @return the rol
      */
     @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     @Column(name="id_roles")
     public int getRol() {
         return id;
@@ -76,6 +82,7 @@ public class Rol implements Serializable {
      * @return the client
      */
     @OneToMany(cascade = CascadeType.ALL)
+    @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "clients", nullable = false)
     public Set<ClientApp> getClient() {
         return clients;

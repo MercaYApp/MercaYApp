@@ -6,6 +6,7 @@
 package edu.eci.cosw.spademo.controllers;
 
 import edu.eci.cosw.spademo.model.Product;
+import edu.eci.cosw.spademo.persistence.ServicesMercaYAppException;
 import edu.eci.cosw.spademo.stub.IStub;
 import java.util.List;
 import java.util.Map;
@@ -29,18 +30,18 @@ public class ProductController {
     IStub stub;
     
     @RequestMapping(method = RequestMethod.GET)
-    public List<Product> getProducts(){
+    public List<Product> getProducts()throws ServicesMercaYAppException{
         return stub.getProducts();
     }
     
     @RequestMapping(method = RequestMethod.POST)
-    public void postProduct(@RequestBody Product product){
+    public void postProduct(@RequestBody Product product)throws ServicesMercaYAppException{
         stub.postProduct(product);
       
     }
     
     @RequestMapping(value="/{id}", method = RequestMethod.GET)
-    public Product getProductById(@PathVariable int id){
+    public Product getProductById(@PathVariable int id)throws ServicesMercaYAppException{
         return stub.getProductById(id);
     }
     

@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 /**
  * @author MercaYApp
  */
-@Service
+//@Service
 public class Impl implements IStub {
 
     @Autowired

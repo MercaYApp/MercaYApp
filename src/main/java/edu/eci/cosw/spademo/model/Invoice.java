@@ -12,6 +12,9 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -20,6 +23,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 
 /**
@@ -57,6 +62,7 @@ public class Invoice implements Serializable {
      * @return the id
      */
     @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     @Column(name="id_invoices")
     public int getId() {
         return id;
@@ -89,6 +95,7 @@ public class Invoice implements Serializable {
      * @return the store
      */
     @ManyToOne(cascade = CascadeType.ALL)
+    @Fetch(FetchMode.JOIN)
     //@JoinColumn(name = "Store_id", nullable = false, insertable=false, updatable=false)
     @JoinColumn(name = "Store_id", nullable = false)
     public Store getStore() {
@@ -106,6 +113,7 @@ public class Invoice implements Serializable {
      * @return the client
      */
     @ManyToOne(cascade = CascadeType.ALL)
+    @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "CLIENTS_APP_id", nullable = true)
     public ClientApp getClient() {
         return client;
@@ -122,6 +130,7 @@ public class Invoice implements Serializable {
      * @return the products
      */
     @ManyToMany
+    @Fetch(FetchMode.JOIN)
     @JoinTable(name="LINE_INVOICE",
             joinColumns =   @JoinColumn(name = "INVOICES_id", referencedColumnName = "id_invoices"),
             inverseJoinColumns = @JoinColumn(name = "PRODUCTS_id", referencedColumnName = "id_products")

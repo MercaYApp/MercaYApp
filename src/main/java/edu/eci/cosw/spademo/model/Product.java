@@ -11,11 +11,16 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 /**
  *
@@ -79,6 +84,7 @@ public class Product implements Serializable {
      * @return the id
      */
     @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     @Column(name="id_products")
     public int getId() {
         return id;
@@ -157,6 +163,7 @@ public class Product implements Serializable {
      */
     
     @ManyToMany(mappedBy = "products")
+    @Fetch(FetchMode.JOIN)
     public Set<Invoice> getInvoices() {
         return invoices;
     }
@@ -172,6 +179,7 @@ public class Product implements Serializable {
      * @return the zone
      */
     @ManyToOne(cascade = CascadeType.ALL)
+    @Fetch(FetchMode.JOIN)    
     @JoinColumn(name = "ZONES_id_zones", nullable = false)
     public Zone getZone() {
         return zone;

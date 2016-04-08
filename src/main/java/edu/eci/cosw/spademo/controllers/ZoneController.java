@@ -6,11 +6,15 @@
 package edu.eci.cosw.spademo.controllers;
 
 import edu.eci.cosw.spademo.model.Zone;
+import edu.eci.cosw.spademo.persistence.ServicesMercaYAppException;
 import edu.eci.cosw.spademo.stub.IStub;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,18 +33,19 @@ public class ZoneController {
     IStub stub;
     
     @RequestMapping(method = RequestMethod.GET)
-    public List<Zone> getZones(){
+    public List<Zone> getZones()throws ServicesMercaYAppException{
         return stub.getZones();
     }
     
     @RequestMapping(method = RequestMethod.POST)
-    public void postZone(@RequestBody Zone zone){
+    public void postZone(@RequestBody Zone zone)throws ServicesMercaYAppException{
         stub.postZone(zone);
     }
     
     @RequestMapping(value="/{id}", method = RequestMethod.GET)
-    public Zone getZoneById(@PathVariable int id){
-        return stub.getZoneById(id);
+    public Zone getZoneById(@PathVariable int id)throws ServicesMercaYAppException{
+        return stub.getZoneById(id); 
+        
     }
     
     

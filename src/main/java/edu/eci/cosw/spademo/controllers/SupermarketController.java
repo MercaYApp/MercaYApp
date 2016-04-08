@@ -7,6 +7,7 @@ package edu.eci.cosw.spademo.controllers;
 
 import edu.eci.cosw.spademo.model.Supermarket;
 import edu.eci.cosw.spademo.model.ClientApp;
+import edu.eci.cosw.spademo.persistence.ServicesMercaYAppException;
 import edu.eci.cosw.spademo.stub.IStub;
 import java.util.List;
 import java.util.Set;
@@ -29,25 +30,25 @@ public class SupermarketController {
     IStub stub;
     
     @RequestMapping(method = RequestMethod.GET)
-    public List<Supermarket> getSupermarket(){
+    public List<Supermarket> getSupermarket()throws ServicesMercaYAppException{
        return stub.getSupermarkets();
        
     }
     
     @RequestMapping(method = RequestMethod.POST)
-    public void postSupermarket(@RequestBody Supermarket supermarket){
+    public void postSupermarket(@RequestBody Supermarket supermarket)throws ServicesMercaYAppException{
         //stub.postSupermarket(supermarket);
         System.out.println("entro a postSupermarket");
     }
     
     @RequestMapping(value="/{id}", method = RequestMethod.GET)
-    public Supermarket getSupermarketById(@PathVariable int id){
+    public Supermarket getSupermarketById(@PathVariable int id)throws ServicesMercaYAppException{
         return stub.getSupermarketById(id);
         
     }
     
     @RequestMapping(value="/{id}/clients", method = RequestMethod.GET)
-    public Set<ClientApp> getSupermarketClientsById(@PathVariable String id){
+    public Set<ClientApp> getSupermarketClientsById(@PathVariable String id)throws ServicesMercaYAppException{
         return stub.getSupermarketByName(id).getClients();
         
         /*System.out.println("entro a /{id}/clients");
@@ -55,7 +56,7 @@ public class SupermarketController {
     }
     
     @RequestMapping(value="/{id}/clientsApp", method = RequestMethod.GET)
-    public Set<ClientApp> getSupermarketClientsAppById(@PathVariable String id){
+    public Set<ClientApp> getSupermarketClientsAppById(@PathVariable String id)throws ServicesMercaYAppException{
         return stub.getSupermarketByName(id).getClients();
         /*System.out.println("/{id}/clientsApp");
         return null;*/
@@ -63,7 +64,7 @@ public class SupermarketController {
     }
     
     @RequestMapping(value="/{superm}/clients/{id}", method = RequestMethod.GET)
-    public ClientApp getSupermarketByIdClientsById(@PathVariable String superm, @PathVariable int id){
+    public ClientApp getSupermarketByIdClientsById(@PathVariable String superm, @PathVariable int id)throws ServicesMercaYAppException{
         ClientApp c=null;
         if(stub.getSupermarketByName(superm)!=null){
             c = stub.getSupermarketByIdClientsById(superm, id);
@@ -75,7 +76,7 @@ public class SupermarketController {
     
     
     @RequestMapping(value="/clientsAppPost", method = RequestMethod.POST)
-    public void postSupermarketClientsApp(@RequestBody ClientApp client){
+    public void postSupermarketClientsApp(@RequestBody ClientApp client)throws ServicesMercaYAppException{
         System.out.println("entro a postSupermarketClientsApp");
         //stub.postClientApp(client.getSupermarkets().get(client.getSupermarkets().size()-1), client);
         

@@ -11,11 +11,16 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 /**
  *
@@ -57,6 +62,7 @@ public class Store implements Serializable {
      * @return the id
      */
     @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     @Column(name="id_stores")
     public int getId() {
         return id;
@@ -103,6 +109,7 @@ public class Store implements Serializable {
      * @return the supermarketId
      */
     @ManyToOne(cascade = CascadeType.ALL)
+    @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "SuperMarket_id", nullable = false)
     public Supermarket getSupermarketId() {
         return supermarketId;
@@ -119,6 +126,7 @@ public class Store implements Serializable {
      * @return the invoice
      */
     @OneToMany(cascade = CascadeType.ALL)
+    @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "invoicesStore", nullable = false)
     public Set<Invoice> getInvoice() {
         return invoices;
@@ -135,6 +143,7 @@ public class Store implements Serializable {
      * @return the zone
      */
     @OneToMany(cascade = CascadeType.ALL)
+    @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "zoneStore", nullable = false)
     public Set<Zone> getZone() {
         return zones;

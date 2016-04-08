@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
  * @author MercaYApp
  */
 
-//@Service
+@Service
 public class Stub implements IStub {
 
     List<Supermarket> listSupermarkets = new ArrayList<>();

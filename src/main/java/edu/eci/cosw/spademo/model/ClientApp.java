@@ -11,12 +11,15 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 /**
  *
@@ -97,6 +100,7 @@ public class ClientApp implements Serializable {
      * @return the rol
      */
     @ManyToOne(cascade = CascadeType.ALL)
+    @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "Roles_id", nullable = false)
     public Rol getRol() {
         return rol;
@@ -112,7 +116,8 @@ public class ClientApp implements Serializable {
     /**
      * @return the supermarkets
      */
-    @ManyToMany(mappedBy = "clients")
+    @ManyToMany( mappedBy = "clients")
+    @Fetch(FetchMode.JOIN)
     public Set<Supermarket> getSupermarkets() {
         return supermarkets;
     }
@@ -128,6 +133,7 @@ public class ClientApp implements Serializable {
      * @return the invoice
      */
     @OneToMany(cascade = CascadeType.ALL)
+    @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "invoicesClientsApp", nullable = false)
     public Set<Invoice> getInvoice() {
         return invoice;
