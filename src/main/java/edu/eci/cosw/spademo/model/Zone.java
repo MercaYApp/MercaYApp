@@ -5,6 +5,7 @@
  */
 package edu.eci.cosw.spademo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,6 +16,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -84,7 +86,11 @@ public class Zone implements Serializable {
      */
     @ManyToOne(cascade = CascadeType.ALL)
     @Fetch(FetchMode.JOIN)
-    @JoinColumn(name = "STORE_id_stores", nullable = false)
+    @JsonIgnore
+    @JoinColumns({
+        @JoinColumn(name = "STORES_id_stores", nullable = false, insertable=false, updatable=false),
+        @JoinColumn(name = "STORES_SuperMarket_id", nullable = false, insertable=false, updatable=false)
+    })
     public Store getStore() {
         return store;
     }

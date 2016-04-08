@@ -6,6 +6,7 @@
 package edu.eci.cosw.spademo.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -67,6 +68,7 @@ public class Supermarket implements Serializable {
      */
     @ManyToMany
     @Fetch(FetchMode.JOIN)
+    @JsonIgnore 
     @JoinTable(name="CLIENTS_MARKETS",            
             joinColumns = @JoinColumn(name = "SUPERMARKETS_id", referencedColumnName = "id_supermarkets"),
             inverseJoinColumns = @JoinColumn(name = "CLIENTS_APP_id", referencedColumnName = "id_clients")

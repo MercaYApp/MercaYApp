@@ -33,7 +33,8 @@ public class Stub implements IStub {
 
     public Stub() {
         Supermarket super0 = new Supermarket(1, "Exito");        
-        Store s0 = new Store(1, super0, 10, 10, "Exito 80");
+        StoreId sId0 = new StoreId(1, super0);
+        Store s0 = new Store(sId0, 10, 10, "Exito 80");
         Rol r0 = new Rol(1, "Admin");
         ClientApp c0 = new ClientApp(1122, "Felipe", "yo@yo.com", "123", r0);
         Invoice in = new Invoice(110, new Date(), s0, c0);
@@ -121,7 +122,7 @@ public class Stub implements IStub {
         boolean banderita = false;
         ClientApp cli = null;
         for (int i = 0; i < listClientsApp.size() && !banderita; i++) {
-            if (listClientsApp.get(i) != null) {
+            if (listClientsApp.get(i).getId() == id) {
                 cli = listClientsApp.get(i);
                 banderita = true;
             }
@@ -190,7 +191,7 @@ public class Stub implements IStub {
         Store store = null;
         boolean banderita = false;
         for (int i = 0; i < listStores.size() && !banderita; i++) {
-            if (listStores.get(i).getId() == id) {
+            if (listStores.get(i).getId().getIdStore() == id) {
                 store = listStores.get(i);
                 banderita = true;
             }

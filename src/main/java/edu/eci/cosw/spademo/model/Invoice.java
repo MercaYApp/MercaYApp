@@ -5,6 +5,8 @@
  */
 package edu.eci.cosw.spademo.model;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
@@ -96,6 +98,7 @@ public class Invoice implements Serializable {
      */
     @ManyToOne(cascade = CascadeType.ALL)
     @Fetch(FetchMode.JOIN)
+    @JsonIgnore
     //@JoinColumn(name = "Store_id", nullable = false, insertable=false, updatable=false)
     @JoinColumn(name = "Store_id", nullable = false)
     public Store getStore() {
@@ -114,6 +117,7 @@ public class Invoice implements Serializable {
      */
     @ManyToOne(cascade = CascadeType.ALL)
     @Fetch(FetchMode.JOIN)
+    @JsonIgnore
     @JoinColumn(name = "CLIENTS_APP_id", nullable = true)
     public ClientApp getClient() {
         return client;
@@ -131,6 +135,7 @@ public class Invoice implements Serializable {
      */
     @ManyToMany
     @Fetch(FetchMode.JOIN)
+    @JsonIgnore
     @JoinTable(name="LINE_INVOICE",
             joinColumns =   @JoinColumn(name = "INVOICES_id", referencedColumnName = "id_invoices"),
             inverseJoinColumns = @JoinColumn(name = "PRODUCTS_id", referencedColumnName = "id_products")

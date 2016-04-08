@@ -5,13 +5,13 @@
  */
 package edu.eci.cosw.spademo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
@@ -101,6 +101,7 @@ public class ClientApp implements Serializable {
      */
     @ManyToOne(cascade = CascadeType.ALL)
     @Fetch(FetchMode.JOIN)
+    @JsonIgnore
     @JoinColumn(name = "Roles_id", nullable = false)
     public Rol getRol() {
         return rol;
@@ -118,6 +119,7 @@ public class ClientApp implements Serializable {
      */
     @ManyToMany( mappedBy = "clients")
     @Fetch(FetchMode.JOIN)
+    @JsonIgnore
     public Set<Supermarket> getSupermarkets() {
         return supermarkets;
     }

@@ -5,11 +5,13 @@
  */
 package edu.eci.cosw.spademo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -29,10 +31,9 @@ import org.hibernate.annotations.FetchMode;
 @Entity
 @Table(name = "STORES")
 public class Store implements Serializable {
-    private int id;
+    private StoreId id;
     private int longitud;
     private int latitud;
-    private Supermarket supermarketId;
     private Set<Zone> zones= new HashSet<>(0);
     private Set<Invoice> invoices= new HashSet<>(0);
     private String name;
@@ -40,17 +41,15 @@ public class Store implements Serializable {
     public Store(){
     }
 
-    public Store(int id, Supermarket supermarketId, int longitud, int latitud, String name) {
+    public Store(StoreId id, int longitud, int latitud, String name) {
         this.id = id;
-        this.supermarketId=supermarketId;
         this.longitud = longitud;
         this.latitud = latitud;
         this.name = name;
     }
 
-    public Store(int id, Supermarket supermarketId, int longitud, int latitud, Set<Invoice> invoices, Set<Zone> zones, String name) {
+    public Store(StoreId id, int longitud, int latitud, Set<Invoice> invoices, Set<Zone> zones, String name) {
         this.id = id;
-        this.supermarketId=supermarketId;
         this.longitud = longitud;
         this.latitud = latitud;
         this.invoices = invoices;
@@ -61,17 +60,17 @@ public class Store implements Serializable {
     /**
      * @return the id
      */
-    @Id
+    @EmbeddedId
     @GeneratedValue(strategy=GenerationType.SEQUENCE)
     @Column(name="id_stores")
-    public int getId() {
+    public StoreId getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
+    public void setId(StoreId id) {
         this.id = id;
     }
 
@@ -105,23 +104,6 @@ public class Store implements Serializable {
         this.latitud = latitud;
     }
     
-    /**
-     * @return the supermarketId
-     */
-    @ManyToOne(cascade = CascadeType.ALL)
-    @Fetch(FetchMode.JOIN)
-    @JoinColumn(name = "SuperMarket_id", nullable = false)
-    public Supermarket getSupermarketId() {
-        return supermarketId;
-    }
-
-    /**
-     * @param supermarketId the supermarketId to set
-     */
-    public void setSupermarketId(Supermarket supermarketId) {
-        this.supermarketId = supermarketId;
-    }
-
     /**
      * @return the invoice
      */
