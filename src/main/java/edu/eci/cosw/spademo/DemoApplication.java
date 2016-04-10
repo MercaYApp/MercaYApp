@@ -64,8 +64,8 @@ public class DemoApplication {
             //crear todos los usuarios existentes que estan registrados en la App
             for(int i=0; i<stub.getClientsApp().size(); i++){
                 ClientApp c = stub.getClientsApp().get(i);
-                builder.inMemoryAuthentication().withUser(c.getId()+"").password(c.getPassword()+"").roles("USER");
-                System.out.println("CREANDO USUARIOSS"+c.getId());
+                builder.inMemoryAuthentication().withUser(c.getIdClients()+"").password(c.getPassword()+"").roles("USER");
+                System.out.println("CREANDO USUARIOSS"+c.getIdClients());
             }
             
             builder.inMemoryAuthentication().withUser("user").password("password").roles("USER");

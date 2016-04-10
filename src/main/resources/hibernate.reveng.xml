@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="coswgr6"/>
+  <table-filter match-name="SUPERMARKETS"/>
+  <table-filter match-name="CLIENTS_MARKETS"/>
+  <table-filter match-name="ROLES"/>
+  <table-filter match-name="ZONES"/>
+  <table-filter match-name="LINE_INVOICE"/>
+  <table-filter match-name="PRODUCTS"/>
+  <table-filter match-name="INVOICES"/>
+  <table-filter match-name="CLIENTS_APP"/>
+  <table-filter match-name="STORES"/>
+</hibernate-reverse-engineering>

@@ -45,7 +45,7 @@ public class ClientController {
     
     @RequestMapping(method = RequestMethod.POST)
     public void postClientApp(@RequestBody ClientApp client){
-        if(stub.getClientAppById(client.getId())!= null){
+        if(stub.getClientAppById(client.getIdClients())!= null){
             stub.postClient(client);
         }  
     }

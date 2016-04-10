@@ -5,6 +5,12 @@
  */
 package edu.eci.cosw.spademo.stub;
 
+import edu.eci.cosw.spademo.model.Supermarket;
+import edu.eci.cosw.spademo.model.ClientApp;
+import edu.eci.cosw.spademo.model.Product;
+import edu.eci.cosw.spademo.model.Zone;
+import edu.eci.cosw.spademo.model.Invoice;
+import edu.eci.cosw.spademo.model.Store;
 import edu.eci.cosw.spademo.model.*;
 import java.util.List;
 import java.util.Set;

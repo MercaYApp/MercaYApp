@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://desarrollo.is.escuelaing.edu.co:3306/coswgr6?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.username">coswgr6</property>
+    <property name="hibernate.connection.password">gr606</property>
+    <mapping class="edu.eci.cosw.spademo.Invoices"/>
+    <mapping class="edu.eci.cosw.spademo.StoresId"/>
+    <mapping class="edu.eci.cosw.spademo.Stores"/>
+    <mapping class="edu.eci.cosw.spademo.DemoApplication"/>
+    <mapping class="edu.eci.cosw.spademo.Products"/>
+    <mapping class="edu.eci.cosw.spademo.ClientsApp"/>
+    <mapping class="edu.eci.cosw.spademo.ZonesId"/>
+    <mapping class="edu.eci.cosw.spademo.Supermarkets"/>
+    <mapping class="edu.eci.cosw.spademo.Roles"/>
+    <mapping class="edu.eci.cosw.spademo.Zones"/>
+    <mapping class="edu.eci.cosw.spademo.mail.EnviadorMailController"/>
+    <mapping class="edu.eci.cosw.spademo.mail.EnviadorMail"/>
+    <mapping class="edu.eci.cosw.spademo.controllers.StoreController"/>
+    <mapping class="edu.eci.cosw.spademo.controllers.ZoneController"/>
+    <mapping class="edu.eci.cosw.spademo.controllers.ProductController"/>
+    <mapping class="edu.eci.cosw.spademo.controllers.InvoiceController"/>
+    <mapping class="edu.eci.cosw.spademo.controllers.ClientController"/>
+    <mapping class="edu.eci.cosw.spademo.controllers.UsersController"/>
+    <mapping class="edu.eci.cosw.spademo.controllers.SupermarketController"/>
+    <mapping class="edu.eci.cosw.spademo.model.ClientApp"/>
+    <mapping class="edu.eci.cosw.spademo.model.ZoneId"/>
+    <mapping class="edu.eci.cosw.spademo.model.Rol"/>
+    <mapping class="edu.eci.cosw.spademo.model.Zone"/>
+    <mapping class="edu.eci.cosw.spademo.model.StoreId"/>
+    <mapping class="edu.eci.cosw.spademo.model.Store"/>
+    <mapping class="edu.eci.cosw.spademo.model.Invoice"/>
+    <mapping class="edu.eci.cosw.spademo.model.Product"/>
+    <mapping class="edu.eci.cosw.spademo.model.Supermarket"/>
+    <mapping class="edu.eci.cosw.spademo.stub.IStub"/>
+    <mapping class="edu.eci.cosw.spademo.stub.Stub"/>
+    <mapping class="edu.eci.cosw.spademo.stub.Impl"/>
+    <mapping class="edu.eci.cosw.spademo.persistence.ClientsRepository"/>
+    <mapping class="edu.eci.cosw.spademo.persistence.ServicesMercaYAppException"/>
+    <mapping class="edu.eci.cosw.spademo.persistence.SupermarketsRepository"/>
+    <mapping class="edu.eci.cosw.spademo.persistence.ZonesRepository"/>
+    <mapping class="edu.eci.cosw.spademo.persistence.ProductsRepository"/>
+    <mapping class="edu.eci.cosw.spademo.persistence.StoresRepository"/>
+    <mapping class="edu.eci.cosw.spademo.persistence.InvoicesRepository"/>
+  </session-factory>
+</hibernate-configuration>

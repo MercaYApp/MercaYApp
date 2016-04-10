@@ -49,7 +49,7 @@ public class SupermarketController {
     
     @RequestMapping(value="/{id}/clients", method = RequestMethod.GET)
     public Set<ClientApp> getSupermarketClientsById(@PathVariable String id)throws ServicesMercaYAppException{
-        return stub.getSupermarketByName(id).getClients();
+        return stub.getSupermarketByName(id).getClientsApps();
         
         /*System.out.println("entro a /{id}/clients");
         return null;*/
@@ -57,7 +57,7 @@ public class SupermarketController {
     
     @RequestMapping(value="/{id}/clientsApp", method = RequestMethod.GET)
     public Set<ClientApp> getSupermarketClientsAppById(@PathVariable String id)throws ServicesMercaYAppException{
-        return stub.getSupermarketByName(id).getClients();
+        return stub.getSupermarketByName(id).getClientsApps();
         /*System.out.println("/{id}/clientsApp");
         return null;*/
         

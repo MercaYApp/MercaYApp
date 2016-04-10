@@ -5,6 +5,12 @@
  */
 package edu.eci.cosw.spademo.stub;
 
+import edu.eci.cosw.spademo.model.Supermarket;
+import edu.eci.cosw.spademo.model.ClientApp;
+import edu.eci.cosw.spademo.model.Product;
+import edu.eci.cosw.spademo.model.Zone;
+import edu.eci.cosw.spademo.model.Invoice;
+import edu.eci.cosw.spademo.model.Store;
 import edu.eci.cosw.spademo.model.*;
 import edu.eci.cosw.spademo.persistence.*;
 import edu.eci.cosw.spademo.mail.EnviadorMail;
@@ -115,7 +121,7 @@ public class Impl implements IStub {
     @Override
     public Set<Invoice> getInvoiceByClient(Integer c) {
         ClientApp client = getClientAppById(c);
-        return client.getInvoice();
+        return client.getInvoiceses();
     }
 
    

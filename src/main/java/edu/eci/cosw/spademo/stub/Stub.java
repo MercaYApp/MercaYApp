@@ -5,6 +5,15 @@
  */
 package edu.eci.cosw.spademo.stub;
 
+import edu.eci.cosw.spademo.model.Supermarket;
+import edu.eci.cosw.spademo.model.ZoneId;
+import edu.eci.cosw.spademo.model.ClientApp;
+import edu.eci.cosw.spademo.model.Product;
+import edu.eci.cosw.spademo.model.Rol;
+import edu.eci.cosw.spademo.model.StoreId;
+import edu.eci.cosw.spademo.model.Zone;
+import edu.eci.cosw.spademo.model.Invoice;
+import edu.eci.cosw.spademo.model.Store;
 import edu.eci.cosw.spademo.mail.EnviadorMail;
 import edu.eci.cosw.spademo.model.*;
 import java.util.ArrayList;
@@ -32,34 +41,34 @@ public class Stub implements IStub {
     List<ClientApp> listClientsApp = new ArrayList<>();
 
     public Stub() {
-        Supermarket super0 = new Supermarket(1, "Exito");        
-        StoreId sId0 = new StoreId(1, super0);
-        Store s0 = new Store(sId0, 10, 10, "Exito 80");
+        Supermarket super0 = new Supermarket(1, "Exito");
+        StoreId s0Id = new StoreId(1, 1);
+        Store s0 = new Store(s0Id, super0, 10, 10, "Exito 80");
         Rol r0 = new Rol(1, "Admin");
-        ClientApp c0 = new ClientApp(1122, "Felipe", "yo@yo.com", "123", r0);
-        Invoice in = new Invoice(110, new Date(), s0, c0);
-        Invoice in1 = new Invoice(111, new Date(), s0, c0);
+        ClientApp c0 = new ClientApp(1122,r0, "Felipe", "yo@yo.com", "123");
+        Invoice in = new Invoice(110, c0, s0, new Date());
+        Invoice in1 = new Invoice(111, c0, s0, new Date());
         Set<Invoice> setInvoice = new HashSet<>();
         Set<Store> setStores = new HashSet<>();
         setInvoice.add(in);
         setInvoice.add(in1);
-        c0.setInvoice(setInvoice);
+        c0.setInvoiceses(setInvoice);
         listClients.add(c0);
         
         
         ArrayList<String> listSuper = new ArrayList<>();
         listSuper.add("Exito");
         
-        ClientApp c = new ClientApp(16, "Felipe", "juan.pipe1122@gmail.com", "123", r0);
-        c.setInvoice(setInvoice);
+        ClientApp c = new ClientApp(16, r0, "Felipe", "juan.pipe1122@gmail.com", "123");
+        c.setInvoiceses(setInvoice);
         listClients.add(c);
 
         Set<ClientApp> setClients = new HashSet<>();
-        ClientApp c1 = new ClientApp(69, "Oscar", "Oscar@yo.com", "123", r0);
+        ClientApp c1 = new ClientApp(69, r0, "Oscar", "Oscar@yo.com", "123");
         setClients.add(c1);
         setClients.add(c);
-        super0.setClients(setClients);
-        super0.setStores(setStores);
+        super0.setClientsApps(setClients);
+        super0.setStoreses(setStores);
 
        
         listSupermarkets.add(super0);
@@ -70,14 +79,15 @@ public class Stub implements IStub {
         Supermarket s14 = new Supermarket(4, "Makro");
 
         listSupermarkets.add(s14);
-
-        Zone z = new Zone(13, null);
+        
+        ZoneId zId = new ZoneId(1, 1, 1);
+        Zone z = new Zone(zId, s0, "Aseo");
         listZones.add(z);
 
-        Product p = new Product(2, "Jabon", 1000, 30, 150, z);
+        Product p = new Product(1, z, "Jabon", 1000, 30, 500);
         listProducts.add(p);
 
-        Invoice i = new Invoice(15, new Date(), s0, c1);
+        Invoice i = new Invoice(15, c1, s0, new Date());
 
         listInvoices.add(i);
 
@@ -122,7 +132,7 @@ public class Stub implements IStub {
         boolean banderita = false;
         ClientApp cli = null;
         for (int i = 0; i < listClientsApp.size() && !banderita; i++) {
-            if (listClientsApp.get(i).getId() == id) {
+            if (listClientsApp.get(i).getIdClients()== id) {
                 cli = listClientsApp.get(i);
                 banderita = true;
             }
@@ -135,7 +145,7 @@ public class Stub implements IStub {
         boolean banderita = false;
         Supermarket superm = null;
         for (int i = 0; i < listSupermarkets.size() && !banderita; i++) {
-            if (listSupermarkets.get(i).getName().equals(s)) {
+            if (listSupermarkets.get(i).getNameSupermarket().equals(s)) {
                 superm = listSupermarkets.get(i);
                 banderita = true;
             }
@@ -148,7 +158,7 @@ public class Stub implements IStub {
         boolean banderita = false;
         Supermarket superm = null;
         for (int i = 0; i < listSupermarkets.size() && !banderita; i++) {
-            if (listSupermarkets.get(i).getId() == id) {
+            if (listSupermarkets.get(i).getIdSupermarkets()== id) {
                 superm = listSupermarkets.get(i);
                 banderita = true;
             }
@@ -162,14 +172,14 @@ public class Stub implements IStub {
         boolean banderita1 = false;
         Supermarket superm = null;
         for (int i = 0; i < listSupermarkets.size() && !banderita1; i++) {
-            if (listSupermarkets.get(i).getName().equals(sup)) {
+            if (listSupermarkets.get(i).getNameSupermarket().equals(sup)) {
                 superm = listSupermarkets.get(i);
                 banderita1 = true;
             }
         }
         
         //buscar cliente en supermercado
-        Set<ClientApp> setClients = getSupermarketById(superm.getId()).getClients();
+        Set<ClientApp> setClients = getSupermarketById(superm.getIdSupermarkets()).getClientsApps();
         
         Iterator<ClientApp> iterator = setClients.iterator();
         ClientApp client=null;
@@ -177,12 +187,12 @@ public class Stub implements IStub {
         while (iterator.hasNext() && !banderita) {
             
             client = iterator.next();
-            if (client.getId()==id) {
+            if (client.getIdClients()==id) {
                 banderita=true;
             }
         }
         if(client!=null)
-            System.out.println("cliente gsbicbi"+client.getId());
+            System.out.println("cliente gsbicbi"+client.getIdClients());
         return client;
     }
 
@@ -191,7 +201,7 @@ public class Stub implements IStub {
         Store store = null;
         boolean banderita = false;
         for (int i = 0; i < listStores.size() && !banderita; i++) {
-            if (listStores.get(i).getId().getIdStore() == id) {
+            if (listStores.get(i).getId().getIdStores()== id) {
                 store = listStores.get(i);
                 banderita = true;
             }
@@ -204,7 +214,7 @@ public class Stub implements IStub {
         Zone zone = null;
         boolean banderita = false;
         for (int i = 0; i < listZones.size() && !banderita; i++) {
-            if (listZones.get(i).getId() == id) {
+            if (listZones.get(i).getId().getIdZones()== id) {
                 zone = listZones.get(i);
                 banderita = true;
             }
@@ -217,7 +227,7 @@ public class Stub implements IStub {
         Product prod = null;
         boolean banderita = false;
         for (int i = 0; i < listProducts.size() && !banderita; i++) {
-            if (listProducts.get(i).getId() == id) {
+            if (listProducts.get(i).getIdProductos() == id) {
                 prod = listProducts.get(i);
                 banderita = true;
             }
@@ -231,7 +241,7 @@ public class Stub implements IStub {
         Invoice inv = null;
         boolean banderita = false;
         for (int i = 0; i < listInvoices.size() && !banderita; i++) {
-            if (listInvoices.get(i).getId() == id) {
+            if (listInvoices.get(i).getIdInvoices()== id) {
                 inv = listInvoices.get(i);
                 banderita = true;
             }
@@ -243,7 +253,7 @@ public class Stub implements IStub {
     public Set<Invoice> getInvoiceByClient(Integer c) {
         ClientApp client = getClientAppById(c);
         //return client.getInvoices();
-        return client.getInvoice();
+        return client.getInvoiceses();
     }
 
     @Override
@@ -280,7 +290,7 @@ public class Stub implements IStub {
     @Override
     public void postClientApp(Supermarket s, ClientApp c) {
         System.out.println("ENTRO A ESTO==");
-        listSupermarkets.get(listSupermarkets.indexOf(s)).getClients().add(c);
+        listSupermarkets.get(listSupermarkets.indexOf(s)).getClientsApps().add(c);
         listClientsApp.add(c);
     }
 
@@ -316,7 +326,7 @@ public class Stub implements IStub {
         System.out.println("deleteStub:elimina " + c);
 
         for (int i = 0; i < listClientsApp.size() && !banderita; i++) {
-            if (listClientsApp.get(i).getId() == c) {
+            if (listClientsApp.get(i).getIdClients()== c) {
                 banderita = true;
                 client = listClientsApp.get(i);
             }
@@ -325,7 +335,7 @@ public class Stub implements IStub {
         if (client != null) {
             listClientsApp.remove(listClientsApp.indexOf(client));
             Supermarket s = new Supermarket(1, "Exito");
-            listSupermarkets.get(listSupermarkets.indexOf(s)).getClients().remove(client);
+            listSupermarkets.get(listSupermarkets.indexOf(s)).getClientsApps().remove(client);
         }
     }
 
