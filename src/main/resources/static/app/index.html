@@ -8,25 +8,18 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>My AngularJS App</title>
+        <title>Esta es la vista de administracion de productos</title>        
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="app.css">
         <link rel="stylesheet" href="/bower_components/bootstrap-css-only/css/bootstrap.css">
-
+          
     </head>
 
     <body>
         <!--<ul class="menu" ng-controller="ViewPrincipal">-->
         <header id="header">
-            <h1><a href="#view1" id="logo">|  MercaYApp  | </a>
-                <a href="#/viewSignUp" ng-show="!authenticated">| SignUp |</a> 
-                <a href="#/viewLogin" ng-show="!authenticated">| Login |</a> 
-                <a href="#/ConsultarCompras" ng-show="authenticated">| Consultar |</a>
-                <a href="#/viewConfiguracion" ng-show="authenticated">| Configuracion |</a>
-                <a ng-controller="ViewPrincipal" ng-click="logout()" ng-show="authenticated">| Logout |</a>
-            </h1>
-            
+            <h1><a href="#" id="logo">|  MercaYApp  | </a><a href="#/viewSignUp">| SignUp |</a> <a href="#/ConsultarCompras">| Consultar |</a> <a href="#/addProducts">| Administrar productos |</a></h1>
 
 
         </header>
@@ -42,7 +35,7 @@
         <![endif]-->
 
         <div ng-view></div>
-
+         
       
 
         <!-- In production use:
@@ -52,10 +45,10 @@
         <script src="/bower_components/angular-resource/angular-resource.js"></script>
         <script src="/bower_components/angular-route/angular-route.js"></script>
         <script src="app.js"></script>
-        <script src="viewLogin/viewLogin.js"></script>
+        <!--<script src="viewLogin/viewLogin.js"></script>-->
         <script src="viewSignUp/viewSignUp.js"></script>
         <script src="view1/view1.js"></script>
-        <script src="viewConfiguracion/viewConfiguracion.js"></script>
+        <script src="addProducts/addProducts.js"></script>
         <!--<script src="view2/view2.js"></script>-->
 
         <script src="ConsultarCompras/ConsultarCompras.js"></script>

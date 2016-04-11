@@ -1,0 +1,35 @@
+<div ng-controller="ViewAddProductosCtrl">
+    <div class="form-group" id="selectSuper" >
+        <select ng-model="addProducts">
+            <option value="Agregar">Agregar</option>
+            <option value="Modificar">Modificar</option>
+            <option value="Eliminar">Eliminar</option>
+        </select>
+    </div>  
+
+    <div ng-show="!checkProductos">
+        <div class="form-group">
+            <label for="idProducto">Codigo del producto:</label> <input type="number"
+                                                                        class="form-control" id="idProducto" name="idProducto" ng-model="idProducto"/>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary" ng-click="consultarProductos()">Aceptar</button>
+
+    <div ng-show="checkProductos" >
+        <div class="form-group">
+            <label for="nombre">Nombre</label> <input type="text" 
+                                                      class="form-control" id="nombre" name="nombre" ng-model="nombreAddProducts" disabled/>
+        </div>
+        <div class="form-group">
+            <label for="buyPrice">Precio de compra</label> <input type="number"
+                                                                  class="form-control" id="buyPrice" name="buyPrice" ng-model="buyPriceAddProducts" />
+        </div>
+        <div class="form-group">
+            <label for="porcentaje">Porcentaje</label> <input type="number"
+                                                              ng-app=""class="form-control" id="porcentaje" name="porcentaje" ng-model="porcentajeAddProduct"/>
+        </div>
+        <button type="submit" class="btn btn-primary" ng-click="postClientApp()">Aceptar</button>
+        <button type="submit" class="btn btn-primary" ng-click="cancelarPostProductos()">Cancelar</button>
+    </div>
+    
+</div>

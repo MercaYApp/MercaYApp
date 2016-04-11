@@ -51,4 +51,12 @@ angular.module('service.modulo1', ['ngRoute', 'ngResource'])
         //---------------Post supermarket Client---------------
         .factory('PostSupermarketClient', function ($resource) {
             return $resource('/postSupermarketClient');
+        })
+        
+        .factory('GetProduct', function ($resource){
+            var product = $resource('/products/:id', {id: "@id"},
+                    {get: {method: 'GET', isArray: false}}
+            );
+            return product;
+        
         });
