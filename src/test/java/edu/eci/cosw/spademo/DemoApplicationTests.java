@@ -100,7 +100,6 @@ public class DemoApplicationTests {
 
         assertEquals(i.getIdInvoices(), stub.getInvoiceById(10).getIdInvoices());
         assertEquals(i.getDateInvoice(), stub.getInvoiceById(10).getDateInvoice());
-//        assertEquals(i.getStores(), stub.getInvoiceById(10).getStores());
         assertEquals(i.getClientsApp(), stub.getInvoiceById(10).getClientsApp());
         assertTrue(stub.getInvoices().contains(i));
     }

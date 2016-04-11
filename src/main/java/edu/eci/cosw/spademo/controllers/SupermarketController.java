@@ -81,15 +81,15 @@ public class SupermarketController {
         }else{
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
+        
 
     }
 
     @RequestMapping(value = "/clientsAppPost", method = RequestMethod.POST)
     public ResponseEntity<Void> postSupermarketClientsApp(@RequestBody ClientApp client) throws ServicesMercaYAppException {
-        
         Set<Supermarket> set = client.getSupermarketses();
         System.out.println("ENTRO A SET: "+set.isEmpty());
-        /*int cont=0;
+        int cont=0;
         Supermarket s=null;
         Iterator<Supermarket> iterator = set.iterator();
         while (iterator.hasNext()) {
@@ -100,9 +100,8 @@ public class SupermarketController {
             }
         }
         System.out.println("entro a postSupermarketClientsApp, post super: "+s.getNameSupermarket());
-        */
-        System.out.println("CLIENTEEEEEEEEE:"+client.getNameClientApp());
-        //stub.postClientApp(client.getSupermarketses()..get(client.getSupermarketses().size()-1), client);
+        
+        stub.postClientApp(s, client);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

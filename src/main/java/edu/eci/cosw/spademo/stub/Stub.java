@@ -126,7 +126,7 @@ public class Stub implements IStub {
 
     @Override
     public List<ClientApp> getClientsApp() {
-        return listClients;
+        return listClientsApp;
     }
 
     @Override
@@ -291,9 +291,25 @@ public class Stub implements IStub {
 
     @Override
     public void postClientApp(Supermarket s, ClientApp c) {
-        System.out.println("ENTRO A ESTO==");
-        listSupermarkets.get(listSupermarkets.indexOf(s)).getClientsApps().add(c);
-        listClientsApp.add(c);
+        boolean banderita=false;
+        int j=-1;
+        for(j=0; j<getClientsApp().size() && !banderita; j++){
+            if(getClientsApp().get(j).getIdClients()==c.getIdClients()){
+                System.out.println("ESTE MAN EXISTE");
+            }
+        }
+        
+        Set<ClientApp> nuevoSetClients= s.getClientsApps();
+        Set<Supermarket> nuevoSetSuper= c.getSupermarketses();
+        nuevoSetSuper.add(s);
+        nuevoSetClients.add(c);
+        getSupermarketById(s.getIdSupermarkets()).setClientsApps(nuevoSetClients);
+        
+        if(j==-1){
+            getClientsApp().get(j).setSupermarketses(nuevoSetSuper);
+        }else{
+            listClientsApp.add(c);
+        }
     }
 
     @Override
