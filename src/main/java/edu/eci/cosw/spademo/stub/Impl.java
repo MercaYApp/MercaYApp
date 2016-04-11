@@ -38,7 +38,8 @@ public class Impl implements IStub {
     ZonesRepository zonesR;
     @Autowired
     SupermarketsRepository supermarketsR;
-
+    @Autowired
+    RolesRepository rolesR;
    
     public Impl() {
        
@@ -132,7 +133,9 @@ public class Impl implements IStub {
      
     @Override
     public void postStore(Store s) {
+        System.out.println("AAAAAAAAAAAAAAAAAAAentro al post del store: "+s.getNameStore());
         storesR.save(s);
+        System.out.println("EEEEEentro al post del store: "+s.getNameStore());
     }
 
     @Override
@@ -178,6 +181,22 @@ public class Impl implements IStub {
         clientsR.delete(c);
 
         //listSupermarkets.get("Exito").getClientsApp().remove(c);
+    }
+    
+
+    @Override
+    public List<Rol> getRoles() {
+        return rolesR.findAll();
+    }
+
+    @Override
+    public Rol getRolById(Integer id) {
+        return rolesR.findOne(id);
+    }
+
+    @Override
+    public void postRol(Rol rol) {
+        rolesR.save(rol);
     }
 
 }

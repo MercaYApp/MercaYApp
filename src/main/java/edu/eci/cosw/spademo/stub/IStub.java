@@ -27,6 +27,7 @@ public interface  IStub {
     public List<Invoice> getInvoices();
     //public List<ClientApp> getClients();
     public List<ClientApp> getClientsApp();
+    public List<Rol> getRoles();
     
     public Supermarket getSupermarketByName(String name);
     public Supermarket getSupermarketById(int id);
@@ -37,7 +38,8 @@ public interface  IStub {
     public Product getProductById(Integer id);
     public Invoice getInvoiceById(Integer id);
     public ClientApp getClientAppById(Integer id);
-
+    public Rol getRolById(Integer id);
+    
     public Set<Invoice> getInvoiceByClient(Integer c);
 
     public void postSupermarket(Supermarket s);
@@ -49,6 +51,7 @@ public interface  IStub {
     public void postClientApp(Supermarket s, ClientApp c); 
     public void deleteClientApp(int c);
     public void postEmail(String email);
+    public void postRol(Rol rol);
 
 
 
