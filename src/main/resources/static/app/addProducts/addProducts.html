@@ -1,0 +1,66 @@
+<div ng-controller="ViewAddProductosCtrl">
+    <p>Seleccione la opcion que desea utilizar.</p>
+    <div class="form-group" id="selectSuper" >
+        <select ng-model="addProducts">
+            <option value="">---Please select---</option>
+            <option value="Agregar">Agregar</option>
+            <option value="Modificar">Modificar</option>
+            
+        </select>
+    </div>  
+
+    <div ng-show="addProducts === 'Agregar'" >
+
+        <div class="form-group">
+            <label for="idProducto">Codigo del nuevo producto :</label> <input type="number"
+                                                                        class="form-control" id="idProducto" name="idProducto" ng-model="idProducto"/>
+        </div>
+        <div class="form-group">
+            <label for="nombre">Zona</label> <input type="text" 
+                                                      class="form-control" id="zona" name="zona" ng-model="zonaAddProducts" />
+        </div>
+        <div class="form-group">
+            <label for="nombre">Nombre</label> <input type="text" 
+                                                      class="form-control" id="nombre" name="nombre" ng-model="nombreAddProducts" />
+        </div>
+        <div class="form-group">
+            <label for="buyPrice">Precio de compra</label> <input type="number"
+                                                                  class="form-control" id="buyPrice" name="buyPrice" ng-model="buyPriceAddProducts" />
+        </div>
+        <div class="form-group">
+            <label for="porcentaje">Porcentaje</label> <input type="number"
+                                                              ng-app=""class="form-control" id="porcentaje" name="porcentaje" ng-model="porcentajeAddProduct"/>
+        </div>
+         <div class="form-group">
+            <label for="porcentaje">Peso</label> <input type="number"
+                                                              ng-app=""class="form-control" id="peso" name="peso" ng-model="pesoAddProduct"/>
+        </div>
+        <button type="submit" class="btn btn-primary" ng-click="postProductsAgregar()">Aceptar</button>
+
+        <button type="submit" class="btn btn-primary" ng-click="cancelarPostProductos()">Cancelar</button>
+    </div>
+    
+    
+    <div ng-show="addProducts === 'Modificar'">
+        <div class="form-group">
+            <label for="idProducto">Codigo del producto a modificar :</label> <input type="number"
+                                                                        class="form-control" id="idProducto" name="idProducto" ng-model="idProducto"/>
+        </div>
+         <div class="form-group">
+            <label for="buyPrice">Precio de compra</label> <input type="number"
+                                                                  class="form-control" id="buyPrice" name="buyPrice" ng-model="buyPriceAddProducts" />
+        </div>
+        <div class="form-group">
+            <label for="porcentaje">Porcentaje</label> <input type="number"
+                                                              ng-app=""class="form-control" id="porcentaje" name="porcentaje" ng-model="porcentajeAddProduct"/>
+        </div>
+        <button type="submit" class="btn btn-primary" ng-click="postProductsModificar()">Aceptar</button>
+
+        <button type="submit" class="btn btn-primary" ng-click="cancelarPostProductos()">Cancelar</button>
+
+    </div>
+
+
+
+
+</div>

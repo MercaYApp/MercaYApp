@@ -9,7 +9,7 @@ angular.module('myApp.viewSignUp', ['ngRoute'])
                 });
             }])
 
-        .controller('signUpController', ['$scope', 'GetClient', 'PostClientApp', 'GetSupermarket', function ($scope, GetClient, PostClientApp, GetSupermarket) {
+        .controller('signUpController', ['$scope', 'GetClient', 'PostClientApp', function ($scope, GetClient, PostClientApp) { 
                 $scope.id1 = 69;
                 $scope.nombre = "";
                 $scope.correo = "";
@@ -19,9 +19,9 @@ angular.module('myApp.viewSignUp', ['ngRoute'])
                 $scope.registrado = false;
                 //$scope.supermarket;
                 $scope.client = {};
-                $scope.postSupermarket = {};
+                
                 $scope.consult = function () {
-                    /*var response = GetClient.get({superm: $scope.supermarket, id: $scope.id1});
+                    var response = GetClient.get({superm: $scope.supermarket, id: $scope.id1});
                     response.$promise.then(function (data) {
                         $scope.client = data;
                         if (("" + $scope.client.id) === $scope.id1.toString()) {
@@ -32,37 +32,27 @@ angular.module('myApp.viewSignUp', ['ngRoute'])
                             //$scope.password = response.password;
                             //$scope.supermarket = $scope.client.supermarkets;
                             alert("SE PUEDE REGISTRAR EL CLIENTE");
-                         } else {
+                        } else {
                             alert("No se puede registrar usuario con ID: " + $scope.id1);
-                         }
+                        }
                     });
-                    */
-                    $scope.check = true;
                 };
 
                 $scope.postClientApp = function () {
-                    var response = GetSupermarket.get({id: $scope.supermarket});
-                    response.$promise.then(function (data) {
-                        $scope.postSupermarket = data;
-                        alert("postSupermarket: "+$scope.postSupermarket.idSupermarkets);
-                        if ($scope.password !== "" && $scope.confirmPassword === $scope.password) {
+                    if($scope.password!=="" && $scope.confirmPassword === $scope.password){
+                        
+                        var postData = {};
+                        postData={id:$scope.id1, name:$scope.nombre, email:$scope.correo, password:$scope.password, rol:{}};
 
-                            
-                            /*$scope.client = {id: $scope.id1, roles: {idRoles: 1, descripcion: "Cliente"}, name: $scope.nombre, email: $scope.correo, password: $scope.password, 
-                                supermarketses: {idSupermarkets: $scope.postSupermarket.idSupermarkets, nameSupermarket: $scope.postSupermarket.nameSupermarket, clientsApps: $scope.postSupermarket.clientsApps, storeses: $scope.postSupermarket.storeses}, invoiceses: {}};
-                                */
-                               $scope.client = {idClients: $scope.id1, roles: {idRoles: 1, descripcion: "Cliente"}, nameClientApp: $scope.nombre, email: $scope.correo, password: $scope.password,
-                                    supermarketses: {idSupermarkets: $scope.postSupermarket.idSupermarkets, nameSupermarket: $scope.postSupermarket.nameSupermarket}, invoiceses: [{idInvoices:110,dateInvoice:1460349587153}]};
-                            //postData={id:$scope.id1, name:$scope.nombre, email:$scope.correo, password:$scope.password, invoices:{}, supermarkets:[$scope.supermarket]};
-                            PostClientApp.save($scope.client, function () {
-                                alert("El usuario con identificacion '" + $scope.client.idClients + "' ha sido registrado exitosamente en: "+$scope.postSupermarket.nameSupermarket);
+                        //postData={id:$scope.id1, name:$scope.nombre, email:$scope.correo, password:$scope.password, invoices:{}, supermarkets:[$scope.supermarket]};
+                            PostClientApp.save(postData, function(){
+                                alert("El usuario con identificacion '"+ postData.id + "' ha sido registrado exitosamente!");
                                 $scope.registrado = true;
-                            }
+                                }
                             );
-                        } else {
-                            alert("Las contraseñas no coinciden. ");
-                        }
-                    });
+                    }else{
+                        alert("Las contraseñas no coinciden. ");
+                    }
                 };
             }]);
         

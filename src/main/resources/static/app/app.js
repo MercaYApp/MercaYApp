@@ -8,6 +8,7 @@ angular.module('myApp', [
     'myApp.view1',
     'myApp.ConsultarCompras',
     'myApp.viewConfiguracion',
+    'myApp.addProducts',
     'service.modulo1',
     'myApp.version'
 ])
