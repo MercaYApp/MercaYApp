@@ -6,6 +6,8 @@
 package edu.eci.cosw.spademo.controllers;
 
 import java.security.Principal;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,7 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class UsersController {  
 
     @RequestMapping("/app/user")
-    public Principal user(Principal user) {
-        return user;
+    public ResponseEntity<Principal> user(Principal user) {
+        Principal c=user;
+        return new ResponseEntity<>(c, HttpStatus.OK);
     }           
 }

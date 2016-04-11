@@ -100,7 +100,6 @@ public class DemoApplicationTests {
 
         assertEquals(i.getIdInvoices(), stub.getInvoiceById(10).getIdInvoices());
         assertEquals(i.getDateInvoice(), stub.getInvoiceById(10).getDateInvoice());
-//        assertEquals(i.getStores(), stub.getInvoiceById(10).getStores());
         assertEquals(i.getClientsApp(), stub.getInvoiceById(10).getClientsApp());
         assertTrue(stub.getInvoices().contains(i));
     }
@@ -115,12 +114,12 @@ public class DemoApplicationTests {
         ZoneId zId = new ZoneId(1, 1, 1);
         Zone z = new Zone(zId, s0, "Grano");
         
-        Product p = new Product(1, z, "Arroz", 1000, 30, 500);
+        Product p = new Product(11, z, "Arroz", 1000, 30, 500);
         stub.postProduct(p);
         assertTrue(stub.getProducts().contains(p));
 
-       // assertEquals(p.getIdProductos(), stub.getProductById(p.getIdProductos()));
-       // assertEquals(p.getNameProduct(), stub.getProductById(p.getIdProductos()).getNameProduct());
+        assertEquals(p.getIdProductos(), stub.getProductById(p.getIdProductos()).getIdProductos());
+        assertEquals(p.getNameProduct(), stub.getProductById(p.getIdProductos()).getNameProduct());
         assertEquals(p.getBuyPrice(), stub.getProductById(p.getIdProductos()).getBuyPrice());
         assertEquals(p.getPercentage(), stub.getProductById(p.getIdProductos()).getPercentage());
         assertEquals(p.getWeight(), stub.getProductById(p.getIdProductos()).getWeight());
@@ -216,7 +215,7 @@ public class DemoApplicationTests {
         assertTrue(stub.getZones().contains(z));
 
         assertEquals(z.getId(), stub.getZoneById(z.getId().getIdZones()).getId());
-       // assertTrue(stub.getZoneById(z.getId().getIdZones()).getProductses().contains(p));
-      //  assertEquals(setP, stub.getZoneById(z.getId().getIdZones()).getProductses());
+        //assertTrue(stub.getZoneById(z.getId().getIdZones()).getProductses().contains(p));
+        //assertEquals(setP, stub.getZoneById(z.getId().getIdZones()).getProductses());
     }
 }

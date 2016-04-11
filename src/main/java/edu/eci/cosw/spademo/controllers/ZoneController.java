@@ -33,18 +33,21 @@ public class ZoneController {
     IStub stub;
     
     @RequestMapping(method = RequestMethod.GET)
-    public List<Zone> getZones()throws ServicesMercaYAppException{
-        return stub.getZones();
+    public ResponseEntity<List<Zone>> getZones()throws ServicesMercaYAppException{
+        List<Zone> c=stub.getZones();
+        return new ResponseEntity<>(c, HttpStatus.OK);
     }
     
     @RequestMapping(method = RequestMethod.POST)
-    public void postZone(@RequestBody Zone zone)throws ServicesMercaYAppException{
+    public ResponseEntity<Void> postZone(@RequestBody Zone zone)throws ServicesMercaYAppException{
         stub.postZone(zone);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
     
     @RequestMapping(value="/{id}", method = RequestMethod.GET)
-    public Zone getZoneById(@PathVariable int id)throws ServicesMercaYAppException{
-        return stub.getZoneById(id); 
+    public ResponseEntity<Zone> getZoneById(@PathVariable int id)throws ServicesMercaYAppException{
+        Zone c=stub.getZoneById(id); 
+        return new ResponseEntity<>(c, HttpStatus.OK);
         
     }
     

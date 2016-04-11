@@ -39,31 +39,38 @@ public class ClientController {
     IStub stub;
     
     @RequestMapping(method = RequestMethod.GET)
-    public List<ClientApp> getClientsApp() throws ServicesMercaYAppException{
-        return stub.getClientsApp();
+    public ResponseEntity<List<ClientApp>> getClientsApp() throws ServicesMercaYAppException{
+        List<ClientApp> c= stub.getClientsApp();
+        return new ResponseEntity<>(c, HttpStatus.OK);
     }
     
     @RequestMapping(method = RequestMethod.POST)
-    public void postClientApp(@RequestBody ClientApp client){
+    public ResponseEntity<Void> postClientApp(@RequestBody ClientApp client){
         if(stub.getClientAppById(client.getIdClients())!= null){
             stub.postClient(client);
-        }  
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        }else{
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
     }
     
     @RequestMapping(value="/{id}", method = RequestMethod.GET)
-    public ClientApp getClientById(@PathVariable int id) throws ServicesMercaYAppException{
-        return stub.getClientAppById(id);  
+    public ResponseEntity<ClientApp> getClientById(@PathVariable int id) throws ServicesMercaYAppException{
+        ClientApp c=stub.getClientAppById(id);  
+        return new ResponseEntity<>(c, HttpStatus.OK);
     }
 
     @RequestMapping(value="/{id}/invoices", method = RequestMethod.GET)
-    public Set<Invoice> getClientInvoicetById(@PathVariable int id) throws ServicesMercaYAppException{
-        return stub.getInvoiceByClient(id);
+    public ResponseEntity<Set<Invoice>> getClientInvoicetById(@PathVariable int id) throws ServicesMercaYAppException{
+        Set<Invoice> c=stub.getInvoiceByClient(id);
+        return new ResponseEntity<>(c, HttpStatus.OK);
     }
     
     @RequestMapping(value="/clientsAppDelete/{id}", method = RequestMethod.DELETE)
-    public void deleteSupermarketClientsApp(@PathVariable int id) throws ServicesMercaYAppException{
+    public ResponseEntity<Void> deleteSupermarketClientsApp(@PathVariable int id) throws ServicesMercaYAppException{
         //System.out.println("AQUI SI delete: "+id);
         stub.deleteClientApp(id);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
     
 }

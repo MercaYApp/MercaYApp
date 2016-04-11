@@ -41,11 +41,12 @@ public class Stub implements IStub {
     List<ClientApp> listClientsApp = new ArrayList<>();
 
     public Stub() {
+        
         Supermarket super0 = new Supermarket(1, "Exito");
         StoreId s0Id = new StoreId(1, 1);
         Store s0 = new Store(s0Id, super0, 10, 10, "Exito 80");
         Rol r0 = new Rol(1, "Admin");
-        ClientApp c0 = new ClientApp(1122,r0, "Felipe", "yo@yo.com", "123");
+        ClientApp c0 = new ClientApp(1122,r0, "Felipe", "yo@yo.com", "123", null, null);
         Invoice in = new Invoice(110, c0, s0, new Date());
         Invoice in1 = new Invoice(111, c0, s0, new Date());
         Set<Invoice> setInvoice = new HashSet<>();
@@ -56,15 +57,16 @@ public class Stub implements IStub {
         listClients.add(c0);
         
         
-        ArrayList<String> listSuper = new ArrayList<>();
-        listSuper.add("Exito");
+        Set<Supermarket> listSuper = new HashSet<>();
+        listSuper.add(super0);
         
-        ClientApp c = new ClientApp(16, r0, "Felipe", "juan.pipe1122@gmail.com", "123");
+        ClientApp c = new ClientApp(16, r0, "Felipe", "juan.pipe1122@gmail.com", "123", listSuper, null);
         c.setInvoiceses(setInvoice);
+        c.setSupermarketses(listSuper);
         listClients.add(c);
 
         Set<ClientApp> setClients = new HashSet<>();
-        ClientApp c1 = new ClientApp(69, r0, "Oscar", "Oscar@yo.com", "123");
+        ClientApp c1 = new ClientApp(69, r0, "Oscar", "Oscar@yo.com", "123", null, null);
         setClients.add(c1);
         setClients.add(c);
         super0.setClientsApps(setClients);
@@ -72,7 +74,7 @@ public class Stub implements IStub {
 
        
         listSupermarkets.add(super0);
-        Supermarket s12 = new Supermarket(2, "Cencosud");
+        Supermarket s12 = new Supermarket(2, "Cencosud", setClients, null);
         listSupermarkets.add(s12);
         Supermarket s13 = new Supermarket(3, "Olimpica");
         listSupermarkets.add(s13);

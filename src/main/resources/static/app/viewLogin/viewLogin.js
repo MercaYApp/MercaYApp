@@ -33,7 +33,7 @@ angular.module('myApp.viewLogin', ['ngRoute'])
                 $scope.login = function () {
                     authenticate($scope.credentials, function () {
                         if ($rootScope.authenticated) {
-                            alert("Autentico: " + $scope.credentials.password);
+                            alert("Autentico: " + $scope.credentials.username);
                             $location.path("/");
                             $scope.error = false;
                         } else {

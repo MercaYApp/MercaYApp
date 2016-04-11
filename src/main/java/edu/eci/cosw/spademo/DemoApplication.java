@@ -83,7 +83,7 @@ public class DemoApplication {
                     .anyRequest().authenticated().and()
                     .logout().logoutSuccessUrl("/app/index.html#/viewLogin")
                     
-                    //.permitAll()
+                    .permitAll()
                     
                     .and().csrf()
                     .csrfTokenRepository(csrfTokenRepository()).and()

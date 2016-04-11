@@ -43,6 +43,13 @@ public class Supermarket  implements java.io.Serializable {
         this.idSupermarkets = idSupermarkets;
         this.nameSupermarket = nameSupermarket;
     }
+    
+    public Supermarket(int idSupermarkets, String nameSupermarket, Set<ClientApp> clientsApps) {
+       this.idSupermarkets = idSupermarkets;
+       this.nameSupermarket = nameSupermarket;
+       this.clientsApps = clientsApps;
+    }
+    
     public Supermarket(int idSupermarkets, String nameSupermarket, Set<ClientApp> clientsApps, Set<Store> storeses) {
        this.idSupermarkets = idSupermarkets;
        this.nameSupermarket = nameSupermarket;

@@ -37,7 +37,7 @@ angular.module('service.modulo1', ['ngRoute', 'ngResource'])
         //---------------Get invoices of clients---------------
         .factory('GetClientInvoices', function ($resource) {
             var invoices = $resource('/clientsApp/:id/invoices', {id: "@id"},
-                    {get: {method: 'GET', isArray: false}}
+                    {get: {method: 'GET', isArray: true}}
             );
             return invoices;
             
@@ -51,4 +51,14 @@ angular.module('service.modulo1', ['ngRoute', 'ngResource'])
         //---------------Post supermarket Client---------------
         .factory('PostSupermarketClient', function ($resource) {
             return $resource('/postSupermarketClient');
+        })
+        
+        
+        //---------------Get supermarket---------------
+        .factory('GetSupermarket', function ($resource) {
+            var supermarket = $resource('/supermarkets/:id', {id: "@id"},
+                    {get: {method: 'GET'}}
+            );
+            return supermarket;
+            
         });

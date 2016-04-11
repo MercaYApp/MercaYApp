@@ -25,13 +25,24 @@
             <span class="sortorder" ng-show="predicate === 'market'" ng-class="{reverse:reverse}"></span>
         </th>
         
-        <tr ng-repeat='(key, value) in listadoInvoices'>
+        
+        <tr ng-repeat='i in listadoInvoices' ng-controller="ViewLoginCtrl"> 
+            <!--<td>{{i.idClients | number}}</td>-->
+            <td>{{credentials.password}}</td>
+            <td>{{userListadoInvoices.idClients }}</td>
+            <td>{{i.idInvoices }}</td>
+            <td>{{i.dateInvoice }}</td>
+            <td>{{i.dateInvoice }}</td>
+            
+        </tr>
+        
+        <!--<tr ng-repeat='(key, value) in listadoInvoices'>
             <td>{{value.id | number}}</td>
             <td>{{value.date }}</td>
             <td>{{value.total | currency}}</td>
             <td>{{value.store | uppercase}}</td>
             <td>{{value.market | uppercase}}</td>
-        </tr>
+        </tr>-->
         </tbody>
     </table>
     

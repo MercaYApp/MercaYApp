@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,19 +32,22 @@ public class ProductController {
     IStub stub;
     
     @RequestMapping(method = RequestMethod.GET)
-    public List<Product> getProducts()throws ServicesMercaYAppException{
-        return stub.getProducts();
+    public ResponseEntity<List<Product>> getProducts()throws ServicesMercaYAppException{
+        List<Product> c=stub.getProducts();
+        return new ResponseEntity<>(c, HttpStatus.OK);
     }
     
     @RequestMapping(method = RequestMethod.POST)
-    public void postProduct(@RequestBody Product product)throws ServicesMercaYAppException{
+    public ResponseEntity<Void> postProduct(@RequestBody Product product)throws ServicesMercaYAppException{
         stub.postProduct(product);
+        return new ResponseEntity<>(HttpStatus.CREATED);
       
     }
     
     @RequestMapping(value="/{id}", method = RequestMethod.GET)
-    public Product getProductById(@PathVariable int id)throws ServicesMercaYAppException{
-        return stub.getProductById(id);
+    public ResponseEntity<Product> getProductById(@PathVariable int id)throws ServicesMercaYAppException{
+        Product c=stub.getProductById(id);
+        return new ResponseEntity<>(c, HttpStatus.OK);
     }
     
 

@@ -34,8 +34,9 @@ public class InvoiceController {
     IStub stub;
     
     @RequestMapping(method = RequestMethod.GET)
-    public List<Invoice> getInvoices(){
-        return stub.getInvoices();
+    public ResponseEntity<List<Invoice>> getInvoices(){
+        List<Invoice> c=stub.getInvoices();
+        return new ResponseEntity<>(c, HttpStatus.OK);
         /*List<Invoice> i= stub.getInvoices(); 
         if(i!=null){
             return ResponseEntity.ok().body(i);
@@ -45,14 +46,16 @@ public class InvoiceController {
     }
    
     @RequestMapping(method = RequestMethod.POST)
-    public void postInvoice(@RequestBody Invoice invoice)throws ServicesMercaYAppException{
+    public ResponseEntity<Void> postInvoice(@RequestBody Invoice invoice)throws ServicesMercaYAppException{
         stub.postInvoice(invoice);
         System.out.println("Entro al postInvoice");
+        return new ResponseEntity<>(HttpStatus.OK);
     }
     
     @RequestMapping(value="/{id}", method = RequestMethod.GET)
-    public Invoice getInvoiceById(@PathVariable int id)throws ServicesMercaYAppException{
-        return stub.getInvoiceById(id);
+    public ResponseEntity<Invoice> getInvoiceById(@PathVariable int id)throws ServicesMercaYAppException{
+        Invoice c= stub.getInvoiceById(id);
+        return new ResponseEntity<>(c, HttpStatus.OK);
         /*Invoice i= stub.getInvoiceById(id); 
         if(i!=null){
             return ResponseEntity.ok().body(i);
@@ -62,8 +65,9 @@ public class InvoiceController {
     }
     
     @RequestMapping(value="/client/{client}", method = RequestMethod.GET)
-    public Set<Invoice> getInvoiceByClient(@PathVariable int client)throws ServicesMercaYAppException{
-        return stub.getInvoiceByClient(client);
+    public ResponseEntity<Set<Invoice>> getInvoiceByClient(@PathVariable int client)throws ServicesMercaYAppException{
+        Set<Invoice> c=stub.getInvoiceByClient(client);
+        return new ResponseEntity<>(c, HttpStatus.OK);
         /*Set<Invoice> i= stub.getInvoiceByClient(client); 
         if(i!=null){
             return ResponseEntity.ok().body(i);

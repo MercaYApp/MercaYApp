@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,21 +33,24 @@ public class StoreController {
     IStub stub;
     
     @RequestMapping(method = RequestMethod.GET)
-    public List<Store> getStores()throws ServicesMercaYAppException{
-        return stub.getStores();
+    public ResponseEntity<List<Store>> getStores()throws ServicesMercaYAppException{
+        List<Store> c=stub.getStores();
+        return new ResponseEntity<>(c, HttpStatus.OK);
         
     }
     
     @RequestMapping(method = RequestMethod.POST)
-    public void postStore(@RequestBody Store store)throws ServicesMercaYAppException{
+    public ResponseEntity<Void> postStore(@RequestBody Store store)throws ServicesMercaYAppException{
         stub.postStore(store);
+        return new ResponseEntity<>(HttpStatus.CREATED);
         
         
     }
     
     @RequestMapping(value="/{id}", method = RequestMethod.GET)
-    public Store getStoreById(@PathVariable int id)throws ServicesMercaYAppException{
-        return stub.getStoreById(id);
+    public ResponseEntity<Store> getStoreById(@PathVariable int id)throws ServicesMercaYAppException{
+        Store c=stub.getStoreById(id);
+        return new ResponseEntity<>(c, HttpStatus.OK);
     }
     
    
