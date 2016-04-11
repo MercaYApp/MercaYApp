@@ -58,5 +58,9 @@ angular.module('service.modulo1', ['ngRoute', 'ngResource'])
                     {get: {method: 'GET', isArray: false}}
             );
             return product;
+        })
         
+
+        .factory('PostProduct', function ($resource) {
+            return $resource('/products');
         });
