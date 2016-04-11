@@ -9,8 +9,11 @@ angular.module('myApp.ConsultarCompras', ['ngRoute'])
                 });
             }])
 
-        .controller('ConsultarComprasCtrl', ['$scope', 'GetClientInvoices', 'GetClientApp', function ($scope, GetClientInvoices, GetClientApp) {
+        .controller('ConsultarComprasCtrl', ['$scope', 'GetClientInvoices', 'GetClientApp','GetProduct', function ($scope, GetClientInvoices, GetClientApp,GetProduct) {
                 //$scope.listadoInvoices=GetClientInvoices.get({id: $scope.id});
                 $scope.clientListadoInvoices = GetClientApp.get({id: 16});
                 $scope.listadoInvoices = GetClientInvoices.get({id: 16});
+                $scope.listarProductos = function(){
+                    alert("A ASDASD");
+                }; 
             }]);
