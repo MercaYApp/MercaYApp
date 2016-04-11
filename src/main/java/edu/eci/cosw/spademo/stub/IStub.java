@@ -39,6 +39,7 @@ public interface  IStub {
     public ClientApp getClientAppById(Integer id);
 
     public Set<Invoice> getInvoiceByClient(Integer c);
+    public Set<Product> getProductListById(Integer c);
 
     public void postSupermarket(Supermarket s);
     public void postStore(Store s);
