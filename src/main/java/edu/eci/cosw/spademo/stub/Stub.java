@@ -49,11 +49,17 @@ public class Stub implements IStub {
         ClientApp c0 = new ClientApp(1122,r0, "Felipe", "yo@yo.com", "123", null, null);
         Invoice in = new Invoice(110, c0, s0, new Date());
         Invoice in1 = new Invoice(111, c0, s0, new Date());
+
+        Invoice i = new Invoice(15, c0, s0, new Date());
         Set<Invoice> setInvoice = new HashSet<>();
         Set<Store> setStores = new HashSet<>();
+        Set<Product> setProducts = new HashSet<>();
+        
         setInvoice.add(in);
         setInvoice.add(in1);
-        c0.setInvoiceses(setInvoice);
+        
+        setInvoice.add(i);
+        
         listClients.add(c0);
         
         
@@ -63,8 +69,7 @@ public class Stub implements IStub {
         ClientApp c = new ClientApp(16, r0, "Felipe", "juan.pipe1122@gmail.com", "123", listSuper, null);
         c.setInvoiceses(setInvoice);
         c.setSupermarketses(listSuper);
-        listClients.add(c);
-
+       
         Set<ClientApp> setClients = new HashSet<>();
         ClientApp c1 = new ClientApp(69, r0, "Oscar", "Oscar@yo.com", "123", null, null);
         setClients.add(c1);
@@ -87,15 +92,22 @@ public class Stub implements IStub {
         listZones.add(z);
 
         Product p = new Product(1, z, "Jabon", 1000, 30, 500);
+        Product p2 = new Product(1, z, "Shampoo", 1000, 30, 500);
+        Product p3 = new Product(1, z, "desodorante", 1000, 30, 500);
         listProducts.add(p);
+        listProducts.add(p2);
+        listProducts.add(p3);
+        
+        setProducts.add(p);
+        setProducts.add(p2);
+        setProducts.add(p3);
+        i.setProductses(setProducts);
+        c0.setInvoiceses(setInvoice);
 
-        Invoice i = new Invoice(15, c1, s0, new Date());
-
+        
         listInvoices.add(i);
-
-        listClientsApp.add(c);
         listClientsApp.add(c1);
-
+        listClientsApp.add(c);
     }
 
     @Override
@@ -210,6 +222,8 @@ public class Stub implements IStub {
         }
         return store;
     }
+    
+    
 
     @Override
     public Zone getZoneById(Integer id) {
@@ -237,6 +251,8 @@ public class Stub implements IStub {
         return prod;
 
     }
+    
+    
 
     @Override
     public Invoice getInvoiceById(Integer id) {
@@ -256,6 +272,13 @@ public class Stub implements IStub {
         ClientApp client = getClientAppById(c);
         //return client.getInvoices();
         return client.getInvoiceses();
+    }
+    
+    @Override
+    public Set<Product> getProductListById(Integer c) {
+        Invoice invoice = getInvoiceById(c);
+        //return client.getInvoices();
+        return invoice.getProductses();
     }
 
     @Override

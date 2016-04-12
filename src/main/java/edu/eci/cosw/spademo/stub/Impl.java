@@ -123,7 +123,13 @@ public class Impl implements IStub {
         ClientApp client = getClientAppById(c);
         return client.getInvoiceses();
     }
-
+      @Override
+    public Set<Product> getProductListById(Integer c) {
+        
+         Invoice invoice = getInvoiceById(c);
+        //return client.getInvoices();
+        return invoice.getProductses();
+    }
    
     @Override
     public void postSupermarket(Supermarket s) {
@@ -179,5 +185,7 @@ public class Impl implements IStub {
 
         //listSupermarkets.get("Exito").getClientsApp().remove(c);
     }
+
+ 
 
 }

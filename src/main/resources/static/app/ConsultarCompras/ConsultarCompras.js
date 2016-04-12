@@ -9,11 +9,35 @@ angular.module('myApp.ConsultarCompras', ['ngRoute'])
                 });
             }])
 
-        .controller('ConsultarComprasCtrl', ['$scope', 'GetClientInvoices', 'GetClientApp','GetProduct', function ($scope, GetClientInvoices, GetClientApp,GetProduct) {
+        .controller('ConsultarComprasCtrl', [ '$scope', '$rootScope', 'GetClientInvoices', 'GetClientApp', 'GetProduct', function ( $scope, $rootScope, GetClientInvoices, GetClientApp, GetProduct) {
                 //$scope.listadoInvoices=GetClientInvoices.get({id: $scope.id});
-                $scope.clientListadoInvoices = GetClientApp.get({id: 16});
-                $scope.listadoInvoices = GetClientInvoices.get({id: 16});
-                $scope.listarProductos = function(){
-                    alert("A ASDASD");
-                }; 
+                //$scope.clientListadoInvoices = GetClientApp.get({id: $rootScope.credentials.username});
+                $scope.listadoInvoices = {};
+                alert($scope.listadoInvoices);
+                $scope.listadoInvoices = GetClientInvoices.get({id: $rootScope.credentials.username});
+               
+                //$scope.showAlert = showAlert;
+                $scope.showAlert = function () {
+                    alert("entroo");
+                };
+
+
+                /*alert("entro a la funcion");
+                 var clientesI = GetClientInvoices.get({id: $scope.id});
+                 var listadoI = GetClientInvoices.get({id: $rootScope.credentials.username});
+                 alert(clientesI);
+                 alert(listadoI);
+                 clientesI.$promise.then(function (data) {
+                 $scope.clientListadoInvoices = data;
+                 listadoI.$promise.then(function (data1) {
+                 $scope.listadoInvoices = data1;
+                 $scope.showAlert = function (ev, i) {
+                 var a = i.IdInvoices;
+                 alert(a);
+                 };
+                 });
+                 
+                 
+                 });*/
+
             }]);

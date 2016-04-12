@@ -6,6 +6,7 @@
 package edu.eci.cosw.spademo.controllers;
 
 import edu.eci.cosw.spademo.model.Invoice;
+import edu.eci.cosw.spademo.model.Product;
 import edu.eci.cosw.spademo.model.Zone;
 import edu.eci.cosw.spademo.persistence.ServicesMercaYAppException;
 import edu.eci.cosw.spademo.stub.IStub;
@@ -67,6 +68,17 @@ public class InvoiceController {
     @RequestMapping(value="/client/{client}", method = RequestMethod.GET)
     public ResponseEntity<Set<Invoice>> getInvoiceByClient(@PathVariable int client)throws ServicesMercaYAppException{
         Set<Invoice> c=stub.getInvoiceByClient(client);
+        return new ResponseEntity<>(c, HttpStatus.OK);
+        /*Set<Invoice> i= stub.getInvoiceByClient(client); 
+        if(i!=null){
+            return ResponseEntity.ok().body(i);
+        }else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }*/
+    }
+        @RequestMapping(value="/{id}/products", method = RequestMethod.GET)
+    public ResponseEntity<Set<Product>> getProductsInvoices(@PathVariable int id)throws ServicesMercaYAppException{
+        Set<Product> c=stub.getProductListById(id);
         return new ResponseEntity<>(c, HttpStatus.OK);
         /*Set<Invoice> i= stub.getInvoiceByClient(client); 
         if(i!=null){

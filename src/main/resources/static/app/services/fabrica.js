@@ -42,6 +42,7 @@ angular.module('service.modulo1', ['ngRoute', 'ngResource'])
             return invoices;
             
         })
+        
 
         //---------------Post email---------------
         .factory('PostEmail', function ($resource) {
@@ -73,4 +74,14 @@ angular.module('service.modulo1', ['ngRoute', 'ngResource'])
         .factory('PostProduct', function ($resource) {
             return $resource('/products');
 
-        });
+        })
+        //-------------------Get productos Invoices--------------------
+        .factory('GetProductIvoices', function ($resource){
+            var product = $resource('/invoices/:id/products', {id: "@id"},
+                {get: {method: 'GET', isArray: false}}
+            );
+            return product;
+        })    
+        ;
+        
+        
