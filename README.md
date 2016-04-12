@@ -29,3 +29,5 @@ podrá
     Este agregara el cliente a la lista de clientes existentes en mercayapp1.herokuapp.com/clientsApp
 
 Actualmente se está trabajando desde el Stub, ya que no fue posible realizar la correcta concexión a la base de datos. :(
+
+![alt tag](https://github.com/MercaYApp/MercaYApp/blob/master/src/main/resources/static/app/images/DiagramaMercayapp.jpg)
