@@ -1,8 +1,8 @@
 # Escuela Colombiana de ingenieria
-# Construcción de Software - COSW
-# MercaYApp ¡Compra sin hacer filas!
+## Construcción de Software - COSW
+## MercaYApp ¡Compra sin hacer filas!
 
-#Integrantes
+##Integrantes
     - Juan Felipe Gómez Ramirez
     - Oscar Alfonso Ardila Jimenez
     - David Guillermo Galvis Espitia
