@@ -373,6 +373,19 @@ public class Stub implements IStub {
             }
         } 
     }
+    @Override
+    public void putClient(ClientApp cliente) {
+         boolean banderita=false;
+        for (int i = 0; i < listClientsApp.size() && !banderita; i++) {
+            banderita = true;
+            if(!listClientsApp.get(i).getEmail().equals(cliente.getEmail())){
+                listClientsApp.get(i).setEmail(cliente.getEmail());
+                listClientsApp.get(i).setPassword(cliente.getPassword());
+                
+        }
+        }
+    }
+   
 
     public void postRol(Rol rol) {
         listRoles.add(rol);
@@ -393,6 +406,26 @@ public class Stub implements IStub {
     public List<Rol> getRoles() {
         return listRoles;
     }
+
+    @Override
+    public void postSupermarketClients(ClientApp cliente) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void postSupermarketClient(ClientApp cliente) {
+         boolean banderita=false;
+        for (int i = 0; i < listClientsApp.size() && !banderita; i++) {
+            banderita = true;
+            
+                listClientsApp.get(i).setSupermarketses(cliente.getSupermarketses());
+        
+        }
+    }
+
+    
+
+    
     
     
 

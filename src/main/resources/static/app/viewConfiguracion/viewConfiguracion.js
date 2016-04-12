@@ -9,17 +9,61 @@ angular.module('myApp.viewConfiguracion', ['ngRoute'])
                 });
             }])
 
-        .controller('ViewConfiguracionController', ['$scope', 'GetClient', 'GetClientApp', 'PostClientApp', 'DeleteClientApp', function ($scope, GetClient, GetClientApp, PostClientApp, DeleteClientApp) {
+        .controller('ViewConfiguracionController', ['$scope','$rootScope', 'GetClient','GetSupermarket', 'GetClientApp','PostClientApp', 'DeleteClientApp','PutClient','PostSupermarketClientes', function ($scope,$rootScope, GetClient,GetSupermarket, GetClientApp, PostClientApp, DeleteClientApp,PutClient,PostSupermarketClientes) {
 
                 $scope.selectConfiguracion = 'selectAgregar';
                 $scope.supermarketConfiguracion = 'Exito';
                 $scope.banderaAgregaSuper = false;
                 $scope.idConfiguracion = 16;
+                $scope.idConfiguracionmMercado=16;
+                $scope.nombreConfiguracion = "Felipe";
                 $scope.clientConfiguracion = {};
                 var postDataConfiguracion = {};
 
 
-                $scope.agregarMasSupermercadosConfiguracion = function () {
+
+
+                $scope.AgregarSupermercado= function(){
+                    var response = GetClientApp.get({id:$scope.idConfiguracionmMercado});
+                    
+                    
+                     response.$promise.then(function (data) {
+                        $scope.client = data;
+                       // var cliente ={idClients:$scope.idConfiguracion ,roles:{},nameClientApp:$scope.client.nameClientApp ,email:$scope.client.email ,password:$scope.client.password,supermarketses:{},invoiceses:{}};               
+                       
+                        var response = GetSupermarket.get({id: $scope.idConfiguracionmMercado});
+                        response.$promise.then(function (data) {
+                            $scope.supermarketPost = data;
+                        });
+                        
+                        var supermercado ={idSupermarkets:$scope.SupermarketId,nameSupermarket:$scope.nombreSupermarket};
+                        var cliente ={idClients:$scope.idConfiguracionmMercado ,roles:{},nameClientApp:$scope.client.nameClientApp ,email:$scope.correoConfiguracion ,password:$scope.passwordConfiguracion,supermarketses:[supermercado],invoiceses:[]};               
+
+                        alert("Agrego producto: " + cliente.idClients);
+                     
+                        PostSupermarketClientes.save(cliente, function () {
+                            
+
+                        });
+                    });
+                };
+                
+                $scope.actualizarDatosClienteConfiguracion= function(){
+                    var response = GetClientApp.get({id:$scope.idConfiguracion});
+                     response.$promise.then(function (data) {
+                        $scope.client = data;
+                        var cliente ={idClients:$scope.idConfiguracion ,roles:{},nameClientApp:$scope.client.nameClientApp ,email:$scope.correoConfiguracion ,password:$scope.passwordConfiguracion};               
+                        PutClient.save(cliente, function () {
+                            alert("Agrego producto: " + cliente.email);
+
+                        });
+
+                        alert("Quiere cancelar configuracion"+ cliente.nameClientApp);
+                        alert("Quiere cancelar configuracion"+ cliente.emai);
+                        alert("Quiere cancelar configuracion"+ cliente.password);
+                    });
+                };
+                /*$scope.agregarMasSupermercadosConfiguracion = function () {
                     alert("Quiere agregar mas supermercados de Configuracion");
                     var response = GetClientApp.get({id: $scope.idConfiguracion});
                     response.$promise.then(function (data) {
@@ -37,6 +81,7 @@ angular.module('myApp.viewConfiguracion', ['ngRoute'])
                         }
                     });
                 };
+                */
 
                 $scope.cargarDatosClientesConfiguracion = function () {
                     var response = GetClientApp.get({id: $scope.idConfiguracion});
@@ -54,7 +99,7 @@ angular.module('myApp.viewConfiguracion', ['ngRoute'])
                 };
 
 
-                $scope.actualizarDatosClienteConfiguracion = function () {
+                /*$scope.actualizarDatosClienteConfiguracion = function () {
                     alert("Quiere actualizar datos del cliente");
                     var response = GetClientApp.get({id: $scope.idConfiguracion});
                     response.$promise.then(function (data) {
@@ -72,9 +117,7 @@ angular.module('myApp.viewConfiguracion', ['ngRoute'])
                             alert("No se puede registrar usuario con ID: " + $scope.idConfiguracion);
                         }
                     });
-                };
+                };*/
+                
 
-                $scope.cancelarConfiguracion = function () {
-                    alert("Quiere cancelar configuracion");
-                };
-            }]);
+              }]);

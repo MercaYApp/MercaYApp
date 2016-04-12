@@ -53,6 +53,11 @@ public interface  IStub {
     public void postEmail(String email);
     public void putProduct(Product product);
     public void postRol(Rol rol);
+    public void putClient(ClientApp cliente);
+
+    public void postSupermarketClients(ClientApp cliente);
+
+    public void postSupermarketClient(ClientApp cliente);
 
 
 
