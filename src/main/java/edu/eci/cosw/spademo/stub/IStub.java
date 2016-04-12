@@ -49,6 +49,7 @@ public interface  IStub {
     public void postClientApp(Supermarket s, ClientApp c); 
     public void deleteClientApp(int c);
     public void postEmail(String email);
+    public void putProduct(Product product);
 
 
 

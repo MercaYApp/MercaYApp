@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author MercaYApp
  */
 @RestController
-@RequestMapping("/products")
+    @RequestMapping("/products")
 
 public class ProductController {
     @Autowired
@@ -39,7 +39,9 @@ public class ProductController {
     
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Void> postProduct(@RequestBody Product product)throws ServicesMercaYAppException{
-        stub.postProduct(product);
+       if(stub.getProductById(product.getIdProductos())==null){
+            stub.postProduct(product);            
+        }
         return new ResponseEntity<>(HttpStatus.CREATED);
       
     }
@@ -49,6 +51,20 @@ public class ProductController {
         Product c=stub.getProductById(id);
         return new ResponseEntity<>(c, HttpStatus.OK);
     }
+    
+    
+    @RequestMapping(value="/actualiza", method = RequestMethod.POST)
+    public ResponseEntity<Void> putProducts(@RequestBody Product product)throws ServicesMercaYAppException{
+        
+       if(stub.getProductById(product.getIdProductos())!=null){
+            stub.putProduct(product);            
+        }
+        return new ResponseEntity<>(HttpStatus.CREATED);
+      
+    }
+    
+    
+    
     
 
 }

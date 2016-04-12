@@ -180,4 +180,9 @@ public class Impl implements IStub {
         //listSupermarkets.get("Exito").getClientsApp().remove(c);
     }
 
+    @Override
+    public void putProduct(Product product) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

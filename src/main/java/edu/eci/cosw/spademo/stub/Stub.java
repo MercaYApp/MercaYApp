@@ -357,4 +357,19 @@ public class Stub implements IStub {
         }
     }
 
+    @Override
+    public void putProduct(Product product) {
+        boolean banderita=false;
+       for (int i = 0; i < listProducts.size() && !banderita; i++) {
+            if (listProducts.get(i).getIdProductos()==product.getIdProductos() ) {
+                
+                banderita = true;
+                if(listProducts.get(i).getBuyPrice()!=product.getBuyPrice() || listProducts.get(i).getPercentage()!= product.getPercentage()){
+                    listProducts.get(i).setBuyPrice(product.getBuyPrice());
+                    listProducts. get(i).setPercentage(product.getPercentage());
+                }
+            }
+        } 
+    }
+
 }
