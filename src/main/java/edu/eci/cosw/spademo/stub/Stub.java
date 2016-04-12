@@ -39,13 +39,15 @@ public class Stub implements IStub {
     List<Invoice> listInvoices = new ArrayList<>();
     List<ClientApp> listClients = new ArrayList<>();
     List<ClientApp> listClientsApp = new ArrayList<>();
-
+    List<Rol> listRoles = new ArrayList<>();
+    
     public Stub() {
         
         Supermarket super0 = new Supermarket(1, "Exito");
         StoreId s0Id = new StoreId(1, 1);
         Store s0 = new Store(s0Id, super0, 10, 10, "Exito 80");
         Rol r0 = new Rol(1, "Admin");
+        listRoles.add(r0);
         ClientApp c0 = new ClientApp(1122,r0, "Felipe", "yo@yo.com", "123", null, null);
         Invoice in = new Invoice(110, c0, s0, new Date());
         Invoice in1 = new Invoice(111, c0, s0, new Date());
@@ -371,5 +373,28 @@ public class Stub implements IStub {
             }
         } 
     }
+
+    public void postRol(Rol rol) {
+        listRoles.add(rol);
+    }
+    
+    @Override
+    public Rol getRolById(Integer id) {
+        Rol r=null;
+        for(int i=0; i<listRoles.size(); i++){
+            if(listRoles.get(i).getIdRoles()==id){
+                r=listRoles.get(i);
+            }
+        }
+        return r;
+    }
+
+    @Override
+    public List<Rol> getRoles() {
+        return listRoles;
+    }
+    
+    
+
 
 }
