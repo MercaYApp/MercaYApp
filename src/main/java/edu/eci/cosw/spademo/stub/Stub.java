@@ -42,6 +42,7 @@ public class Stub implements IStub {
     List<Rol> listRoles = new ArrayList<>();
     
     public Stub() {
+        
         Supermarket super0 = new Supermarket(1, "Exito");
         StoreId s0Id = new StoreId(1, 1);
         Store s0 = new Store(s0Id, super0, 10, 10, "Exito 80");
@@ -361,6 +362,20 @@ public class Stub implements IStub {
     }
 
     @Override
+    public void putProduct(Product product) {
+        boolean banderita=false;
+       for (int i = 0; i < listProducts.size() && !banderita; i++) {
+            if (listProducts.get(i).getIdProductos()==product.getIdProductos() ) {
+                
+                banderita = true;
+                if(listProducts.get(i).getBuyPrice()!=product.getBuyPrice() || listProducts.get(i).getPercentage()!= product.getPercentage()){
+                    listProducts.get(i).setBuyPrice(product.getBuyPrice());
+                    listProducts. get(i).setPercentage(product.getPercentage());
+                }
+            }
+        } 
+    }
+
     public void postRol(Rol rol) {
         listRoles.add(rol);
     }
@@ -382,5 +397,6 @@ public class Stub implements IStub {
     }
     
     
+
 
 }

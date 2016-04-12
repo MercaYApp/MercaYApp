@@ -199,4 +199,9 @@ public class Impl implements IStub {
         rolesR.save(rol);
     }
 
+    @Override
+    public void putProduct(Product product) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

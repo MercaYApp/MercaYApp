@@ -69,8 +69,11 @@ angular.module('service.modulo1', ['ngRoute', 'ngResource'])
             return product;
         })
         
-
+            //---------------Get invoices of clients---------------
         .factory('PostProduct', function ($resource) {
             return $resource('/products');
-
+        })
+            //---------------Get invoices of clients---------------
+        .factory('PutProduct', function ($resource) {
+            return $resource('/products/actualiza');
         });
