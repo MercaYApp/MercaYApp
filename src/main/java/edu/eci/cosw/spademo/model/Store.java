@@ -56,7 +56,7 @@ public class Store  implements java.io.Serializable {
        this.invoiceses = invoiceses;
     }
    
-     @EmbeddedId
+    @EmbeddedId
     @AttributeOverrides( {
         @AttributeOverride(name="idStores", column=@Column(name="id_stores", nullable=false) ), 
         @AttributeOverride(name="superMarketId", column=@Column(name="SuperMarket_id", nullable=false) ) } )

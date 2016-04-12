@@ -56,7 +56,7 @@ public class Supermarket  implements java.io.Serializable {
     }
    
      @Id 
-    @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    //@GeneratedValue(strategy=GenerationType.SEQUENCE)
     @Column(name="id_supermarkets", unique=true, nullable=false)
     public int getIdSupermarkets() {
         return this.idSupermarkets;
@@ -90,7 +90,7 @@ public class Supermarket  implements java.io.Serializable {
         this.clientsApps = clientsApps;
     }
 
-    @OneToMany(cascade = CascadeType.ALL)
+    /*@OneToMany(cascade = CascadeType.ALL)
     @Fetch(FetchMode.JOIN)
     @JsonIgnore
     @JoinColumn(name = "storesSupermarket", nullable = false)
@@ -100,7 +100,7 @@ public class Supermarket  implements java.io.Serializable {
     
     public void setStoreses(Set<Store> storeses) {
         this.storeses = storeses;
-    }
+    }*/
 
 
 

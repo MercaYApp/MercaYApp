@@ -58,7 +58,7 @@ public class Product implements java.io.Serializable {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    //@GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id_productos", unique = true, nullable = false)
     public int getIdProductos() {
         return this.idProductos;
