@@ -56,7 +56,7 @@ public class Store  implements java.io.Serializable {
        this.invoiceses = invoiceses;
     }
    
-     @EmbeddedId
+    @EmbeddedId
     @AttributeOverrides( {
         @AttributeOverride(name="idStores", column=@Column(name="id_stores", nullable=false) ), 
         @AttributeOverride(name="superMarketId", column=@Column(name="SuperMarket_id", nullable=false) ) } )
@@ -71,8 +71,8 @@ public class Store  implements java.io.Serializable {
     
     @ManyToOne(cascade = CascadeType.ALL)
     @Fetch(FetchMode.JOIN)
-    @JsonIgnore
-    @JoinColumn(name="SuperMarket_id", nullable=false, insertable=false, updatable=false)
+    //@JsonIgnore
+    @JoinColumn(name="SuperMarket_id", insertable=false, updatable=false)
     public Supermarket getSupermarkets() {
         return this.supermarkets;
     }

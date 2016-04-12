@@ -72,5 +72,23 @@ public class ClientController {
         stub.deleteClientApp(id);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+    @RequestMapping(value="/actualizaClient", method = RequestMethod.POST)
+    public ResponseEntity<Void> putClients(@RequestBody ClientApp cliente)throws ServicesMercaYAppException{
+        
+       if(stub.getClientAppById(cliente.getIdClients())!=null){
+            stub.putClient(cliente);            
+        }
+        return new ResponseEntity<>(HttpStatus.CREATED);
+      
+    }
+    @RequestMapping(value="/actualizaClientes", method = RequestMethod.POST)
+    public ResponseEntity<Void> postSupermarketClientes(@RequestBody ClientApp cliente)throws ServicesMercaYAppException{
+        
+       if(stub.getClientAppById(cliente.getIdClients())!=null){
+            stub.postSupermarketClient(cliente);            
+        }
+        return new ResponseEntity<>(HttpStatus.CREATED);
+      
+    }
     
 }

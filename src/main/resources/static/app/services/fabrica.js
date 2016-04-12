@@ -51,7 +51,11 @@ angular.module('service.modulo1', ['ngRoute', 'ngResource'])
         
         //---------------Post supermarket Client---------------
         .factory('PostSupermarketClient', function ($resource) {
-            return $resource('/postSupermarketClient');
+            return $resource('/postSupermarketClients');
+        })
+        
+        .factory('PostSupermarketClientes', function ($resource) {
+            return $resource('/clientsApp/actualizaClientes');
         })
         
         
@@ -70,10 +74,9 @@ angular.module('service.modulo1', ['ngRoute', 'ngResource'])
             return product;
         })
         
-
+            //---------------Get invoices of clients---------------
         .factory('PostProduct', function ($resource) {
             return $resource('/products');
-
         })
         //-------------------Get productos Invoices--------------------
         .factory('GetProductIvoices', function ($resource){
@@ -82,6 +85,14 @@ angular.module('service.modulo1', ['ngRoute', 'ngResource'])
             );
             return product;
         })    
-        ;
+  
+       
+            //---------------Get invoices of clients---------------
+        .factory('PutProduct', function ($resource) {
+            return $resource('/products/actualiza');
+        })
         
-        
+        .factory('PutClient', function ($resource) {
+            return $resource('/clientsApp/actualizaClient');
+        });
+

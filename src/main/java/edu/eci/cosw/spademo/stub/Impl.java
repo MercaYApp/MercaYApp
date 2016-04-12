@@ -38,7 +38,8 @@ public class Impl implements IStub {
     ZonesRepository zonesR;
     @Autowired
     SupermarketsRepository supermarketsR;
-
+    @Autowired
+    RolesRepository rolesR;
    
     public Impl() {
        
@@ -99,7 +100,7 @@ public class Impl implements IStub {
     }
      
     @Override
-    public Store getStoreById(Integer id) {
+    public Store getStoreById(StoreId id) {
         return storesR.findOne(id);
     }
 
@@ -138,7 +139,9 @@ public class Impl implements IStub {
      
     @Override
     public void postStore(Store s) {
+        System.out.println("AAAAAAAAAAAAAAAAAAAentro al post del store: "+s.getNameStore());
         storesR.save(s);
+        System.out.println("EEEEEentro al post del store: "+s.getNameStore());
     }
 
     @Override
@@ -185,6 +188,44 @@ public class Impl implements IStub {
 
         //listSupermarkets.get("Exito").getClientsApp().remove(c);
     }
+    
+
+    @Override
+    public List<Rol> getRoles() {
+        return rolesR.findAll();
+    }
+
+    @Override
+    public Rol getRolById(Integer id) {
+        return rolesR.findOne(id);
+    }
+
+    @Override
+    public void postRol(Rol rol) {
+        rolesR.save(rol);
+    }
+
+    @Override
+    public void putProduct(Product product) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void putClient(ClientApp cliente) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void postSupermarketClients(ClientApp cliente) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void postSupermarketClient(ClientApp cliente) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+ 
 
  
 

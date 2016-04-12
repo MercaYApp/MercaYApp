@@ -9,16 +9,16 @@ angular.module('myApp.ConsultarCompras', ['ngRoute'])
                 });
             }])
 
+
         .controller('ConsultarComprasCtrl', [ '$scope', '$rootScope', 'GetClientInvoices', 'GetClientApp', 'GetProduct', function ( $scope, $rootScope, GetClientInvoices, GetClientApp, GetProduct) {
                 //$scope.listadoInvoices=GetClientInvoices.get({id: $scope.id});
                 //$scope.clientListadoInvoices = GetClientApp.get({id: $rootScope.credentials.username});
                 $scope.listadoInvoices = {};
-                alert($scope.listadoInvoices);
                 $scope.listadoInvoices = GetClientInvoices.get({id: $rootScope.credentials.username});
                
                 //$scope.showAlert = showAlert;
                 $scope.showAlert = function () {
-                    alert("entroo");
+                    alert("product here");
                 };
 
 
@@ -39,5 +39,5 @@ angular.module('myApp.ConsultarCompras', ['ngRoute'])
                  
                  
                  });*/
-
+        
             }]);
