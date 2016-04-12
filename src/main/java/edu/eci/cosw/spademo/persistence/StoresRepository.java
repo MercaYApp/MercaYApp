@@ -5,8 +5,8 @@
  */
 package edu.eci.cosw.spademo.persistence;
 
-import edu.eci.cosw.spademo.model.ClientApp;
-import edu.eci.cosw.spademo.model.Store;
+
+import edu.eci.cosw.spademo.model.*;
 import java.util.List;
 
 
@@ -20,7 +20,7 @@ import org.springframework.data.repository.query.Param;
  *
  * @author MercaYApp
  */
-public interface StoresRepository extends JpaRepository<Store, Integer> {
+public interface StoresRepository extends JpaRepository<Store, StoreId> {
 
     /*@Query("from Paciente p where size(p.consultas) >= :n")
     List<Paciente> listaPacientes(@Param(value="n") int n);    */

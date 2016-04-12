@@ -100,7 +100,7 @@ public class Impl implements IStub {
     }
      
     @Override
-    public Store getStoreById(Integer id) {
+    public Store getStoreById(StoreId id) {
         return storesR.findOne(id);
     }
 

@@ -45,7 +45,7 @@ public class Rol  implements java.io.Serializable {
     }
    
      @Id 
-    @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    //@GeneratedValue(strategy=GenerationType.SEQUENCE)
     @Column(name="id_roles", unique=true, nullable=false)
     public int getIdRoles() {
         return this.idRoles;
@@ -68,7 +68,7 @@ public class Rol  implements java.io.Serializable {
 @OneToMany(cascade = CascadeType.ALL)
     @Fetch(FetchMode.JOIN)
     @JsonIgnore
-    @JoinColumn(name = "clients", nullable = false)
+    //@JoinColumn(name = "clients", nullable = false)
     public Set<ClientApp> getClientsApps() {
         return this.clientsApps;
     }

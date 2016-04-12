@@ -71,8 +71,10 @@ public class Stub implements IStub {
         ClientApp c1 = new ClientApp(69, r0, "Oscar", "Oscar@yo.com", "123", null, null);
         setClients.add(c1);
         setClients.add(c);
+        
+        
         super0.setClientsApps(setClients);
-        super0.setStoreses(setStores);
+        //super0.setStoreses(setStores);
 
        
         listSupermarkets.add(super0);
@@ -201,11 +203,11 @@ public class Stub implements IStub {
     }
 
     @Override
-    public Store getStoreById(Integer id) {
+    public Store getStoreById(StoreId id) {
         Store store = null;
         boolean banderita = false;
         for (int i = 0; i < listStores.size() && !banderita; i++) {
-            if (listStores.get(i).getId().getIdStores()== id) {
+            if (listStores.get(i).getId().equals(id)) {
                 store = listStores.get(i);
                 banderita = true;
             }
