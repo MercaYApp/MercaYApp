@@ -34,7 +34,7 @@ public interface  IStub {
     public ClientApp getSupermarketByIdClientsById(String superm, Integer id);
 
     public Store getStoreById(StoreId id);
-    public Zone getZoneById(Integer id);
+    public Zone getZoneById(ZoneId id);
     public Product getProductById(Integer id);
     public Invoice getInvoiceById(Integer id);
     public ClientApp getClientAppById(Integer id);

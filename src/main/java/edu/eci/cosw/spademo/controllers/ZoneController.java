@@ -6,6 +6,7 @@
 package edu.eci.cosw.spademo.controllers;
 
 import edu.eci.cosw.spademo.model.Zone;
+import edu.eci.cosw.spademo.model.ZoneId;
 import edu.eci.cosw.spademo.persistence.ServicesMercaYAppException;
 import edu.eci.cosw.spademo.stub.IStub;
 import java.util.List;
@@ -45,7 +46,7 @@ public class ZoneController {
     }
     
     @RequestMapping(value="/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Zone> getZoneById(@PathVariable int id)throws ServicesMercaYAppException{
+    public ResponseEntity<Zone> getZoneById(@PathVariable ZoneId id)throws ServicesMercaYAppException{
         Zone c=stub.getZoneById(id); 
         return new ResponseEntity<>(c, HttpStatus.OK);
         

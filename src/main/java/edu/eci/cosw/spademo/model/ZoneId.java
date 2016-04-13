@@ -37,7 +37,7 @@ public class ZoneId  implements java.io.Serializable {
     }
 
 
-    @Column(name="STORES_id_stores", nullable=false)
+    @Column(name="STORES_id_stores", nullable=false, insertable=false, updatable=false)
     public int getStoresIdStores() {
         return this.storesIdStores;
     }
@@ -47,7 +47,7 @@ public class ZoneId  implements java.io.Serializable {
     }
 
 
-    @Column(name="STORES_SuperMarket_id", nullable=false)
+    @Column(name="STORES_supermarket_id", nullable=false)
     public int getStoresSuperMarketId() {
         return this.storesSuperMarketId;
     }

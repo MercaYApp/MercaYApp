@@ -9,7 +9,7 @@ angular.module('myApp.viewConfiguracion', ['ngRoute'])
                 });
             }])
 
-        .controller('ViewConfiguracionController', ['$scope', 'GetClient', 'GetClientApp', 'PostClientApp', 'DeleteClientApp', function ($scope, GetClient, GetClientApp, PostClientApp, DeleteClientApp) {
+        .controller('ViewConfiguracionController', ['$scope', '$rootScope', 'GetClient', 'GetClientApp', 'PostClientApp', 'DeleteClientApp', function ($scope, $rootScope, GetClient, GetClientApp, PostClientApp, DeleteClientApp) {
 
                 $scope.selectConfiguracion = 'selectAgregar';
                 $scope.supermarketConfiguracion = 'Exito';
@@ -20,7 +20,7 @@ angular.module('myApp.viewConfiguracion', ['ngRoute'])
 
 
                 $scope.agregarMasSupermercadosConfiguracion = function () {
-                    alert("Quiere agregar mas supermercados de Configuracion");
+                    alert("Quiere agregar mas supermercados de Configuracion:  loggeado: "+$rootScope.credentials.password);
                     var response = GetClientApp.get({id: $scope.idConfiguracion});
                     response.$promise.then(function (data) {
                         $scope.clientConfiguracion = data;

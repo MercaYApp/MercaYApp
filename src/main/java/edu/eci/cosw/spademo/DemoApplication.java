@@ -80,13 +80,14 @@ public class DemoApplication {
                     .and()
                     .authorizeRequests()
                     .antMatchers("/app/**").permitAll()
+                    
                     .anyRequest().authenticated().and()
                     .logout().logoutSuccessUrl("/app/index.html#/viewLogin")
                     
                     .permitAll()
-                    
                     .and().csrf()
                     .csrfTokenRepository(csrfTokenRepository()).and()
+                    
                     .addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);
         }
 

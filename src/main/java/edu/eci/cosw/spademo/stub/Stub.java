@@ -29,7 +29,7 @@ import org.springframework.stereotype.Service;
  * @author MercaYApp
  */
 
-@Service
+//@Service
 public class Stub implements IStub {
 
     List<Supermarket> listSupermarkets = new ArrayList<>();
@@ -42,19 +42,24 @@ public class Stub implements IStub {
     List<Rol> listRoles = new ArrayList<>();
     
     public Stub() {
+        Set<Store> setStores= new HashSet<>();
+        StoreId s0Id = new StoreId(1, 1);
+        Store s0 = new Store(s0Id, 10, 10, "Exito 80");
+        listStores.add(s0);
+        setStores.add(s0);
+        
+        Set<Product> setP=new HashSet<>();
+        Product p = new Product(1,"Jabon", 1000, 30, 500);
+        setP.add(p);
+        listProducts.add(p);
         
         Supermarket super0 = new Supermarket(1, "Exito");
-        StoreId s0Id = new StoreId(1, 1);
-        Store s0 = new Store(s0Id, super0, 10, 10, "Exito 80");
         Rol r0 = new Rol(1, "Admin");
         listRoles.add(r0);
         ClientApp c0 = new ClientApp(1122,r0, "Felipe", "yo@yo.com", "123", null, null);
-        Invoice in = new Invoice(110, c0, s0, new Date());
-        Invoice in1 = new Invoice(111, c0, s0, new Date());
+        Invoice in = new Invoice(110, new Date(), setP);
         Set<Invoice> setInvoice = new HashSet<>();
-        Set<Store> setStores = new HashSet<>();
         setInvoice.add(in);
-        setInvoice.add(in1);
         c0.setInvoiceses(setInvoice);
         listClients.add(c0);
         
@@ -78,7 +83,7 @@ public class Stub implements IStub {
 
        
         listSupermarkets.add(super0);
-        Supermarket s12 = new Supermarket(2, "Cencosud", setClients, null);
+        Supermarket s12 = new Supermarket(2, "Cencosud", setClients);
         listSupermarkets.add(s12);
         Supermarket s13 = new Supermarket(3, "Olimpica");
         listSupermarkets.add(s13);
@@ -86,14 +91,12 @@ public class Stub implements IStub {
 
         listSupermarkets.add(s14);
         
+        
         ZoneId zId = new ZoneId(1, 1, 1);
-        Zone z = new Zone(zId, s0, "Aseo");
-        listZones.add(z);
-
-        Product p = new Product(1, z, "Jabon", 1000, 30, 500);
-        listProducts.add(p);
-
-        Invoice i = new Invoice(15, c1, s0, new Date());
+        Zone z = new Zone(zId, "Aseo", s0, setP);
+        
+        
+        Invoice i = new Invoice(15, new Date(), setP);
 
         listInvoices.add(i);
 
@@ -216,11 +219,11 @@ public class Stub implements IStub {
     }
 
     @Override
-    public Zone getZoneById(Integer id) {
+    public Zone getZoneById(ZoneId id) {
         Zone zone = null;
         boolean banderita = false;
         for (int i = 0; i < listZones.size() && !banderita; i++) {
-            if (listZones.get(i).getId().getIdZones()== id) {
+            if (listZones.get(i).getId().equals(id)) {
                 zone = listZones.get(i);
                 banderita = true;
             }
@@ -254,7 +257,7 @@ public class Stub implements IStub {
         }
         return inv;
     }
-
+    
     @Override
     public Set<Invoice> getInvoiceByClient(Integer c) {
         ClientApp client = getClientAppById(c);

@@ -23,7 +23,7 @@ import org.springframework.stereotype.Service;
 /**
  * @author MercaYApp
  */
-//@Service
+@Service
 public class Impl implements IStub {
 
     @Autowired
@@ -105,7 +105,7 @@ public class Impl implements IStub {
     }
 
     @Override
-    public Zone getZoneById(Integer id) {
+    public Zone getZoneById(ZoneId id) {
         return zonesR.findOne(id);
     }
 

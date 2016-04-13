@@ -35,14 +35,13 @@ CREATE TABLE INVOICES (
 -- Table LINE_INVOICE
 CREATE TABLE LINE_INVOICE (
     INVOICES_id_invoices int  NOT NULL,
-	PRODUCTS_id_especial int NOT NULL,
     PRODUCTS_id_productos int  NOT NULL,
     CONSTRAINT LINE_INVOICE_pk PRIMARY KEY (INVOICES_id_invoices,PRODUCTS_id_productos)
 )ENGINE=InnoDB;
 
 -- Table PRODUCTS
 CREATE TABLE PRODUCTS (
-    id_especial int NOT NULL AUTO_INCREMENT,
+    
     id_productos int  NOT NULL,
     name_product varchar(25)  NOT NULL,
     buyPrice int  NOT NULL,
@@ -51,7 +50,7 @@ CREATE TABLE PRODUCTS (
     ZONES_id_zones int  NOT NULL,
     ZONES_STORES_id_stores int  NOT NULL,
     ZONES_STORES_SuperMarket_id int  NOT NULL,
-    CONSTRAINT PRODUCTS_pk PRIMARY KEY (id_especial, id_productos)
+    CONSTRAINT PRODUCTS_pk PRIMARY KEY (id_productos)
 )ENGINE=InnoDB;
 
 -- Table ROLES
@@ -118,8 +117,8 @@ ALTER TABLE LINE_INVOICE ADD CONSTRAINT LINE_INVOICE_INVOICES FOREIGN KEY LINE_I
     REFERENCES INVOICES (id_invoices);
 -- Reference:  LINE_INVOICE_PRODUCTS (table: LINE_INVOICE)
 
-ALTER TABLE LINE_INVOICE ADD CONSTRAINT LINE_INVOICE_PRODUCTS FOREIGN KEY LINE_INVOICE_PRODUCTS (PRODUCTS_id_especial, PRODUCTS_id_productos)
-    REFERENCES PRODUCTS (id_especial, id_productos);
+ALTER TABLE LINE_INVOICE ADD CONSTRAINT LINE_INVOICE_PRODUCTS FOREIGN KEY LINE_INVOICE_PRODUCTS (PRODUCTS_id_productos)
+    REFERENCES PRODUCTS (id_productos);
 -- Reference:  PRODUCTS_ZONES (table: PRODUCTS)
 
 ALTER TABLE PRODUCTS ADD CONSTRAINT PRODUCTS_ZONES FOREIGN KEY PRODUCTS_ZONES (ZONES_id_zones,ZONES_STORES_id_stores,ZONES_STORES_SuperMarket_id)
@@ -137,3 +136,12 @@ ALTER TABLE ZONES ADD CONSTRAINT ZONES_STORES FOREIGN KEY ZONES_STORES (STORES_i
 
 -- End of file.
 
+rename table CLIENTS_APP to clients_app;
+rename table CLIENTS_MARKETS to clients_markets;
+rename table INVOICES to invoices;
+rename table LINE_INVOICE to line_invoice;
+rename table PRODUCTS to products;
+rename table ROLES to roles;
+rename table STORES to stores;
+rename table SUPERMARKETS to supermarkets;
+rename table ZONES to zones;

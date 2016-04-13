@@ -25,7 +25,7 @@ public class StoreId  implements java.io.Serializable {
    
 
 
-    @Column(name="id_stores", nullable=false)
+    @Column(name="id_stores", insertable = false, updatable = false)
     public int getIdStores() {
         return this.idStores;
     }
@@ -35,7 +35,7 @@ public class StoreId  implements java.io.Serializable {
     }
 
 
-    @Column(name="SuperMarket_id", nullable=false)
+    @Column(name="supermarket_id", insertable = false, updatable = false)
     public int getSuperMarketId() {
         return this.superMarketId;
     }

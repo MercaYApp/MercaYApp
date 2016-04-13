@@ -7,6 +7,7 @@ package edu.eci.cosw.spademo.persistence;
 
 import edu.eci.cosw.spademo.model.ClientApp;
 import edu.eci.cosw.spademo.model.Zone;
+import edu.eci.cosw.spademo.model.ZoneId;
 import java.util.List;
 
 
@@ -20,7 +21,7 @@ import org.springframework.data.repository.query.Param;
  *
  * @author MercaYApp
  */
-public interface ZonesRepository extends JpaRepository<Zone, Integer> {
+public interface ZonesRepository extends JpaRepository<Zone, ZoneId> {
     /*@Query("from Paciente p where size(p.consultas) >= :n")
     List<Paciente> listaPacientes(@Param(value="n") int n);    */
 

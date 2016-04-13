@@ -1,10 +1,9 @@
 <form ng-controller="ViewConfiguracionController" role="form">
     <div ng-show="!banderaAgregaSuper">
         <div class="form-group">
-            <select ng-click="cargarDatosClientesConfiguracion()"  ng-model="selectConfiguracion">
+            <select  ng-model="selectConfiguracion">
                 <option value="selectAgregar">Agregar supermercado</option>
                 <option value="selectActualizar">Actualizar datos</option>
-                <option ng-controller="ViewLoginCtrl" value="nada">{{credentials.password}}</option>
 
             </select>
         </div> 

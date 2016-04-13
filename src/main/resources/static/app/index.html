@@ -25,7 +25,7 @@
                 <a href="#/ConsultarCompras" ng-show="authenticated">| Consultar |</a>
                 <a href="#/viewConfiguracion" ng-show="authenticated">| Configuracion |</a>
                 <a href="#/addProducts" ng-show="authenticated">| Administrar Productos|</a>
-                <a ng-controller="ViewPrincipal" ng-click="logout()" ng-show="authenticated">| Logout |</a>
+                <a ng-controller="ViewPrincipal" ng-click="logout()" ng-show="authenticated">| Logout {{credentials.username}}|</a>
             </h1>
             
 
