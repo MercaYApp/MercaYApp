@@ -68,8 +68,8 @@ public class Supermarket implements java.io.Serializable {
     @Fetch(FetchMode.JOIN)
     @JsonIgnore
     @JoinTable(name = "clients_markets", joinColumns = {
-        @JoinColumn(name = "SUPERMARKETS_id", nullable = false, updatable = false)}, inverseJoinColumns = {
-        @JoinColumn(name = "CLIENTS_APP_id", nullable = false, updatable = false)})
+        @JoinColumn(name = "SUPERMARKETS_id")}, inverseJoinColumns = {
+        @JoinColumn(name = "CLIENTS_APP_id")})
     public Set<ClientApp> getClientsApps() {
         return this.clientsApps;
     }

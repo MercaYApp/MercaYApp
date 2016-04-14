@@ -46,9 +46,9 @@ angular.module('myApp.viewSignUp', ['ngRoute'])
                         var response = GetSupermarket.get({id: $scope.supermarket});
                         response.$promise.then(function (data) {
                             $scope.supermarketPost = data;
-                            $scope.clientPost={idClients:$scope.id1, rol:{}, nameClientApp:$scope.nombre, email:$scope.correo, password:$scope.password, supermarketses: [$scope.supermarketPost], inveoiceses: {}};
+                            $scope.clientPost={idClients:$scope.id1, roles:{}, nameClientApp:$scope.nombre, email:$scope.correo, password:$scope.password, supermarketses: [$scope.supermarketPost], invoiceses: {}};
                                 PostClientApp.save($scope.clientPost, function(){
-                                    alert("El usuario con identificacion '"+ $scope.clientPost.idClientApp + "' ha sido registrado exitosamente en:"+$scope.supermarketPost.nameSupermarket);
+                                    alert("El usuario con identificacion '"+ $scope.clientPost.idClients + "' ha sido registrado exitosamente en:"+$scope.supermarketPost.nameSupermarket);
                                     $scope.registrado = true;
                                     }
                                 );

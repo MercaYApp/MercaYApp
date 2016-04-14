@@ -25,7 +25,7 @@ angular.module('myApp.addProducts', ['ngRoute'])
 
 
                 $scope.postProductsModificar = function () {
-                    alert("VA LA entroooo");
+                   
                     var response = GetProduct.get({id: $scope.idProducto});
                     
                     response.$promise.then(function (data) {
@@ -39,20 +39,8 @@ angular.module('myApp.addProducts', ['ngRoute'])
 
                     });
                 };
-                /**$scope.checkProductos=true;
-                 var response = GetProduct.get({id: $scope.idProducto});
-                 response.$promise.then(function (data) {
-                 $scope.product = data;
-                 $scope.nombreAddProducts=$scope.product.nameProduct;
-                 $scope.buyPriceAddProducts=$scope.product.buyPrice;
-                 $scope.porcentajeAddProduct=$scope.product.percentage;
-                 alert("Nombre " + $scope.product.name_product);
-                 **/
-
-
-                $scope.cancelarPostProductos = function () {
-
-                    $scope.checkProductos = false;
-
+                  $scope.cancelarPostProductos = function () {
+                        alert("Cancelar: ");  
                 };
+
             }]);

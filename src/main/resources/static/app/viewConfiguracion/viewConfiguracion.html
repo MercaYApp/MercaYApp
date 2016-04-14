@@ -1,41 +1,41 @@
 <form ng-controller="ViewConfiguracionController" role="form">
-    <div ng-show="!banderaAgregaSuper">
-        <div class="form-group">
-            <select  ng-model="selectConfiguracion">
+
+    <p>Seleccione la opcion que desea utilizar.</p>
+    <div class="form-group">
+        <div class="form-group" id="select" >
+            <select ng-model="supermarketConfiguracion">
+                
                 <option value="selectAgregar">Agregar supermercado</option>
                 <option value="selectActualizar">Actualizar datos</option>
-
+                <!-- <option ng-controller="ViewLoginCtrl" value="nada">{{credentials.password}}</option>-->
             </select>
-        </div> 
-
-        <div ng-show="selectConfiguracion === 'selectAgregar'">
-            <div>
-                <div class="form-group" id="selectSuperConfiguracion" >
-                    <select ng-model="supermarketConfiguracion">
-                        <option value="Exito">Exito</option>
-                        <option value="Cencosud">Cencosud</option>
-                        <option value="Olimpica">Olimpica</option>
-                        <option value="Makro">Makro</option>
-
-                    </select>
-                </div>       
-
-            </div>
-            <div>
-                <div class="form-group">
-                    <label for="id">Numero de Identificacion:</label> <input type="number"
-                                                                             class="form-control" id="idConfiguracion" name="id" ng-model="idConfiguracion"/>
-                </div>
-                <button type="submit" class="btn btn-primary" ng-click="agregarMasSupermercadosConfiguracion()">Agregar supermercado</button>
-                <button type="submit" class="btn btn-primary" ng-click="cancelarConfiguracion()">Cancelar</button>
-            </div>
         </div>
-        
-        
-        <div ng-show="selectConfiguracion === 'selectActualizar'">
+
+        <div ng-show="supermarketConfiguracion === 'selectAgregar'" >
+
             <div class="form-group">
-                <label for="idR">Número de Identificacion:</label> <input type="number"
-                                                                class="form-control" id="idConfiguracion" ng-model="idConfiguracion" disabled/>
+                <label for="idR">Número de Identificacion:</label> <input type="text"
+                                                                          class="form-control" id="idConfiguracion" ng-model="idConfiguracionmMercado" />
+            </div>
+            <div class="form-group">
+                <label for="nombre">Id Supermarket </label> <input type="text" 
+                                                                   class="form-control" id="zona" name="zona" ng-model="SupermarketId" />
+            </div>
+            <div class="form-group">
+                <label for="nombre">Nombre</label> <input type="text" 
+                                                          class="form-control" id="nombre" name="nombre" ng-model="nombreSupermarket" />
+            </div>
+
+            <button type="submit" class="btn btn-primary" ng-click="AgregarSupermercado()">Aceptar</button>
+
+            <button type="submit" class="btn btn-primary" ng-click="cancelarPostProductos()">Cancelar</button>
+        </div>
+
+
+        <div ng-show="supermarketConfiguracion === 'selectActualizar'">
+            <div class="form-group">
+                <label for="idR">Número de Identificacion:</label> <input type="text"
+                                                                          class="form-control" id="idConfiguracion" ng-model="idConfiguracion" disabled/>
             </div>
             <div class="form-group">
                 <label for="nombre">Nombre:</label> <input type="text"
@@ -53,10 +53,10 @@
                 <label for="confirmPassword">Confirm Password:</label> <input type="password"
                                                                               class="form-control" id="confirmPasswordConfiguracion" ng-model="confirmPasswordConfiguracion"/>
             </div>
-            <button type="submit" class="btn btn-primary" ng-click="actualizarDatosClienteConfiguracion()">Actualizar</button>
+            <button type="submit" class="btn btn-primary" ng-click="actualizarDatosClienteConfiguracion()">Aceptar</button>
             <button type="submit" class="btn btn-primary" ng-click="cancelarConfiguracion()">Cancelar</button>
         </div>
-        
+
     </div>
 
     <div ng-show="banderaAgregaSuper">

@@ -9,8 +9,22 @@ angular.module('myApp.ConsultarCompras', ['ngRoute'])
                 });
             }])
 
-        .controller('ConsultarComprasCtrl', ['$scope', '$rootScope', 'GetClientInvoices', 'GetClientApp', function ($scope, $rootScope, GetClientInvoices, GetClientApp) {
-                //$scope.listadoInvoices=GetClientInvoices.get({id: $scope.id});
-                $scope.clientListadoInvoices = GetClientApp.get({id: $rootScope.credentials.username});
-                $scope.listadoInvoices = GetClientInvoices.get({id: $rootScope.credentials.username});
+
+        .controller('ConsultarComprasCtrl', [ '$scope', '$rootScope', 'GetClientInvoices', 'GetClientApp', 'GetProduct', function ( $scope, $rootScope, GetClientInvoices, GetClientApp, GetProduct) {
+                
+                $scope.clientListadoInvoices = {};
+                $scope.listadoInvoices = {};
+                $scope.showAlert = function () {
+                    var client = GetClientApp.get({id: $rootScope.credentials.username});
+                    client.$promise.then(function (data) {
+                        $scope.clientListadoInvoices = data;
+                        alert("NADA: "+$scope.clientListadoInvoices.idClients);
+                        
+                        var listado = GetClientInvoices.get({id: $rootScope.credentials.username});
+                        listado.$promise.then(function (data) {
+                            $scope.listadoInvoices=data;    
+                        });
+                    });
+                };
+        
             }]);

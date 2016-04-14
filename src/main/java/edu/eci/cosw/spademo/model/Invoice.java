@@ -35,7 +35,6 @@ public class Invoice  implements java.io.Serializable {
      private int idInvoices;
      private Date dateInvoice;
      private Set<Product> productses = new HashSet<>(0);
-
     public Invoice() {
     }
 
@@ -73,9 +72,11 @@ public class Invoice  implements java.io.Serializable {
 
     @ManyToMany
     @Fetch(FetchMode.JOIN)
+
     @JoinTable(name="LINE_INVOICE", joinColumns = { 
         @JoinColumn(name="INVOICES_id_invoices", nullable = false)}, inverseJoinColumns = { 
         @JoinColumn(name="PRODUCTS_id_productos", nullable = false, insertable=false, updatable=false) })
+
     public Set<Product> getProductses() {
         return this.productses;
     }
@@ -83,10 +84,7 @@ public class Invoice  implements java.io.Serializable {
     public void setProductses(Set<Product> productses) {
         this.productses = productses;
     }
-
-
-
-
+    
 }
 
 

@@ -78,7 +78,7 @@ public class ClientApp  implements java.io.Serializable {
     }
 
     
-    @Column(name="name_client_app", nullable = false, insertable=false, updatable=false, length=25)
+    @Column(name="name_client_app", length=25)
     public String getNameClientApp() {
         return this.nameClientApp;
     }
@@ -88,7 +88,7 @@ public class ClientApp  implements java.io.Serializable {
     }
 
     
-    @Column(name="email", nullable = false, insertable=false, updatable=false, length=32)
+    @Column(name="email", nullable = false, length=32)
     public String getEmail() {
         return this.email;
     }
@@ -98,7 +98,7 @@ public class ClientApp  implements java.io.Serializable {
     }
 
     
-    @Column(name="password", nullable = false, insertable=false, updatable=false, length=25)
+    @Column(name="password", nullable = false, length=25)
     public String getPassword() {
         return this.password;
     }

@@ -41,6 +41,7 @@ public interface  IStub {
     public Rol getRolById(Integer id);
     
     public Set<Invoice> getInvoiceByClient(Integer c);
+    public Set<Product> getProductListById(Integer c);
 
     public void postSupermarket(Supermarket s);
     public void postStore(Store s);
@@ -53,6 +54,9 @@ public interface  IStub {
     public void postEmail(String email);
     public void putProduct(Product product);
     public void postRol(Rol rol);
+    public void putClient(ClientApp cliente);
+
+    public void postSupermarketClient(ClientApp cliente);
 
 
 

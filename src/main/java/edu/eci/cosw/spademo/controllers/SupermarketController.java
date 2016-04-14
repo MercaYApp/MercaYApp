@@ -87,6 +87,7 @@ public class SupermarketController {
 
     @RequestMapping(value = "/clientsAppPost", method = RequestMethod.POST)
     public ResponseEntity<Void> postSupermarketClientsApp(@RequestBody ClientApp client) throws ServicesMercaYAppException {
+        System.out.println("NULOOO??: "+stub.getClientAppById(client.getIdClients())!= null);
         Set<Supermarket> set = client.getSupermarketses();
         System.out.println("ENTRO A SET: "+set.isEmpty());
         int cont=0;
@@ -99,6 +100,7 @@ public class SupermarketController {
                 set.add(s);
             }
         }
+        
         System.out.println("entro a postSupermarketClientsApp, post super: "+s.getNameSupermarket());
         
         stub.postClientApp(s, client);

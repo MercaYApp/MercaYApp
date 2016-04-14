@@ -124,7 +124,11 @@ public class Impl implements IStub {
         ClientApp client = getClientAppById(c);
         return client.getInvoiceses();
     }
-
+      @Override
+    public Set<Product> getProductListById(Integer c) {
+        Invoice i = invoicesR.findOne(c);
+        return i.getProductses();
+    }
    
     @Override
     public void postSupermarket(Supermarket s) {
@@ -133,9 +137,7 @@ public class Impl implements IStub {
      
     @Override
     public void postStore(Store s) {
-        System.out.println("AAAAAAAAAAAAAAAAAAAentro al post del store: "+s.getNameStore());
         storesR.save(s);
-        System.out.println("EEEEEentro al post del store: "+s.getNameStore());
     }
 
     @Override
@@ -160,13 +162,19 @@ public class Impl implements IStub {
 
     @Override
     public void postClientApp(Supermarket s, ClientApp c) {
-        //clientsR.save(c);
-        System.out.println("ENTRO AL POST CLIENT APP");
+        System.out.println("ENTRO AL POSTTT");
+        Set<Supermarket> superm = c.getSupermarketses();
+        superm.add(s);
+        clientsR.save(c);
+        System.out.println("Entro al post AGREGO CLIENTE: "+c.getNameClientApp());
+        clientsR.findOne(c.getIdClients()).setSupermarketses(superm);
+        System.out.println("ENTRO AL POST CLIENT APP agrego: "+s.getNameSupermarket());
     }
     @Override
     public void postEmail(String email) {
-        /*ClientApp c = clientsR.findOne(id);
-        if (c != null && c.getEmail().equals(email)) {
+        /*ClientApp c = clientsR.findByEmail(email);
+        System.out.println("ENCONTRO EL CORREO: "+c.getNameClientApp());
+        /*if (c != null && c.getEmail().equals(email)) {
             String asunto = "Este es el correo de recuperacion de contraseña!";
             String mensaje = "El mensaje de recuperación de su contraseña";
             EnviadorMail en = new EnviadorMail(email, asunto, mensaje);
@@ -201,7 +209,43 @@ public class Impl implements IStub {
 
     @Override
     public void putProduct(Product product) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(productsR.findOne(product.getIdProductos())!=null){
+            if(productsR.findOne(product.getIdProductos()).getBuyPrice()!=product.getBuyPrice()){
+                productsR.findOne(product.getIdProductos()).setBuyPrice(product.getBuyPrice());
+            }
+            if(productsR.findOne(product.getIdProductos()).getPercentage()!=product.getPercentage()){
+                productsR.findOne(product.getPercentage()).setPercentage(product.getPercentage());
+            }
+        }
     }
+
+    @Override
+    public void putClient(ClientApp cliente) {
+        if(clientsR.findOne(cliente.getIdClients())!=null){
+            System.out.println("ENTRO a CAMBIAR EL CLIENTE");
+            if(!clientsR.findOne(cliente.getIdClients()).getEmail().equals(cliente.getEmail())){
+                clientsR.findOne(cliente.getIdClients()).setEmail(cliente.getEmail());
+                System.out.println("cambio email a: "+clientsR.findOne(cliente.getIdClients()).getEmail());
+            }
+            if(!clientsR.findOne(cliente.getIdClients()).getPassword().equals(cliente.getPassword())){
+                clientsR.findOne(cliente.getIdClients()).setPassword(cliente.getPassword());
+                System.out.println("cambio el password");
+            }
+            
+        }
+    }
+
+    @Override
+    public void postSupermarketClient(ClientApp cliente) {
+        ClientApp c = clientsR.findOne(cliente.getIdClients());
+        if(c!=null){
+            clientsR.findOne(cliente.getIdClients()).setSupermarketses(cliente.getSupermarketses());
+        }
+
+    }
+
+ 
+
+ 
 
 }

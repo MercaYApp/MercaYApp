@@ -57,10 +57,12 @@ public class Stub implements IStub {
         Rol r0 = new Rol(1, "Admin");
         listRoles.add(r0);
         ClientApp c0 = new ClientApp(1122,r0, "Felipe", "yo@yo.com", "123", null, null);
+
         Invoice in = new Invoice(110, new Date(), setP);
         Set<Invoice> setInvoice = new HashSet<>();
         setInvoice.add(in);
         c0.setInvoiceses(setInvoice);
+
         listClients.add(c0);
         
         
@@ -70,8 +72,7 @@ public class Stub implements IStub {
         ClientApp c = new ClientApp(16, r0, "Felipe", "juan.pipe1122@gmail.com", "123", listSuper, null);
         c.setInvoiceses(setInvoice);
         c.setSupermarketses(listSuper);
-        listClients.add(c);
-
+       
         Set<ClientApp> setClients = new HashSet<>();
         ClientApp c1 = new ClientApp(69, r0, "Oscar", "Oscar@yo.com", "123", null, null);
         setClients.add(c1);
@@ -99,10 +100,8 @@ public class Stub implements IStub {
         Invoice i = new Invoice(15, new Date(), setP);
 
         listInvoices.add(i);
-
-        listClientsApp.add(c);
         listClientsApp.add(c1);
-
+        listClientsApp.add(c);
     }
 
     @Override
@@ -217,6 +216,8 @@ public class Stub implements IStub {
         }
         return store;
     }
+    
+    
 
     @Override
     public Zone getZoneById(ZoneId id) {
@@ -244,6 +245,8 @@ public class Stub implements IStub {
         return prod;
 
     }
+    
+    
 
     @Override
     public Invoice getInvoiceById(Integer id) {
@@ -263,6 +266,13 @@ public class Stub implements IStub {
         ClientApp client = getClientAppById(c);
         //return client.getInvoices();
         return client.getInvoiceses();
+    }
+    
+    @Override
+    public Set<Product> getProductListById(Integer c) {
+        Invoice invoice = getInvoiceById(c);
+        //return client.getInvoices();
+        return invoice.getProductses();
     }
 
     @Override
@@ -378,6 +388,19 @@ public class Stub implements IStub {
             }
         } 
     }
+    @Override
+    public void putClient(ClientApp cliente) {
+         boolean banderita = false;
+        for (int i = 0; i < listClientsApp.size() && !banderita; i++) {
+            banderita = true;
+            if (!listClientsApp.get(i).getEmail().equals(cliente.getEmail())) {
+                listClientsApp.get(i).setEmail(cliente.getEmail());
+                listClientsApp.get(i).setPassword(cliente.getPassword());
+
+            }
+        }
+    }
+   
 
     public void postRol(Rol rol) {
         listRoles.add(rol);
@@ -398,6 +421,22 @@ public class Stub implements IStub {
     public List<Rol> getRoles() {
         return listRoles;
     }
+
+
+    @Override
+    public void postSupermarketClient(ClientApp cliente) {
+         boolean banderita=false;
+        for (int i = 0; i < listClientsApp.size() && !banderita; i++) {
+            banderita = true;
+            
+                listClientsApp.get(i).setSupermarketses(cliente.getSupermarketses());
+        
+        }
+    }
+
+    
+
+    
     
     
 
