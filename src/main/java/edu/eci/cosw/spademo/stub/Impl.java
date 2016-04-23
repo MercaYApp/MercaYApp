@@ -105,8 +105,9 @@ public class Impl implements IStub {
     }
 
     @Override
-    public Zone getZoneById(ZoneId id) {
-        return zonesR.findOne(id);
+    public Zone getZoneById(Integer id, Integer store, Integer supermarket) {
+        ZoneId zId = new ZoneId(id, store, supermarket);
+        return zonesR.findOne(zId);
     }
 
     @Override
@@ -209,13 +210,13 @@ public class Impl implements IStub {
 
     @Override
     public void putProduct(Product product) {
-        if(productsR.findOne(product.getIdProductos())!=null){
-            if(productsR.findOne(product.getIdProductos()).getBuyPrice()!=product.getBuyPrice()){
-                productsR.findOne(product.getIdProductos()).setBuyPrice(product.getBuyPrice());
-            }
-            if(productsR.findOne(product.getIdProductos()).getPercentage()!=product.getPercentage()){
-                productsR.findOne(product.getPercentage()).setPercentage(product.getPercentage());
-            }
+        if(productsR.findOne(product.getIdProductos()).getBuyPrice()!=product.getBuyPrice()){
+            productsR.findOne(product.getIdProductos()).setBuyPrice(product.getBuyPrice());
+        }
+        if(productsR.findOne(product.getIdProductos()).getPercentage()!=product.getPercentage()){
+            System.out.println("ANTES: "+  productsR.findOne(product.getIdProductos()).getPercentage());
+            productsR.findOne(product.getIdProductos()).setPercentage(product.getPercentage());
+            System.out.println("CAMBIO EL PORCENTAJE"+ productsR.findOne(product.getIdProductos()).getPercentage());
         }
     }
 

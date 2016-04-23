@@ -18,6 +18,7 @@ angular.module('myApp.viewSignUp', ['ngRoute'])
                 $scope.check = false;
                 $scope.registrado = false;
                 //$scope.supermarket;
+                $scope.rol = {};
                 $scope.clientPost = {};
                 $scope.supermarketPost={};
                 $scope.consult = function () {
@@ -40,13 +41,22 @@ angular.module('myApp.viewSignUp', ['ngRoute'])
                         alert("SE PUEDE REGISTRAR EL CLIENTE");
                     });
                 };
+                
+                 $scope.demeRol = function(){
+                    var response = GetSupermarket.get({id: $scope.supermarket});
+                        response.$promise.then(function (data) {
+                        $scope.rol = data;
+                        alert("ACTUALIZO ROl: "+ $scope.rol.idRoles);
+                        });
+                };
 
                 $scope.postClientApp = function () {
                     if($scope.password!=="" && $scope.confirmPassword === $scope.password){
+                        $scope.demeRol();//Cargar rol de cliente
                         var response = GetSupermarket.get({id: $scope.supermarket});
                         response.$promise.then(function (data) {
                             $scope.supermarketPost = data;
-                            $scope.clientPost={idClients:$scope.id1, roles:{}, nameClientApp:$scope.nombre, email:$scope.correo, password:$scope.password, supermarketses: [$scope.supermarketPost], invoiceses: {}};
+                            $scope.clientPost={idClients:$scope.id1, roles:$scope.rol, nameClientApp:$scope.nombre, email:$scope.correo, password:$scope.password, supermarketses: [$scope.supermarketPost], invoiceses: {}};
                                 PostClientApp.save($scope.clientPost, function(){
                                     alert("El usuario con identificacion '"+ $scope.clientPost.idClients + "' ha sido registrado exitosamente en:"+$scope.supermarketPost.nameSupermarket);
                                     $scope.registrado = true;

@@ -45,9 +45,9 @@ public class ZoneController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
     
-    @RequestMapping(value="/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Zone> getZoneById(@PathVariable ZoneId id)throws ServicesMercaYAppException{
-        Zone c=stub.getZoneById(id); 
+    @RequestMapping(value="/{id}/{store}/{supermarket}", method = RequestMethod.GET)
+    public ResponseEntity<Zone> getZoneById(@PathVariable Integer id, @PathVariable Integer store, @PathVariable Integer supermarket)throws ServicesMercaYAppException{
+        Zone c=stub.getZoneById(id, store, supermarket); 
         return new ResponseEntity<>(c, HttpStatus.OK);
         
     }

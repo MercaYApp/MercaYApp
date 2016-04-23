@@ -114,14 +114,14 @@ public class Product implements java.io.Serializable {
         this.invoiceses = invoiceses;
     }
 
-        @ManyToMany
+    @ManyToMany
     @Fetch(FetchMode.JOIN)
-    @JsonIgnore
+    //@JsonIgnore
     @JoinTable(name="zones_products", joinColumns = { 
-        @JoinColumn(name="products_id_productos", nullable = false)}, inverseJoinColumns = { 
-        @JoinColumn(name="zones_id_zones", nullable = false, insertable=false, updatable=false),
-        @JoinColumn(name="zones_stores_id_stores", nullable = false, insertable=false, updatable=false),
-        @JoinColumn(name="zones_stores_supermarkets_id_supermarkets", nullable = false, insertable=false, updatable=false)})
+        @JoinColumn(name="products_id_productos")}, inverseJoinColumns = { 
+        @JoinColumn(name="zones_id_zones", insertable=false, updatable=false),
+        @JoinColumn(name="zones_stores_id_stores",  insertable=false, updatable=false),
+        @JoinColumn(name="zones_stores_supermarkets_id_supermarkets", insertable=false, updatable=false)})
 
     public Set<Zone> getZoneses() {
         return zoneses;

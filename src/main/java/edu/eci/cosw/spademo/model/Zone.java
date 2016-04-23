@@ -71,7 +71,7 @@ public class Zone implements java.io.Serializable {
     
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @Fetch(FetchMode.JOIN)
-    //@JsonIgnore
+    @JsonIgnore
     @JoinColumns({
         @JoinColumn(name = "stores_id_stores", insertable=false, updatable=false),
         @JoinColumn(name = "stores_supermarkets_id_supermarkets", insertable=false, updatable=false)

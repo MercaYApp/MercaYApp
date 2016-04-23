@@ -94,5 +94,12 @@ angular.module('service.modulo1', ['ngRoute', 'ngResource'])
         
         .factory('PutClient', function ($resource) {
             return $resource('/clientsApp/actualizaClient');
-        });
+        })
 
+        //---------------Get zone---------------
+        .factory('GetZone', function ($resource) {
+            var zone = $resource('/zones/:id/:store/:supermarket', {id: "@id", store: "@store", supermarket: "@supermarket"},
+                    {get: {method: 'GET'}}
+            );
+            return zone;
+        });
