@@ -73,9 +73,9 @@ public class Invoice  implements java.io.Serializable {
     @ManyToMany
     @Fetch(FetchMode.JOIN)
 
-    @JoinTable(name="LINE_INVOICE", joinColumns = { 
-        @JoinColumn(name="INVOICES_id_invoices", nullable = false)}, inverseJoinColumns = { 
-        @JoinColumn(name="PRODUCTS_id_productos", nullable = false, insertable=false, updatable=false) })
+    @JoinTable(name="line_invoice", joinColumns = { 
+        @JoinColumn(name="invoices_id_invoices", nullable = false)}, inverseJoinColumns = { 
+        @JoinColumn(name="products_id_productos", nullable = false, insertable=false, updatable=false) })
 
     public Set<Product> getProductses() {
         return this.productses;

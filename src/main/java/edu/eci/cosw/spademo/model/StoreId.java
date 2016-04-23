@@ -35,7 +35,7 @@ public class StoreId  implements java.io.Serializable {
     }
 
 
-    @Column(name="supermarket_id", insertable = false, updatable = false)
+    @Column(name="supermarkets_id_supermarkets", insertable = false, updatable = false)
     public int getSuperMarketId() {
         return this.superMarketId;
     }

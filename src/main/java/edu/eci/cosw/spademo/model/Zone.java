@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -70,26 +71,23 @@ public class Zone implements java.io.Serializable {
     
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @Fetch(FetchMode.JOIN)
+    //@JsonIgnore
     @JoinColumns({
-        @JoinColumn(name = "STORES_id_stores", insertable=false, updatable=false),
-        @JoinColumn(name = "STORES_supermarket_id", insertable=false, updatable=false)
+        @JoinColumn(name = "stores_id_stores", insertable=false, updatable=false),
+        @JoinColumn(name = "stores_supermarkets_id_supermarkets", insertable=false, updatable=false)
     })
-    public Store getZoneses() {
+    public Store getStoreses() {
         return this.storeses;
     }
     
-    public void setZoneses(Store storeses) {
+    public void setStoreses(Store storeses) {
         this.storeses = storeses;
     }
     
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "zoneses")    
     @Fetch(FetchMode.JOIN)
-    @JoinColumns({
-        @JoinColumn(name = "ZONES_id_zones"),
-        @JoinColumn(name = "ZONES_STORES_id_stores"),
-        @JoinColumn(name = "ZONES_STORES_supermarket_id")
-    })
+    @JsonIgnore
     public Set<Product> getProductses() {
         return this.productses;
     }

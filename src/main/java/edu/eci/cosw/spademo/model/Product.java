@@ -7,6 +7,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.Fetch;
@@ -25,6 +27,9 @@ public class Product implements java.io.Serializable {
     private int percentage;
     private int weight;
     private Set<Invoice> invoiceses = new HashSet<>(0);
+    private Set<Zone> zoneses = new HashSet<>(0);
+
+    
 
     public Product() {
     }
@@ -38,13 +43,14 @@ public class Product implements java.io.Serializable {
     }
     
     
-    public Product(int idProductos, String nameProduct, int buyPrice, int percentage, int weight, Set<Invoice> invoiceses) {
+    public Product(int idProductos, String nameProduct, int buyPrice, int percentage, int weight, Set<Invoice> invoiceses, Set<Zone> zoneses) {
         this.idProductos = idProductos;
         this.nameProduct = nameProduct;
         this.buyPrice = buyPrice;
         this.percentage = percentage;
         this.weight = weight;
         this.invoiceses = invoiceses;
+        this.zoneses = zoneses;
     }
   
 
@@ -108,5 +114,20 @@ public class Product implements java.io.Serializable {
         this.invoiceses = invoiceses;
     }
 
+        @ManyToMany
+    @Fetch(FetchMode.JOIN)
+    @JsonIgnore
+    @JoinTable(name="zones_products", joinColumns = { 
+        @JoinColumn(name="products_id_productos", nullable = false)}, inverseJoinColumns = { 
+        @JoinColumn(name="zones_id_zones", nullable = false, insertable=false, updatable=false),
+        @JoinColumn(name="zones_stores_id_stores", nullable = false, insertable=false, updatable=false),
+        @JoinColumn(name="zones_stores_supermarkets_id_supermarkets", nullable = false, insertable=false, updatable=false)})
 
+    public Set<Zone> getZoneses() {
+        return zoneses;
+    }
+
+    public void setZoneses(Set<Zone> zoneses) {
+        this.zoneses = zoneses;
+    }
 }

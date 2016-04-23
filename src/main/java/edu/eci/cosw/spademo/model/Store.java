@@ -66,7 +66,7 @@ public class Store  implements java.io.Serializable {
     
     @ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
     @Fetch(FetchMode.JOIN)
-    @JoinColumn(name="supermarket_id", nullable = false, insertable=false, updatable=false)
+    @JoinColumn(name="supermarkets_id_supermarkets", nullable = false, insertable=false, updatable=false)
     public Supermarket getSupermarket() {
         return this.supermarket;
     }
@@ -108,9 +108,10 @@ public class Store  implements java.io.Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @Fetch(FetchMode.JOIN)
+    @JsonIgnore
     @JoinColumns({
-        @JoinColumn(name = "STORES_id_stores_invoices", insertable=false, updatable = false),
-        @JoinColumn(name = "STORES_supermarket_id_invoices", insertable=false, updatable = false)
+        @JoinColumn(name = "stores_id_stores", insertable=false, updatable = false),
+        @JoinColumn(name = "stores_supermarkets_id_supermarkets", insertable=false, updatable = false)
     })
     public Set<Invoice> getInvoiceses() {
         return this.invoiceses;
