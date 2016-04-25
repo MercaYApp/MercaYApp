@@ -32,8 +32,8 @@ public class EnviadorMailController {
     
    
     @RequestMapping(method = RequestMethod.POST)
-    public void postCorreoOlvidado(@RequestBody String email){
-        stub.postEmail(email);
+    public void postCorreoOlvidado(@RequestBody Integer id){
+        stub.postEmail(id);
         
     }    
 

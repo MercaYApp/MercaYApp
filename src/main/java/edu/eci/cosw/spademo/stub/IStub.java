@@ -51,7 +51,7 @@ public interface  IStub {
     public void postClient(ClientApp c);
     public void postClientApp(Supermarket s, ClientApp c); 
     public void deleteClientApp(int c);
-    public void postEmail(String email);
+    public void postEmail(int id);
     public void putProduct(Product product);
     public void postRol(Rol rol);
     public void putClient(ClientApp cliente);

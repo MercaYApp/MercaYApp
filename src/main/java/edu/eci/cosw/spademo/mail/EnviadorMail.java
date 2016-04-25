@@ -32,7 +32,6 @@ public class EnviadorMail {
         SecurityManager security = System.getSecurityManager();
 
         try {
-            System.out.println("Intentó enviar correo a: "+ mailReceptor);
             Authenticator auth = new autentificadorSMTP();
             Session session = Session.getInstance(props, auth);
             // session.setDebug(true);

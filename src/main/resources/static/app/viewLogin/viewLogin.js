@@ -37,9 +37,9 @@ angular.module('myApp.viewLogin', ['ngRoute'])
                             $location.path("/");
                             $scope.error = false;
                         } else {
-                            $rootScope.credentials.password="";
+                            $rootScope.credentials.password = "";
                             alert("Usuario o contrase??a incorrectos!");
-                            
+
                             //$location.path("/login");
                             $scope.error = true;
                         }
@@ -47,22 +47,25 @@ angular.module('myApp.viewLogin', ['ngRoute'])
                 };
 
                 $scope.olvidoContrasena = false;
-                $scope.correoOlvidado = "";
+                $scope.idCorreoOlvidado = "";
                 //Ocultar datos de login
                 $scope.olvideContrasena = function () {
                     $scope.olvidoContrasena = true;
                 }
                 //Enviar correo para recuperacion de contrase??a, y mostrar datos para el login
                 $scope.correoContrasena = function () {
-                    alert($scope.correoOlvidado);
                     var postData = {};
-                        //Crear objeto JSON para envio de correo
-                        postData={mailReceptor:$scope.correoOlvidado};
-                            PostEmail.save(postData.mailReceptor, function(){
-                                //alert("El usuario con correo '" + postData.mailReceptor + " olvid?? contrase??a!");
-                                $scope.registrado = true;
-                                }
-                            );
+                    //Crear objeto JSON para envio de correo
+                    postData = {mailReceptor: $scope.idCorreoOlvidado};
+                    alert("Si el cliente con Id "+postData.mailReceptor+" está registrado se enviara un correo.");
+                    $scope.olvidoContrasena = true;
+                    if (postData !== {}) {
+                        PostEmail.save(postData.mailReceptor, function () {
+                            //alert("El usuario con correo '" + postData.mailReceptor + " olvid?? contrase??a!");
+                            $scope.registrado = true;
+                        }
+                        );
+                    }
                     $scope.olvidoContrasena = false;
-                 };
+                };
             }]);

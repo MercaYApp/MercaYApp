@@ -330,7 +330,7 @@ public class Stub implements IStub {
     }
 
     @Override
-    public void postEmail(String email) {
+    public void postEmail(int email) {
         /*if(listClientsApp.get(listClientsApp.indexOf(getClientAppById(id))).getEmail().equals(email)){
             String asunto = "Este es el correo de recuperacion de contraseña!";
                 String mensaje = "El mensaje de recuperación de su contraseña";
@@ -344,7 +344,7 @@ public class Stub implements IStub {
             if (listClientsApp.get(i).getEmail().equals(email)) {
                 String asunto = "Este es el correo de recuperacion de contraseña!";
                 String mensaje = "El mensaje de recuperación de su contraseña";
-                EnviadorMail en = new EnviadorMail(email, asunto, mensaje);
+                //EnviadorMail en = new EnviadorMail(email, asunto, mensaje);
                 banderita = true;
                 System.out.println("Envió email a: " + email);
             }
