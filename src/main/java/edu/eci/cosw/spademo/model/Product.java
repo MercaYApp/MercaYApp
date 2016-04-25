@@ -4,6 +4,7 @@ package edu.eci.cosw.spademo.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -103,7 +104,7 @@ public class Product implements java.io.Serializable {
         this.weight = weight;
     }
 
-    @ManyToMany(mappedBy = "productses")    
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "productses")    
     @Fetch(FetchMode.JOIN)
     @JsonIgnore
     public Set<Invoice> getInvoiceses() {
@@ -114,14 +115,14 @@ public class Product implements java.io.Serializable {
         this.invoiceses = invoiceses;
     }
 
-        @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @Fetch(FetchMode.JOIN)
-    @JsonIgnore
+    //@JsonIgnore
     @JoinTable(name="zones_products", joinColumns = { 
-        @JoinColumn(name="products_id_productos", nullable = false)}, inverseJoinColumns = { 
-        @JoinColumn(name="zones_id_zones", nullable = false, insertable=false, updatable=false),
-        @JoinColumn(name="zones_stores_id_stores", nullable = false, insertable=false, updatable=false),
-        @JoinColumn(name="zones_stores_supermarkets_id_supermarkets", nullable = false, insertable=false, updatable=false)})
+        @JoinColumn(name="products_id_productos")}, inverseJoinColumns = { 
+        @JoinColumn(name="zones_id_zones", insertable=false, updatable=false),
+        @JoinColumn(name="zones_stores_id_stores",  insertable=false, updatable=false),
+        @JoinColumn(name="zones_stores_supermarkets_id_supermarkets", insertable=false, updatable=false)})
 
     public Set<Zone> getZoneses() {
         return zoneses;

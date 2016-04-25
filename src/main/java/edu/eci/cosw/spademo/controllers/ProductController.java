@@ -55,7 +55,6 @@ public class ProductController {
     
     @RequestMapping(value="/actualiza", method = RequestMethod.POST)
     public ResponseEntity<Void> putProducts(@RequestBody Product product)throws ServicesMercaYAppException{
-        System.out.println("OOOOOOOOOOOOOOOOOOOOOOOO: "+product.getNameProduct());
        if(stub.getProductById(product.getIdProductos())!=null){
             stub.putProduct(product);            
         }

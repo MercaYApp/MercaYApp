@@ -70,7 +70,7 @@ public class Invoice  implements java.io.Serializable {
         this.dateInvoice = dateInvoice;
     }
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @Fetch(FetchMode.JOIN)
 
     @JoinTable(name="line_invoice", joinColumns = { 

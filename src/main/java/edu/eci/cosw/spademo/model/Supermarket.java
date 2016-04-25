@@ -64,7 +64,7 @@ public class Supermarket implements java.io.Serializable {
         this.nameSupermarket = nameSupermarket;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @Fetch(FetchMode.JOIN)
     @JsonIgnore
     @JoinTable(name = "clients_markets", joinColumns = {

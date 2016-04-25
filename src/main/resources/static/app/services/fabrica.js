@@ -43,6 +43,15 @@ angular.module('service.modulo1', ['ngRoute', 'ngResource'])
             
         })
         
+        //---------------Get supermarkets---------------
+        .factory('GetSupermarkets', function ($resource) {
+            var supermarkets = $resource('/supermarkets', {}, 
+                    {get: {method: 'GET', isArray: true}}
+            );
+            return supermarkets;
+            
+        })
+        
 
         //---------------Post email---------------
         .factory('PostEmail', function ($resource) {
@@ -74,6 +83,14 @@ angular.module('service.modulo1', ['ngRoute', 'ngResource'])
             return product;
         })
         
+        //---------------Get rol---------------
+        .factory('GetRol', function ($resource){
+            var product = $resource('/roles/:id', {id: "@id"},
+                {get: {method: 'GET', isArray: false}}
+            );
+            return product;
+        })
+        
             //---------------Get invoices of clients---------------
         .factory('PostProduct', function ($resource) {
             return $resource('/products');
@@ -94,5 +111,12 @@ angular.module('service.modulo1', ['ngRoute', 'ngResource'])
         
         .factory('PutClient', function ($resource) {
             return $resource('/clientsApp/actualizaClient');
-        });
+        })
 
+        //---------------Get zone---------------
+        .factory('GetZone', function ($resource) {
+            var zone = $resource('/zones/:id/:store/:supermarket', {id: "@id", store: "@store", supermarket: "@supermarket"},
+                    {get: {method: 'GET'}}
+            );
+            return zone;
+        });

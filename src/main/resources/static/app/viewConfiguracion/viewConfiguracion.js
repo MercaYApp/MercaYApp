@@ -13,30 +13,47 @@ angular.module('myApp.viewConfiguracion', ['ngRoute'])
         .controller('ViewConfiguracionController', ['$scope','$rootScope', '$location', 'GetClient','GetSupermarket', 'GetClientApp','PostClientApp', 'DeleteClientApp','PutClient','PostSupermarketClientes', function ($scope,$rootScope, $location, GetClient,GetSupermarket, GetClientApp, PostClientApp, DeleteClientApp,PutClient,PostSupermarketClientes) {
 
 
-                $scope.selectConfiguracion = 'selectAgregar';
-                $scope.supermarketConfiguracion = 'Exito';
+                $scope.supermarketConfiguracion = 'selectAgregar';
                 $scope.banderaAgregaSuper = false;
                 $scope.idConfiguracion = $rootScope.credentials.username;
-                $scope.idConfiguracionmMercado=16;
-                $scope.nombreConfiguracion = "Felipe";
+                $scope.nombreConfiguracion = "";
+                $scope.supermarket = "";
                 $scope.clientConfiguracion = {};
                 var postDataConfiguracion = {};
 
+
+                $scope.supermercadoSeleccionado = function (supermercado) {
+                    $scope.supermarket = supermercado;
+                    alert("SELECCIONO SUPERMERCADO: " + $scope.supermarket);
+                };
+                
+                $scope.cambiaEstadoSupermarketConfigSuper = function(){
+                    $scope.supermarketConfiguracion = 'selectAgregar';  
+                };
+
+                $scope.cambiaEstadoSupermarketConfigDatos= function(){
+                    var response = GetClientApp.get({id: $scope.idConfiguracion});
+                        response.$promise.then(function (data) {
+                            $scope.nombreConfiguracion = data.nameClientApp;
+                        });
+                    $scope.supermarketConfiguracion = 'selectActualizar';  
+                };
+
                 $scope.AgregarSupermercado= function(){
-                    var response = GetClientApp.get({id:$scope.idConfiguracionmMercado});
+                    var response = GetClientApp.get({id:$scope.idConfiguracion});
                     
                     
                      response.$promise.then(function (data) {
                         $scope.client = data;
                        // var cliente ={idClients:$scope.idConfiguracion ,roles:{},nameClientApp:$scope.client.nameClientApp ,email:$scope.client.email ,password:$scope.client.password,supermarketses:{},invoiceses:{}};               
                        
-                        var response = GetSupermarket.get({id: $scope.idConfiguracionmMercado});
+                        var response = GetSupermarket.get({id: $scope.idConfiguracion});
                         response.$promise.then(function (data) {
                             $scope.supermarketPost = data;
                         });
                         
                         var supermercado ={idSupermarkets:$scope.SupermarketId,nameSupermarket:$scope.nombreSupermarket};
-                        var cliente ={idClients:$scope.idConfiguracionmMercado ,roles:{},nameClientApp:$scope.client.nameClientApp ,email:$scope.correoConfiguracion ,password:$scope.passwordConfiguracion,supermarketses:[supermercado],invoiceses:[]};               
+                        var cliente ={idClients:$scope.idConfiguracion ,roles:{},nameClientApp:$scope.client.nameClientApp ,email:$scope.correoConfiguracion ,password:$scope.passwordConfiguracion,supermarketses:[supermercado],invoiceses:[]};               
 
                         alert("Agrego supermercado al cliente : " + cliente.idClients);
                         

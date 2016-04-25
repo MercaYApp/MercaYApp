@@ -1,6 +1,7 @@
 package edu.eci.cosw.spademo;
 
 import edu.eci.cosw.spademo.model.ClientApp;
+import edu.eci.cosw.spademo.persistence.ClientsRepository;
 import edu.eci.cosw.spademo.stub.IStub;
 import java.io.IOException;
 import java.util.Map;
@@ -36,6 +37,8 @@ import org.springframework.web.util.WebUtils;
 public class DemoApplication {
     @Autowired
     IStub stub;
+    @Autowired
+    ClientsRepository cr;
         public static void main(String[] args) {
         /*EnviadorMail EnviadorMail = new EnviadorMail("oscar.ard.jim@gmail.com",
                 "Este es el asunto de mi correo", "Este es el cuerpo de mi correo probando el envio de correo electronico que ya funciona :D");
@@ -61,6 +64,11 @@ public class DemoApplication {
     protected class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         @Override
         protected void configure(AuthenticationManagerBuilder builder) throws Exception {
+            /*builder
+                    .jdbcAuthentication()
+                    .dataSource(cr)
+                    .usersByUsernameQuery(cr.findAll())
+                    .authoritiesByUsernameQuery(getAuthoritiesQuery());*/
             //crear todos los usuarios existentes que estan registrados en la App
             for(int i=0; i<stub.getClientsApp().size(); i++){
                 ClientApp c = stub.getClientsApp().get(i);

@@ -105,8 +105,9 @@ public class Impl implements IStub {
     }
 
     @Override
-    public Zone getZoneById(ZoneId id) {
-        return zonesR.findOne(id);
+    public Zone getZoneById(Integer id, Integer store, Integer supermarket) {
+        ZoneId zId = new ZoneId(id, store, supermarket);
+        return zonesR.findOne(zId);
     }
 
     @Override
@@ -162,13 +163,20 @@ public class Impl implements IStub {
 
     @Override
     public void postClientApp(Supermarket s, ClientApp c) {
-        System.out.println("ENTRO AL POSTTT");
+        //Agregar Cliente a la tabla de clientes
         Set<Supermarket> superm = c.getSupermarketses();
         superm.add(s);
+        //Agregar Supermercados al cliente
+        c.setSupermarketses(superm);
         clientsR.save(c);
-        System.out.println("Entro al post AGREGO CLIENTE: "+c.getNameClientApp());
-        clientsR.findOne(c.getIdClients()).setSupermarketses(superm);
-        System.out.println("ENTRO AL POST CLIENT APP agrego: "+s.getNameSupermarket());
+        
+        Set<ClientApp> setClients = s.getClientsApps();
+        setClients.add(clientsR.findOne(c.getIdClients()));
+        //Agregar cliente a el supermercado
+        System.out.println("CLIENTE ANTES: "+c.getNameClientApp()+" ahora tiene: "+supermarketsR.findOne(s.getIdSupermarkets()).getClientsApps().size());
+        supermarketsR.findOne(s.getIdSupermarkets()).setClientsApps(setClients);
+        System.out.println("CLIENTE DESPUES: "+c.getNameClientApp()+" ahora tiene: "+supermarketsR.findOne(s.getIdSupermarkets()).getClientsApps().size());
+ 
     }
     @Override
     public void postEmail(String email) {
@@ -209,13 +217,13 @@ public class Impl implements IStub {
 
     @Override
     public void putProduct(Product product) {
-        if(productsR.findOne(product.getIdProductos())!=null){
-            if(productsR.findOne(product.getIdProductos()).getBuyPrice()!=product.getBuyPrice()){
-                productsR.findOne(product.getIdProductos()).setBuyPrice(product.getBuyPrice());
-            }
-            if(productsR.findOne(product.getIdProductos()).getPercentage()!=product.getPercentage()){
-                productsR.findOne(product.getPercentage()).setPercentage(product.getPercentage());
-            }
+        if(productsR.findOne(product.getIdProductos()).getBuyPrice()!=product.getBuyPrice()){
+            productsR.findOne(product.getIdProductos()).setBuyPrice(product.getBuyPrice());
+        }
+        if(productsR.findOne(product.getIdProductos()).getPercentage()!=product.getPercentage()){
+            System.out.println("ANTES: "+  productsR.findOne(product.getIdProductos()).getPercentage());
+            productsR.findOne(product.getIdProductos()).setPercentage(product.getPercentage());
+            System.out.println("CAMBIO EL PORCENTAJE"+ productsR.findOne(product.getIdProductos()).getPercentage());
         }
     }
 

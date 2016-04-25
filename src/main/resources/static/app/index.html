@@ -18,53 +18,49 @@
 
     <body>
         <!--<ul class="menu" ng-controller="ViewPrincipal">-->
-        <header id="header">
-            <h1><a href="#view1" id="logo">|  MercaYApp  | </a>
-                <a href="#/viewSignUp" ng-show="!authenticated">| SignUp |</a> 
-                <a href="#/viewLogin" ng-show="!authenticated">| Login |</a> 
-                <a href="#/ConsultarCompras" ng-show="authenticated">| Consultar |</a>
-                <a href="#/viewConfiguracion" ng-show="authenticated">| Configuracion |</a>
-                <a href="#/addProducts" ng-show="authenticated">| Administrar Productos|</a>
-                <a ng-controller="ViewPrincipal" ng-click="logout()" ng-show="authenticated">| Logout {{credentials.username}}|</a>
-            </h1>
-            
+        <div id="header-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="12u">
+                        <header id="header">
+                            <h1><a href="#view1" id="logo">MercaYApp</a></h1>
+                            <nav id="nav">
+                                <a href="#/viewSignUp" ng-show="!authenticated">| SignUp |</a> 
+                                <a href="#/viewLogin" ng-show="!authenticated">| Login |</a> 
+                                <a href="#/ConsultarCompras" ng-show="authenticated">| Consultar |</a>
+                                <a href="#/viewConfiguracion" ng-show="authenticated">| Configuracion |</a>
+                                <a href="#/addProducts" ng-show="authenticated">| Administrar Productos|</a>
+                                <a ng-controller="ViewPrincipal" ng-click="logout()" ng-show="authenticated">| Logout {{credentials.username}}|</a>
+                            </nav>
+                        </header>
+
+                    </div>
+                </div>
+            </div>
+        </div>    
+    <div ng-view></div>
 
 
-        </header>
-        <!--<ul class="menu" >
-            <!--<li><a href="#/viewLogin">Login</a></li>
-            <li><a href="#/view1"> Main </a> <a href="#/viewSignUp"> SignUp </a> <a href="#/view3"> Agregar </a> </li>
-            <!--<li><a href="#/view2">Listar</a></li>-->
-            <!--<li><a ng-click="logout()">Logout</a></li>
-        </ul>
 
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+    <!-- In production use:
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+    -->
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-resource/angular-resource.js"></script>
+    <script src="/bower_components/angular-route/angular-route.js"></script>
+    <script src="app.js"></script>
+    <script src="viewLogin/viewLogin.js"></script>
+    <script src="viewSignUp/viewSignUp.js"></script>
+    <script src="view1/view1.js"></script>
+    <script src="viewConfiguracion/viewConfiguracion.js"></script>
+    <script src="addProducts/addProducts.js"></script>
+    <!--<script src="view2/view2.js"></script>-->
 
-        <div ng-view></div>
+    <script src="ConsultarCompras/ConsultarCompras.js"></script>
 
-      
-
-        <!-- In production use:
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
-        -->
-        <script src="/bower_components/angular/angular.js"></script>
-        <script src="/bower_components/angular-resource/angular-resource.js"></script>
-        <script src="/bower_components/angular-route/angular-route.js"></script>
-        <script src="app.js"></script>
-        <script src="viewLogin/viewLogin.js"></script>
-        <script src="viewSignUp/viewSignUp.js"></script>
-        <script src="view1/view1.js"></script>
-        <script src="viewConfiguracion/viewConfiguracion.js"></script>
-        <script src="addProducts/addProducts.js"></script>
-        <!--<script src="view2/view2.js"></script>-->
-
-        <script src="ConsultarCompras/ConsultarCompras.js"></script>
-
-        <script src="services/fabrica.js"></script>
-        <script src="components/version/version.js"></script>
-        <script src="components/version/version-directive.js"></script>
-        <script src="components/version/interpolate-filter.js"></script>
-    </body>
+    <script src="services/fabrica.js"></script>
+    <script src="components/version/version.js"></script>
+    <script src="components/version/version-directive.js"></script>
+    <script src="components/version/interpolate-filter.js"></script>
+</body>
 </html>

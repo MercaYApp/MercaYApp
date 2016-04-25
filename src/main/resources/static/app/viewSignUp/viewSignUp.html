@@ -1,55 +1,63 @@
 <form ng-controller="signUpController" role="form" ng-submit="signUp()">
-    <div ng-show="!registrado">
-         <p>Seleccione el supermercado en el cual se va a registrar.</p>
-        <div >
-            <div class="form-group" id="selectSuper" >
-                <select ng-model="supermarket">
-                    <option value="">---Please select---</option>
-                    <option value="1">Exito</option>
-                    <option value="2">Cencosud</option>
-                    <option value="3">Olimpica</option>
-                    <option value="4">Makro</option>
+    <div id="main">
+        <div class="container">
+            <div class="row main-row">
+                <div class="4u 12u(mobile)">
 
-                </select>
-            </div>       
+                    <section>
+                        <h2>¿En cuál supermercado se desea registrar?</h2>
+                        <ul class="small-image-list">
+                            <li ng-repeat='i in listSupermarkets'>
+                                <a ng-click="seleccionaSupermercado(i.idSupermarkets)"><img src="images/{{i.nameSupermarket}}.png" alt="" class="left" /></a>
+                                <h4>{{i.nameSupermarket}}</h4>
+                            </li>
+                        </ul>                        
+                    </section>
 
+
+
+                </div>
+                <div class="8u 12u(mobile) important(mobile)">
+
+                    <section class="right-content">
+                        <div ng-show="!check">
+                            <div class="form-group">
+                                <p>Ingrese su numero de identificacion para validar si es un usuario apto para el registro.</p>
+                                <label for="id">Numero de Identificacion:</label> <input type="number"
+                                                                                         class="form-control" id="id" name="id" ng-model="id1"/>
+                            </div>
+                            <button type="submit" class="btn btn-primary" ng-click="consult()">Consult</button>
+                        </div>
+
+                        <div ng-show="check" >
+                            <div class="form-group">
+                                <label for="idR">Identificacion:</label> <input type="number"
+                                                                                class="form-control" id="idR" name="id" ng-model="id1" disabled/>
+                            </div>
+                            <div class="form-group">
+                                <label for="nombre">Nombre:</label> <input type="text"
+                                                                           class="form-control" id="nombre" name="nombre" ng-model="nombre"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="correo">Correo</label> <input type="text"
+                                                                          ng-app=""class="form-control" id="correo" name="correo" ng-model="correo"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password:</label> <input type="password"
+                                                                               class="form-control" id="password" name="password" ng-model="password"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm Password:</label> <input type="password"
+
+                                                                                              class="form-control" id="confirmPassword" name="confirmPassword" ng-model="confirmPassword"/>
+                            </div>
+                            <button type="submit" class="btn btn-primary" ng-click="postClientApp()">SignUp</button>
+                        </div>
+
+                    </section>
+
+                </div>
+            </div>
         </div>
-        <div ng-show="!check">
-            <div class="form-group">
-                <p>Ingrese su numero de identificacion para validar si es un usuario apto para el registro.</p>
-                <label for="id">Numero de Identificacion:</label> <input type="number"
-                                                                         class="form-control" id="id" name="id" ng-model="id1"/>
-            </div>
-            <button type="submit" class="btn btn-primary" ng-click="consult()">Consult</button>
-        </div>
-
-        <div ng-show="check" >
-            <div class="form-group">
-                <label for="idR">Identificacion:</label> <input type="number"
-                                                                class="form-control" id="idR" name="id" ng-model="id1" disabled/>
-            </div>
-            <div class="form-group">
-                <label for="nombre">Nombre:</label> <input type="text"
-                                                           class="form-control" id="nombre" name="nombre" ng-model="nombre"/>
-            </div>
-            <div class="form-group">
-                <label for="correo">Correo</label> <input type="text"
-                                                          ng-app=""class="form-control" id="correo" name="correo" ng-model="correo"/>
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label> <input type="password"
-                                                               class="form-control" id="password" name="password" ng-model="password"/>
-            </div>
-            <div class="form-group">
-                <label for="confirmPassword">Confirm Password:</label> <input type="password"
-
-                                                                              class="form-control" id="confirmPassword" name="confirmPassword" ng-model="confirmPassword"/>
-            </div>
-            <button type="submit" class="btn btn-primary" ng-click="postClientApp()">SignUp</button>
-        </div>
-    </div>
-    <div ng-show="registrado">
-        <h1>SE HA REGISTRADO CORRECTAMENTE EL USUARIO CON IDENTIFICACION: " {{id1}} "</h1>
-        <a href="index.html" ><button type="button" class="btn btn-primary" >INICIO</button></a>
     </div>
 </form>

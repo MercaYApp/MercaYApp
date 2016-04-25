@@ -220,7 +220,7 @@ public class Stub implements IStub {
     
 
     @Override
-    public Zone getZoneById(ZoneId id) {
+    public Zone getZoneById(Integer id, Integer store, Integer supermarket) {
         Zone zone = null;
         boolean banderita = false;
         for (int i = 0; i < listZones.size() && !banderita; i++) {

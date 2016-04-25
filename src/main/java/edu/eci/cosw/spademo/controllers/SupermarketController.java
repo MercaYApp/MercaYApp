@@ -89,7 +89,6 @@ public class SupermarketController {
     public ResponseEntity<Void> postSupermarketClientsApp(@RequestBody ClientApp client) throws ServicesMercaYAppException {
         System.out.println("NULOOO??: "+stub.getClientAppById(client.getIdClients())!= null);
         Set<Supermarket> set = client.getSupermarketses();
-        System.out.println("ENTRO A SET: "+set.isEmpty());
         int cont=0;
         Supermarket s=null;
         Iterator<Supermarket> iterator = set.iterator();

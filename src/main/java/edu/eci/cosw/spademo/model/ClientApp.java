@@ -66,7 +66,7 @@ public class ClientApp  implements java.io.Serializable {
         this.idClients = idClients;
     }
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
     @Fetch(FetchMode.JOIN)
     @JoinColumn(name="roles_id_roles")
     public Rol getRoles() {
@@ -107,7 +107,7 @@ public class ClientApp  implements java.io.Serializable {
         this.password = password;
     }
 
-    @ManyToMany(mappedBy = "clientsApps")
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "clientsApps")
     @Fetch(FetchMode.JOIN)
     public Set<Supermarket> getSupermarketses() {
         return this.supermarketses;
@@ -118,7 +118,7 @@ public class ClientApp  implements java.io.Serializable {
     }
 
     
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "client_app_id_clients")
     public Set<Invoice> getInvoiceses() {
         return this.invoiceses;

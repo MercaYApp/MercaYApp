@@ -26,5 +26,6 @@ public interface ClientsRepository extends JpaRepository<ClientApp, Integer> {
     @Query("from ClientsApp c where c.email = :email")
     ClientApp findByEmail(@Param(value="email") String email);
     */
+    
    
 }
