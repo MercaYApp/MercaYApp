@@ -15,6 +15,7 @@ angular.module('myApp.addProducts', ['ngRoute'])
                 $scope.checkProductos = false;
                 $scope.zone={};
                 $scope.addProducts="Modificar";
+
                 $scope.addZoneProduct = function(){
                     var response1 = GetZone.get({id: $scope.idZonaAddProducts, store: $scope.idStoreAddProducts, supermarket: $scope.idSupermarketAddProducts});
                     response1.$promise.then(function (data1) {
@@ -33,7 +34,6 @@ angular.module('myApp.addProducts', ['ngRoute'])
                 $scope.cambiaEstadoModificar= function(){
                     $scope.addProducts = 'Modificar';
                 };
-
                 var product = {};
                 $scope.postProductsAgregar = function () {
                     $scope.addZoneProduct();

@@ -44,6 +44,14 @@ angular.module('myApp.viewSignUp', ['ngRoute'])
                         alert("SE PUEDE REGISTRAR EL CLIENTE");
                     });
                 };
+                
+                 $scope.demeRol = function(){
+                    var response = GetSupermarket.get({id: $scope.supermarket});
+                        response.$promise.then(function (data) {
+                        $scope.rol = data;
+                        alert("ACTUALIZO ROl: "+ $scope.rol.idRoles);
+                        });
+                };
 
                 $scope.seleccionaSupermercado = function (supermercado) {
                     $scope.supermarket = supermercado;
