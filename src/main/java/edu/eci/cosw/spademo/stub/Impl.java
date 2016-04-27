@@ -14,6 +14,7 @@ import edu.eci.cosw.spademo.model.Store;
 import edu.eci.cosw.spademo.model.*;
 import edu.eci.cosw.spademo.persistence.*;
 import edu.eci.cosw.spademo.mail.EnviadorMail;
+import java.util.Iterator;
 
 import java.util.List;
 import java.util.Set;
@@ -173,10 +174,8 @@ public class Impl implements IStub {
         Set<ClientApp> setClients = s.getClientsApps();
         setClients.add(clientsR.findOne(c.getIdClients()));
         //Agregar cliente a el supermercado
-        System.out.println("CLIENTE ANTES: " + c.getNameClientApp() + " ahora tiene: " + supermarketsR.findOne(s.getIdSupermarkets()).getClientsApps().size());
         supermarketsR.findOne(s.getIdSupermarkets()).setClientsApps(setClients);
-        System.out.println("CLIENTE DESPUES: " + c.getNameClientApp() + " ahora tiene: " + supermarketsR.findOne(s.getIdSupermarkets()).getClientsApps().size());
-
+        supermarketsR.save(supermarketsR.findOne(s.getIdSupermarkets()));
     }
 
     @Override
@@ -222,35 +221,45 @@ public class Impl implements IStub {
             productsR.findOne(product.getIdProductos()).setBuyPrice(product.getBuyPrice());
         }
         if (productsR.findOne(product.getIdProductos()).getPercentage() != product.getPercentage()) {
-            System.out.println("ANTES: " + productsR.findOne(product.getIdProductos()).getPercentage());
             productsR.findOne(product.getIdProductos()).setPercentage(product.getPercentage());
-            System.out.println("CAMBIO EL PORCENTAJE" + productsR.findOne(product.getIdProductos()).getPercentage());
         }
+        productsR.save(productsR.findOne(product.getIdProductos()));
     }
 
     @Override
     public void putClient(ClientApp cliente) {
         if (clientsR.findOne(cliente.getIdClients()) != null) {
-            System.out.println("ENTRO a CAMBIAR EL CLIENTE");
             if (!clientsR.findOne(cliente.getIdClients()).getEmail().equals(cliente.getEmail())) {
                 clientsR.findOne(cliente.getIdClients()).setEmail(cliente.getEmail());
-                System.out.println("cambio email a: " + clientsR.findOne(cliente.getIdClients()).getEmail());
             }
             if (!clientsR.findOne(cliente.getIdClients()).getPassword().equals(cliente.getPassword())) {
                 clientsR.findOne(cliente.getIdClients()).setPassword(cliente.getPassword());
-                System.out.println("cambio el password");
             }
-
+            clientsR.save(clientsR.findOne(cliente.getIdClients()));
         }
     }
 
     @Override
     public void postSupermarketClient(ClientApp cliente) {
         ClientApp c = clientsR.findOne(cliente.getIdClients());
-        if (c != null) {
-            clientsR.findOne(cliente.getIdClients()).setSupermarketses(cliente.getSupermarketses());
-        }
+        Supermarket supermarket = null;
 
+        Set<Supermarket> setSuperm = clientsR.findOne(cliente.getIdClients()).getSupermarketses();
+        setSuperm.addAll(cliente.getSupermarketses());
+        
+        //Agregar supermercado al cliente
+        clientsR.findOne(cliente.getIdClients()).setSupermarketses(setSuperm);
+        clientsR.save(clientsR.findOne(cliente.getIdClients()));
+        
+        //Agregar cliente a la tabla de supermercados
+        Iterator<Supermarket> iterator = cliente.getSupermarketses().iterator();
+        while (iterator.hasNext()) {
+            supermarket = iterator.next();
+        }
+        Set<ClientApp> setClients = supermarketsR.findOne(supermarket.getIdSupermarkets()).getClientsApps();
+        setClients.add(clientsR.findOne(cliente.getIdClients()));
+        supermarketsR.findOne(supermarket.getIdSupermarkets()).setClientsApps(setClients);
+        supermarketsR.save(supermarketsR.findOne(supermarket.getIdSupermarkets()));
     }
 
 }

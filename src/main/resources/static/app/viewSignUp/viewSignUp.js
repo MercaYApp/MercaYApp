@@ -9,7 +9,7 @@ angular.module('myApp.viewSignUp', ['ngRoute'])
                 });
             }])
 
-        .controller('signUpController', ['$scope', '$rootScope', 'GetClientApp', 'PostClientApp', 'GetSupermarket', 'GetSupermarkets', 'GetRol', function ($scope, $rootScope, GetClientApp, PostClientApp, GetSupermarket, GetSupermarkets, GetRol) {
+        .controller('signUpController', ['$scope', '$location', '$rootScope', 'GetClientApp', 'PostClientApp', 'GetSupermarket', 'GetSupermarkets', 'GetRol', function ($scope, $location, $rootScope, GetClientApp, PostClientApp, GetSupermarket, GetSupermarkets, GetRol) {
                 $scope.id1 = 69;
                 $scope.nombre = "";
                 $scope.correo = "";
@@ -55,13 +55,16 @@ angular.module('myApp.viewSignUp', ['ngRoute'])
                     var response = GetSupermarket.get({id: $scope.supermarket});
                     response.$promise.then(function (data) {
                         $scope.rol = data;
-                        alert("ACTUALIZO ROl: " + $scope.rol.idRoles);
                     });
                 };
 
                 $scope.seleccionaSupermercado = function (supermercado) {
                     $scope.supermarket = supermercado;
-                    alert("SELECCIONO SUPERMERCADO: " + $scope.supermarket);
+                    var response = GetSupermarket.get({id: $scope.supermarket});
+                    response.$promise.then(function (data) {
+                        $scope.supermarketPost = data;
+                        alert("Ha seleccionado supermercado: " + $scope.supermarketPost.nameSupermarket);
+                    });
                 };
 
                 $scope.cargarSupermarkets = function () {
@@ -89,7 +92,6 @@ angular.module('myApp.viewSignUp', ['ngRoute'])
                         var response = GetSupermarket.get({id: $scope.supermarket});
                         response.$promise.then(function (data) {
                             $scope.supermarketPost = data;
-                            alert("EN EL POST SUPERMARKET: " + $scope.supermarketPost.idSupermarkets);
                             $scope.clientPost = {idClients: $scope.id1, roles: $scope.rol, nameClientApp: $scope.nombre, email: $scope.correo, password: $scope.password, supermarketses: [$scope.supermarketPost], invoiceses: []};
                             PostClientApp.save($scope.clientPost, function () {
                                 alert("El usuario con identificacion '" + $scope.clientPost.idClients + "' ha sido registrado exitosamente en:" + $scope.supermarketPost.nameSupermarket);

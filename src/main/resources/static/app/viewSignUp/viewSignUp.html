@@ -22,8 +22,7 @@
                     <section class="right-content">
                         <div ng-show="!check">
                             <div class="form-group">
-                                <p>Ingrese su numero de identificacion para validar si es un usuario apto para el registro.</p>
-                                <label for="id">Numero de Identificacion:</label> <input type="number"
+                                <label for="id">Ingrese su numero de identificacion para validar si es un usuario apto para el registro:</label> <input type="number"
                                                                                          class="form-control" id="id" name="id" ng-model="id1"/>
                             </div>
                             <button type="submit" class="btn btn-primary" ng-click="consult()">Consult</button>
@@ -31,7 +30,7 @@
 
                         <div ng-show="check" >
                             <div class="form-group">
-                                <label for="idR">Identificacion:</label> <input type="number"
+                                <label for="idR">Id Cliente</label> <input type="number"
                                                                                 class="form-control" id="idR" name="id" ng-model="id1" disabled/>
                             </div>
                             <div class="form-group">
@@ -43,15 +42,15 @@
                                                                           ng-app=""class="form-control" id="correo" name="correo" ng-model="correo"/>
                             </div>
                             <div class="form-group">
-                                <label for="password">Password:</label> <input type="password"
+                                <label for="password">Contraseña:</label> <input type="password"
                                                                                class="form-control" id="password" name="password" ng-model="password"/>
                             </div>
                             <div class="form-group">
-                                <label for="confirmPassword">Confirm Password:</label> <input type="password"
+                                <label for="confirmPassword">Confirma Contraseña:</label> <input type="password"
 
                                                                                               class="form-control" id="confirmPassword" name="confirmPassword" ng-model="confirmPassword"/>
                             </div>
-                            <button type="submit" class="btn btn-primary" ng-click="postClientApp()">SignUp</button>
+                            <button type="submit" class="btn btn-primary" ng-click="postClientApp()">Registrarse</button>
                         </div>
 
                     </section>

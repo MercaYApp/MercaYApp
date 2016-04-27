@@ -50,19 +50,21 @@ angular.module('myApp.viewConfiguracion', ['ngRoute'])
                             $scope.client = data;
                             // var cliente ={idClients:$scope.idConfiguracion ,roles:{},nameClientApp:$scope.client.nameClientApp ,email:$scope.client.email ,password:$scope.client.password,supermarketses:{},invoiceses:{}};               
 
-                            var response = GetSupermarket.get({id: $scope.supermarket});
-                            response.$promise.then(function (data) {
-                                $scope.supermarketPost = data;
-                            });
+                            var response1 = GetSupermarket.get({id: $scope.supermarket});
+                            response1.$promise.then(function (data1) {
+                                $scope.supermarketPost = data1;
 
-                            var supermercado = {idSupermarkets: $scope.SupermarketId, nameSupermarket: $scope.nombreSupermarket};
-                            var cliente = {idClients: $scope.idConfiguracion, roles: {}, nameClientApp: $scope.client.nameClientApp, email: $scope.correoConfiguracion, password: $scope.passwordConfiguracion, supermarketses: [supermercado], invoiceses: []};
 
-                            alert("Agrego supermercado al cliente : " + cliente.idClients);
+                                var cliente = {idClients: $scope.client.idClients, roles: $scope.client.roels, nameClientApp: $scope.client.nameClientApp, email: $scope.correoConfiguracion, password: $scope.passwordConfiguracion, supermarketses: [$scope.supermarketPost], invoiceses: $scope.client.invoiceses};
 
-                            PostSupermarketClientes.save(cliente, function () {
-                                $location.path("/");
+                                alert("ID supermercado al cliente : " + cliente.idClients);
+                                alert("ID SUPER supermercado al cliente : " + $scope.supermarketPost.idSupermarkets);
+                                alert("NAME SUPER supermercado al cliente : " + $scope.supermarketPost.nameSupermarket);
 
+                                PostSupermarketClientes.save(cliente, function () {
+                                    $location.path("/");
+
+                                });
                             });
                         });
                     } else {

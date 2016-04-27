@@ -33,12 +33,11 @@ angular.module('myApp.viewLogin', ['ngRoute'])
                 $scope.login = function () {
                     authenticate($rootScope.credentials, function () {
                         if ($rootScope.authenticated) {
-                            alert("Autentico: " + $rootScope.credentials.password);
                             $location.path("/");
                             $scope.error = false;
                         } else {
                             $rootScope.credentials.password = "";
-                            alert("Usuario o contrase??a incorrectos!");
+                            alert("Usuario o contrasena incorrectos!");
 
                             //$location.path("/login");
                             $scope.error = true;

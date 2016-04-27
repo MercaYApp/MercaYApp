@@ -4,6 +4,8 @@ import edu.eci.cosw.spademo.model.ClientApp;
 import edu.eci.cosw.spademo.persistence.ClientsRepository;
 import edu.eci.cosw.spademo.stub.IStub;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -19,11 +21,17 @@ import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 //import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
@@ -64,20 +72,38 @@ public class DemoApplication {
     protected class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         @Override
         protected void configure(AuthenticationManagerBuilder builder) throws Exception {
+            builder.authenticationProvider(new AuthenticationProvider() {
+
+                @Override
+                public Authentication authenticate(Authentication a) throws AuthenticationException {
+                    ClientApp cliente = cr.findOne(Integer.parseInt(a.getName()));
+                    if(cliente!=null && a.getCredentials().toString().equals(cliente.getPassword())){
+                        List<GrantedAuthority> permisos = new ArrayList<>();
+                        permisos.add(new SimpleGrantedAuthority("USER"));
+                        return new UsernamePasswordAuthenticationToken(a.getName(), a.getCredentials().toString(), permisos);
+                    }
+                    return null;
+                }
+
+                @Override
+                public boolean supports(Class<?> type) {
+                    return type.equals(UsernamePasswordAuthenticationToken.class);
+                }
+            });
             /*builder
                     .jdbcAuthentication()
                     .dataSource(cr)
                     .usersByUsernameQuery(cr.findAll())
                     .authoritiesByUsernameQuery(getAuthoritiesQuery());*/
             //crear todos los usuarios existentes que estan registrados en la App
-            for(int i=0; i<stub.getClientsApp().size(); i++){
+            /*for(int i=0; i<stub.getClientsApp().size(); i++){
                 ClientApp c = stub.getClientsApp().get(i);
                 builder.inMemoryAuthentication().withUser(c.getIdClients()+"").password(c.getPassword()+"").roles("USER");
                 System.out.println("CREANDO USUARIOSS"+c.getIdClients());
             }
             
             builder.inMemoryAuthentication().withUser("user").password("password").roles("USER");
-            //builder.inMemoryAuthentication().withUser("yo").password("yo").roles("USER");
+            *///builder.inMemoryAuthentication().withUser("yo").password("yo").roles("USER");
             
         }
 
@@ -87,7 +113,7 @@ public class DemoApplication {
                     .httpBasic()
                     .and()
                     .authorizeRequests()
-                    .antMatchers("/app/**").permitAll()
+                    .antMatchers("/app/**", "/clientsApp", "/supermarkets").permitAll()
                     
                     .anyRequest().authenticated().and()
                     .logout().logoutSuccessUrl("/app/index.html#/viewLogin")

@@ -16,19 +16,19 @@
                 <section>
                     <div ng-show="!olvidoContrasena">
                         <div  class="form-group">
-                            <label for="username">Username:</label> <input type="text"
+                            <label for="username">Identificacion del cliente:</label> <input type="text"
                                                                            class="form-control" id="username" name="username" ng-model="credentials.username"/>
                         </div>
                         <div class="form-group">
-                            <label for="password">Password:</label> <input type="password"
+                            <label for="password">Contraseña:</label> <input type="password"
                                                                            class="form-control" id="password" name="password" ng-model="credentials.password"/>
                         </div>
-                        <button type="submit" class="btn btn-primary" ng-click="login()">Submit</button>
+                        <button type="submit" class="btn btn-primary" ng-click="login()">Ingresar</button>
                         <button type="submit" class="btn btn-primary" ng-click="olvideContrasena()">Olvide contraseña</button>
                     </div>
                     <div ng-show="olvidoContrasena">
                         <div  class="form-group">
-                            <label for="correoOlvidado">Id cliente: </label> <input type="text"
+                            <label for="correoOlvidado">Identificacion del cliente:</label> <input type="text"
                                                                                          class="form-control" id="username" name="correoOlvidado" ng-model="idCorreoOlvidado"/>
                         </div>
                         <button type="submit" class="btn btn-primary" ng-click="correoContrasena()">Recuperar contraseña</button>
