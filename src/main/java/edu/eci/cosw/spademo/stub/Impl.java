@@ -111,12 +111,12 @@ public class Impl implements IStub {
     }
 
     @Override
-    public Product getProductById(Integer id) {
+    public Product getProductById(Long id) {
         return productsR.findOne(id);
     }
 
     @Override
-    public Invoice getInvoiceById(Integer id) {
+    public Invoice getInvoiceById(Long id) {
         return invoicesR.findOne(id);
     }
 
@@ -127,7 +127,7 @@ public class Impl implements IStub {
     }
 
     @Override
-    public Set<Product> getProductListById(Integer c) {
+    public Set<Product> getProductListById(Long c) {
         Invoice i = invoicesR.findOne(c);
         return i.getProductses();
     }

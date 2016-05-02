@@ -233,7 +233,7 @@ public class Stub implements IStub {
     }
 
     @Override
-    public Product getProductById(Integer id) {
+    public Product getProductById(Long id) {
         Product prod = null;
         boolean banderita = false;
         for (int i = 0; i < listProducts.size() && !banderita; i++) {
@@ -249,7 +249,7 @@ public class Stub implements IStub {
     
 
     @Override
-    public Invoice getInvoiceById(Integer id) {
+    public Invoice getInvoiceById(Long id) {
         Invoice inv = null;
         boolean banderita = false;
         for (int i = 0; i < listInvoices.size() && !banderita; i++) {
@@ -269,7 +269,7 @@ public class Stub implements IStub {
     }
     
     @Override
-    public Set<Product> getProductListById(Integer c) {
+    public Set<Product> getProductListById(Long c) {
         Invoice invoice = getInvoiceById(c);
         //return client.getInvoices();
         return invoice.getProductses();

@@ -22,7 +22,7 @@ import org.hibernate.annotations.FetchMode;
 @Table(name = "products")
 public class Product implements java.io.Serializable {
 
-    private int idProductos;
+    private long idProductos;
     private String nameProduct;
     private int buyPrice;
     private int percentage;
@@ -35,7 +35,7 @@ public class Product implements java.io.Serializable {
     public Product() {
     }
     
-    public Product(int idProductos, String nameProduct, int buyPrice, int percentage, int weight) {
+    public Product(long idProductos, String nameProduct, int buyPrice, int percentage, int weight) {
         this.idProductos = idProductos;
         this.nameProduct = nameProduct;
         this.buyPrice = buyPrice;
@@ -44,7 +44,7 @@ public class Product implements java.io.Serializable {
     }
     
     
-    public Product(int idProductos, String nameProduct, int buyPrice, int percentage, int weight, Set<Invoice> invoiceses, Set<Zone> zoneses) {
+    public Product(long idProductos, String nameProduct, int buyPrice, int percentage, int weight, Set<Invoice> invoiceses, Set<Zone> zoneses) {
         this.idProductos = idProductos;
         this.nameProduct = nameProduct;
         this.buyPrice = buyPrice;
@@ -58,11 +58,11 @@ public class Product implements java.io.Serializable {
     @Id
     //@GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id_productos", unique = true, nullable = false)
-    public int getIdProductos() {
+    public long getIdProductos() {
         return this.idProductos;
     }
 
-    public void setIdProductos(int idProductos) {
+    public void setIdProductos(long idProductos) {
         this.idProductos = idProductos;
     }
 

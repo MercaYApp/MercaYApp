@@ -32,18 +32,18 @@ import org.hibernate.annotations.FetchMode;
 public class Invoice  implements java.io.Serializable {
 
 
-     private int idInvoices;
+     private long idInvoices;
      private Date dateInvoice;
      private Set<Product> productses = new HashSet<>(0);
     public Invoice() {
     }
 
 	
-    public Invoice(int idInvoices, Date dateInvoice) {
+    public Invoice(long idInvoices, Date dateInvoice) {
         this.idInvoices = idInvoices;
         this.dateInvoice = dateInvoice;
     }
-    public Invoice(int idInvoices, Date dateInvoice, Set<Product>  productses) {
+    public Invoice(long idInvoices, Date dateInvoice, Set<Product>  productses) {
        this.idInvoices = idInvoices;
        this.dateInvoice = dateInvoice;
        this.productses = productses;
@@ -52,11 +52,11 @@ public class Invoice  implements java.io.Serializable {
     @Id
     //@GeneratedValue(strategy=GenerationType.SEQUENCE)
     @Column(name="id_invoices", unique=true, nullable=false)
-    public int getIdInvoices() {
+    public long getIdInvoices() {
         return this.idInvoices;
     }
     
-    public void setIdInvoices(int idInvoices) {
+    public void setIdInvoices(long idInvoices) {
         this.idInvoices = idInvoices;
     }
 

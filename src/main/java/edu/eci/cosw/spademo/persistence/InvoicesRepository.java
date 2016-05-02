@@ -20,7 +20,7 @@ import org.springframework.data.repository.query.Param;
  *
  * @author MercaYApp
  */
-public interface InvoicesRepository extends JpaRepository<Invoice, Integer> {
+public interface InvoicesRepository extends JpaRepository<Invoice, Long> {
 
     /*@Query("from Paciente p where size(p.consultas) >= :n")
     List<Paciente> listaPacientes(@Param(value="n") int n);    */

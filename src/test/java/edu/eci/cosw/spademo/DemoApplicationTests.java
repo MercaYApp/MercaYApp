@@ -102,23 +102,27 @@ public class DemoApplicationTests {
     }
 
     @Test
-    public void bNoProductTest() {        
-        assertEquals(null, productsR.findOne(3));
+    public void bNoProductTest() {
+        Long l = new Long(3);
+        assertEquals(null, productsR.findOne(l));
     }
     
     @Test
-    public void bSiProductTest() {        
-        assertEquals(77, productsR.findOne(77).getIdProductos());
+    public void bSiProductTest() {    
+        Long l = new Long(77);
+        assertEquals(77, productsR.findOne(l).getIdProductos());
     }
 
     @Test
     public void cNoProductTest() {        
-        assertEquals(null, invoicesR.findOne(3));
+        Long l = new Long(3);
+        assertEquals(null, invoicesR.findOne(l));
     }
     
     @Test
-    public void cSiProductTest() {        
-        assertEquals(1, invoicesR.findOne(1).getIdInvoices());
+    public void cSiProductTest() {      
+        Long l = new Long(1);
+        assertEquals(1, invoicesR.findOne(l).getIdInvoices());
     }
     
     @Test

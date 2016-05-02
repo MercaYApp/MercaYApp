@@ -35,13 +35,13 @@ public interface  IStub {
 
     public Store getStoreById(StoreId id);
     public Zone getZoneById(Integer id, Integer store, Integer supermarket);
-    public Product getProductById(Integer id);
-    public Invoice getInvoiceById(Integer id);
+    public Product getProductById(Long id);
+    public Invoice getInvoiceById(Long id);
     public ClientApp getClientAppById(Integer id);
     public Rol getRolById(Integer id);
     
     public Set<Invoice> getInvoiceByClient(Integer c);
-    public Set<Product> getProductListById(Integer c);
+    public Set<Product> getProductListById(Long c);
 
     public void postSupermarket(Supermarket s);
     public void postStore(Store s);

@@ -47,7 +47,7 @@ public class ProductController {
     }
     
     @RequestMapping(value="/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Product> getProductById(@PathVariable int id)throws ServicesMercaYAppException{
+    public ResponseEntity<Product> getProductById(@PathVariable long id)throws ServicesMercaYAppException{
         Product c=stub.getProductById(id);
         return new ResponseEntity<>(c, HttpStatus.OK);
     }

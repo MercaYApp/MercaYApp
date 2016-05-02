@@ -20,7 +20,7 @@ import org.springframework.data.repository.query.Param;
  *
  * @author MercaYApp
  */
-public interface ProductsRepository extends JpaRepository<Product, Integer> {
+public interface ProductsRepository extends JpaRepository<Product, Long> {
 
     /*@Query("from Paciente p where size(p.consultas) >= :n")
     List<Paciente> listaPacientes(@Param(value="n") int n);    */

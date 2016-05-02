@@ -54,7 +54,7 @@ public class InvoiceController {
     }
     
     @RequestMapping(value="/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Invoice> getInvoiceById(@PathVariable int id)throws ServicesMercaYAppException{
+    public ResponseEntity<Invoice> getInvoiceById(@PathVariable long id)throws ServicesMercaYAppException{
         Invoice c= stub.getInvoiceById(id);
         return new ResponseEntity<>(c, HttpStatus.OK);
         /*Invoice i= stub.getInvoiceById(id); 
@@ -77,7 +77,7 @@ public class InvoiceController {
         }*/
     }
         @RequestMapping(value="/{id}/products", method = RequestMethod.GET)
-    public ResponseEntity<Set<Product>> getProductsInvoices(@PathVariable int id)throws ServicesMercaYAppException{
+    public ResponseEntity<Set<Product>> getProductsInvoices(@PathVariable long id)throws ServicesMercaYAppException{
         Set<Product> c=stub.getProductListById(id);
         return new ResponseEntity<>(c, HttpStatus.OK);
         /*Set<Invoice> i= stub.getInvoiceByClient(client); 
