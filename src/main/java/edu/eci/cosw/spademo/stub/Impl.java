@@ -154,7 +154,25 @@ public class Impl implements IStub {
 
     @Override
     public void postInvoice(Invoice i) {
+        //Agregar factura a los productos
+        Set<Product> products = i.getProductses();
+        Product product;
+        Iterator<Product> iterator = products.iterator();
+        while (iterator.hasNext()) {
+            product = iterator.next();
+            Set<Invoice> setInvoices = productsR.findOne(product.getIdProductos()).getInvoiceses();
+            setInvoices.add(i);
+            product.setInvoiceses(setInvoices);
+            System.out.println("PRODUCTOS LENGTH: "+product.getInvoiceses().size());
+            productsR.save(product);
+        }
+        
+        
+        //Agregar productos a la factura
+        i.setProductses(products);
         invoicesR.save(i);
+        
+        
     }
 
     @Override
