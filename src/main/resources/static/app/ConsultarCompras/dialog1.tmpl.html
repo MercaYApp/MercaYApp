@@ -1,0 +1,49 @@
+<md-dialog aria-label="Factura" class="md-padding" ng-cloak>
+    <form ng-controller="ConsultarComprasCtrl">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Factura # {{listadoProductos[0].idProductos}} </h2>
+                <span flex></span>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <table class="table table-striped table-hover">
+                    <tbody>
+                        <th>
+                            <button type="submit" class="btn btn-primary" ng-click="order('id')">Identificacion</button>
+                            <span class="sortorder" ng-show="predicate === 'id'" ng-class="{reverse:reverse}"></span>
+                        </th>
+                        <th>
+                            <button  type="submit" class="btn btn-primary" ng-click="order('date')">Nombre</button>
+                            <span class="sortorder" ng-show="predicate === 'name'" ng-class="{reverse:reverse}"></span>
+                        </th>  
+                        <th>
+                            <button  type="submit" class="btn btn-primary" ng-click="order('date')">Precio</button>
+                            <span class="sortorder" ng-show="predicate === 'price'" ng-class="{reverse:reverse}"></span>
+                        </th>
+                        <th>
+                            <button  type="submit" class="btn btn-primary" ng-click="order('date')">Peso</button>
+                            <span class="sortorder" ng-show="predicate === 'weight'" ng-class="{reverse:reverse}"></span>
+                        </th>
+                        
+                        <tr ng-repeat='i in listadoProductos' class="md-primary md-raised" >
+                            <td>{{i.idProductos| number}}</td>
+                            <td>{{i.nameProduct}}</td>
+                            <td>{{i.buyPrice*(1+(i.percentage/100)) | currency}}</td>
+                            <td>{{i.weight | number}}</td>
+                        </tr>
+                        <tr>
+                            <td>TOTAL</td>
+                            <td></td>
+                            <td>{{total | currency}}</td>
+                            <td>{{peso | number}}</td>
+                        </tr>
+                        
+                    </tbody>
+
+                </table>
+            </div>
+        </md-dialog-content>
+    </form>
+</md-dialog>

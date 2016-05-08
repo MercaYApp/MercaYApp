@@ -96,9 +96,9 @@ angular.module('service.modulo1', ['ngRoute', 'ngResource'])
             return $resource('/products');
         })
         //-------------------Get productos Invoices--------------------
-        .factory('GetProductIvoices', function ($resource){
+        .factory('GetProductInvoices', function ($resource){
             var product = $resource('/invoices/:id/products', {id: "@id"},
-                {get: {method: 'GET', isArray: false}}
+                {get: {method: 'GET', isArray: true}}
             );
             return product;
         })    

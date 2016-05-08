@@ -1,42 +1,33 @@
 <!--  mercayapp-->
-<div  ng-show="authenticated" ng-controller="ConsultarComprasCtrl">
-    
+<div  ng-show="authenticated" ng-controller="ConsultarComprasCtrl" class="md-padding">
+
     <label for="mensaje">Compras del cliente</label>
     <table class="table table-striped table-hover">
         <tbody>
-        <th>
-            <button type="submit" class="btn btn-primary" ng-click="order('id')">Identificacion</button>
-            <span class="sortorder" ng-show="predicate === 'id'" ng-class="{reverse:reverse}"></span>
-        </th>
-        <th>
-            <button  type="submit" class="btn btn-primary" ng-click="order('date')">Date</button>
-            <span class="sortorder" ng-show="predicate === 'date'" ng-class="{reverse:reverse}"></span>
-        </th>
-        <th>
-            <button  type="submit" class="btn btn-primary" ng-click="order('total')">Total</button>
-            <span class="sortorder" ng-show="predicate === 'total'" ng-class="{reverse:reverse}"></span>
-        </th>
-        <th>
-            <button  type="submit" class="btn btn-primary" ng-click="order('store')">Store</button>
-            <span class="sortorder" ng-show="predicate === 'store'" ng-class="{reverse:reverse}"></span>
-        </th>
-        <th>
-            <button  type="submit" class="btn btn-primary" ng-click="order('market')">Market</button>
-            <span class="sortorder" ng-show="predicate === 'market'" ng-class="{reverse:reverse}"></span>
-        </th>
-        
-        <tr ng-repeat='i in listadoInvoices' class="md-primary md-raised" ng-click="showAlert()">
-            <td>{{i.idInvoices | number}}</td>
-            <td>{{i.dateInvoice}}</td>
-            <td>{{i.productses.nameProduct}}</td>
-            <!--<td>{{i.storeInvoices.nameStore}}</td>-->
-            <td>{{i.storeInvoices.nameStore}}</td>
-            <td>{{i.storeInvoices.id.superMarketId}}</td>
-        </tr>
-       </tbody>
-       
-        
+            <th>
+                <button type="submit" class="btn btn-primary" ng-click="order('id')">Identificacion</button>
+                <span class="sortorder" ng-show="predicate === 'id'" ng-class="{reverse:reverse}"></span>
+            </th>
+            <th>
+                <button  type="submit" class="btn btn-primary" ng-click="order('date')">Date</button>
+                <span class="sortorder" ng-show="predicate === 'date'" ng-class="{reverse:reverse}"></span>
+            </th>
+            <th>
+            </th>
+
+            <tr ng-repeat='i in listadoInvoices' class="md-primary md-raised" >
+                <td>{{i.idInvoices| number}}</td>
+                <td>{{i.dateInvoice}}</td>
+                <td>{{i.productses.nameProduct}}</td>
+                <td>{{i.productses.nameProduct}}</td>
+                <!--<td>{{i.storeInvoices.nameStore}}</td>-->
+                <td><button  type="submit"  class="btn btn-info" ng-click="cargarProductos($event, i)">
+                    Detalles
+                </button><td>
+            </tr>
+        </tbody>
+
+
     </table>   
-  
+
 </div>
-   

@@ -7,16 +7,7 @@
     <property name="hibernate.connection.url">jdbc:mysql://desarrollo.is.escuelaing.edu.co:3306/coswgr6?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">coswgr6</property>
     <property name="hibernate.connection.password">gr606</property>
-    <mapping class="edu.eci.cosw.spademo.Invoices"/>
-    <mapping class="edu.eci.cosw.spademo.StoresId"/>
-    <mapping class="edu.eci.cosw.spademo.Stores"/>
-    <mapping class="edu.eci.cosw.spademo.DemoApplication"/>
-    <mapping class="edu.eci.cosw.spademo.Products"/>
-    <mapping class="edu.eci.cosw.spademo.ClientsApp"/>
-    <mapping class="edu.eci.cosw.spademo.ZonesId"/>
-    <mapping class="edu.eci.cosw.spademo.Supermarkets"/>
-    <mapping class="edu.eci.cosw.spademo.Roles"/>
-    <mapping class="edu.eci.cosw.spademo.Zones"/>
+
     <mapping class="edu.eci.cosw.spademo.mail.EnviadorMailController"/>
     <mapping class="edu.eci.cosw.spademo.mail.EnviadorMail"/>
     <mapping class="edu.eci.cosw.spademo.controllers.StoreController"/>
