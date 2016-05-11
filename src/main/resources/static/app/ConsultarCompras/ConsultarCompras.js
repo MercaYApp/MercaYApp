@@ -15,7 +15,7 @@ angular.module('myApp.ConsultarCompras', ['ngRoute'])
                 $scope.peso=0;
                 $scope.clientListadoInvoices = {};
                 $scope.listadoInvoices = {};
-                $scope.listadoProductos = {};
+                $rootScope.listadoProductos = {};
                 $scope.showAlert = function () {
                     var client = GetClientApp.get({id: $rootScope.credentials.username});
                     client.$promise.then(function (data) {
@@ -23,7 +23,7 @@ angular.module('myApp.ConsultarCompras', ['ngRoute'])
                         var listado = GetClientInvoices.get({id: $rootScope.credentials.username});
                         listado.$promise.then(function (data) {
                             $scope.listadoInvoices = data;
-                            /*////////////////BORRAR//////////////////////*/$scope.listadoProductos=$scope.listadoInvoices[0].productses;
+                                /*////////////////BORRAR//////////////////////*///$scope.listadoProductos=$scope.listadoInvoices[0].productses;
                         });
                     });
                 };
@@ -31,28 +31,40 @@ angular.module('myApp.ConsultarCompras', ['ngRoute'])
                 $scope.cargarProductos = function (ev, i) {
                     var products = GetProductInvoices.get({id: i.idInvoices});
                     products.$promise.then(function(data){
-                        $scope.listadoProductos=data;
+                        $rootScope.listadoProductos=data;
                         $scope.total=0;
                         $scope.peso=0;
-                        for(var j=0; j<$scope.listadoProductos.length;j++){
-                            var porcentaje=$scope.listadoProductos[j].percentage;
-                            var compra=$scope.listadoProductos[j].buyPrice;
+                        for(var j=0; j<$rootScope.listadoProductos.length;j++){
+                            var porcentaje=$rootScope.listadoProductos[j].percentage;
+                            var compra=$rootScope.listadoProductos[j].buyPrice;
                             $scope.total=$scope.total+compra*(1+(porcentaje)/100);
-                            $scope.peso=$scope.peso+$scope.listadoProductos[j].weight;  
+                            $scope.peso=$scope.peso+$rootScope.listadoProductos[j].weight;  
                         }
-                        alert("VENTA: "+$scope.total+"  PESO:  "+$scope.peso);
+                        //alert("VENTA: "+$scope.total+"  PESO:  "+$scope.peso);
+                        console.log("v2 REST response------> VENTA: "+$scope.total+"  PESO:  "+$scope.peso)
                         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
+                        alert($scope.listadoProductos);
                         $mdDialog.show({
-                            //controller: DialogController,
+                            //controller: ConsultarComprasCtrl,
                             templateUrl: 'ConsultarCompras/dialog1.tmpl.html',
                             parent: angular.element(document.body),
                             targetEvent: ev,
                             clickOutsideToClose: true,
+                            locals: {
+                                products: $scope.listadoProductos
+                            },
+                            controller: dialogController,
                             fullscreen: useFullScreen
                         })
                                 .then(function (answer) {
+                                    
+                                    console.log("--->Evento dialogo");
+                      
                                     $scope.status = 'You said the information was "' + answer + '".';
                                 }, function () {
+                      
+                                    console.log("--->Evento dialogo 2");
+                      
                                     $scope.status = 'You cancelled the dialog.';
                                 });
                         $scope.$watch(function () {
@@ -63,23 +75,11 @@ angular.module('myApp.ConsultarCompras', ['ngRoute'])
                         
                     });
                     
-                    /*$mdDialog.show(
-                     $mdDialog.alert()
-                     .parent(angular.element(document.querySelector('#popupContainer')))
-                     .title('This is an alert title')
-                     .clickOutsideToClose(true)
-                     .title("Invoice: "+i.idInvoices)
-                     
-                     .textContent("invoices.dateInvoice")
-                     .ariaLabel('Alert Dialog')
-                     .ok(' OK ')
-                     .targetEvent(ev)
-                     );*/
-                    
-
-
+                    function dialogController($scope, $mdDialog, products) {
+                        $scope.listadoProdcutos = products;
+                        $scope.closeDialog = function() {
+                          $mdDialog.hide();
+                        }
+                      }
                 };
-
-
-
             }]);
