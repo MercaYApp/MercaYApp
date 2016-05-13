@@ -1,8 +1,8 @@
 <md-dialog aria-label="Factura" class="md-padding" ng-cloak>
-    <form ng-controller="ConsultarComprasCtrl">
+    <form>
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2>Factura # {{listadoProductos[0].idProductos}} </h2>
+                <h2>Factura # {{invoiceDetalle.idInvoices}} </h2>
                 <span flex></span>
             </div>
         </md-toolbar>
@@ -36,8 +36,8 @@
                         <tr>
                             <td>TOTAL</td>
                             <td></td>
-                            <td>{{total | currency}}</td>
-                            <td>{{peso | number}}</td>
+                            <td>{{totalD | currency}}</td>
+                            <td>{{pesoD | number}}</td>
                         </tr>
                         
                     </tbody>

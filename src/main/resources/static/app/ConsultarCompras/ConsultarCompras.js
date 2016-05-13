@@ -10,7 +10,8 @@ angular.module('myApp.ConsultarCompras', ['ngRoute'])
             }])
 
 
-        .controller('ConsultarComprasCtrl', ['$scope', '$mdDialog', '$mdMedia', '$rootScope', 'GetClientInvoices', 'GetClientApp', 'GetProductInvoices', function ($scope, $mdDialog, $mdMedia, $rootScope, GetClientInvoices, GetClientApp, GetProductInvoices) {
+        .controller('ConsultarComprasCtrl', ['$scope', '$mdDialog', '$mdMedia', '$rootScope', 'GetClientInvoices', 'GetClientApp', 'GetProductInvoices', /*'GetClientsExternos',*/ 
+                                    function ($scope, $mdDialog, $mdMedia, $rootScope, GetClientInvoices, GetClientApp, GetProductInvoices/*, GetClientsExternos*/) {
                 $scope.total=0;
                 $scope.peso=0;
                 $scope.clientListadoInvoices = {};
@@ -26,45 +27,33 @@ angular.module('myApp.ConsultarCompras', ['ngRoute'])
                                 /*////////////////BORRAR//////////////////////*///$scope.listadoProductos=$scope.listadoInvoices[0].productses;
                         });
                     });
+                    
+                    //PROBANDO API EXTERNO
+                    /*var clientE = GetClientsExternos.get();
+                    clientE.$promise.then(function (data2) {
+                        $scope.clientExterno = data2;
+                        alert($scope.clientExterno.clientes.size+"Cliente externo");
+                        
+                    });*/
                 };
                 $scope.showAlert();
                 $scope.cargarProductos = function (ev, i) {
+                    $rootScope.idInvoiceDetalle=i;
                     var products = GetProductInvoices.get({id: i.idInvoices});
                     products.$promise.then(function(data){
                         $rootScope.listadoProductos=data;
-                        $scope.total=0;
-                        $scope.peso=0;
-                        for(var j=0; j<$rootScope.listadoProductos.length;j++){
-                            var porcentaje=$rootScope.listadoProductos[j].percentage;
-                            var compra=$rootScope.listadoProductos[j].buyPrice;
-                            $scope.total=$scope.total+compra*(1+(porcentaje)/100);
-                            $scope.peso=$scope.peso+$rootScope.listadoProductos[j].weight;  
-                        }
-                        //alert("VENTA: "+$scope.total+"  PESO:  "+$scope.peso);
-                        console.log("v2 REST response------> VENTA: "+$scope.total+"  PESO:  "+$scope.peso)
                         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
-                        alert($scope.listadoProductos);
                         $mdDialog.show({
-                            //controller: ConsultarComprasCtrl,
+                            controller: DialogController,
                             templateUrl: 'ConsultarCompras/dialog1.tmpl.html',
                             parent: angular.element(document.body),
                             targetEvent: ev,
                             clickOutsideToClose: true,
-                            locals: {
-                                products: $scope.listadoProductos
-                            },
-                            controller: dialogController,
                             fullscreen: useFullScreen
                         })
                                 .then(function (answer) {
-                                    
-                                    console.log("--->Evento dialogo");
-                      
                                     $scope.status = 'You said the information was "' + answer + '".';
                                 }, function () {
-                      
-                                    console.log("--->Evento dialogo 2");
-                      
                                     $scope.status = 'You cancelled the dialog.';
                                 });
                         $scope.$watch(function () {
@@ -75,11 +64,30 @@ angular.module('myApp.ConsultarCompras', ['ngRoute'])
                         
                     });
                     
-                    function dialogController($scope, $mdDialog, products) {
-                        $scope.listadoProdcutos = products;
-                        $scope.closeDialog = function() {
-                          $mdDialog.hide();
+                    function DialogController($scope, $mdDialog) {
+                        $scope.listadoProductos=$rootScope.listadoProductos;
+                        $scope.total=0;
+                        $scope.peso=0;
+                        $scope.invoiceDetalle=$rootScope.idInvoiceDetalle;
+                        for(var j=0; j<$rootScope.listadoProductos.length;j++){
+                            var porcentaje=$rootScope.listadoProductos[j].percentage;
+                            var compra=$rootScope.listadoProductos[j].buyPrice;
+                            $scope.total=$scope.total+compra*(1+(porcentaje)/100);
+                            $scope.peso=$scope.peso+$rootScope.listadoProductos[j].weight;  
                         }
+                        $scope.totalD=$scope.total;
+                        $scope.pesoD=$scope.peso;
+                        $scope.hide = function() {
+                            $mdDialog.hide();
+                          };
+                          $scope.cancel = function() {
+
+                              $mdDialog.cancel();
+
+                          };
+                          $scope.answer = function(answer) {
+                            $mdDialog.hide(answer);
+                          };
                       }
                 };
             }]);

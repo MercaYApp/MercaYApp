@@ -29,8 +29,8 @@ public class Store  implements java.io.Serializable {
 
 
      private StoreId id;
-     private int longitud;
-     private int latitud;
+     private double longitud;
+     private double latitud;
      private String nameStore;
      private Set<Invoice> invoiceses = new HashSet<>();
      private Supermarket supermarket;
@@ -77,21 +77,21 @@ public class Store  implements java.io.Serializable {
     
     
     @Column(name="longitud", nullable=false)
-    public int getLongitud() {
+    public double getLongitud() {
         return this.longitud;
     }
     
-    public void setLongitud(int longitud) {
+    public void setLongitud(double longitud) {
         this.longitud = longitud;
     }
 
     
     @Column(name="latitud", nullable=false)
-    public int getLatitud() {
+    public double getLatitud() {
         return this.latitud;
     }
     
-    public void setLatitud(int latitud) {
+    public void setLatitud(double latitud) {
         this.latitud = latitud;
     }
 

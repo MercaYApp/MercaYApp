@@ -119,4 +119,13 @@ angular.module('service.modulo1', ['ngRoute', 'ngResource'])
                     {get: {method: 'GET'}}
             );
             return zone;
-        });
+        })
+        
+        
+        //------------------GET CLIENTS API EXTERNO --------------
+        /*.factory('GetClientsExternos', function ($resource) {
+            var clienteE = $resource('/clientsAPI', {}, 
+                    {get: {method: 'GET'} }
+            );
+            return clienteE;
+        });*/
