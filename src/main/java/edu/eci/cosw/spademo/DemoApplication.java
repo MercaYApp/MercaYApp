@@ -113,7 +113,7 @@ public class DemoApplication {
                     .httpBasic()
                     .and()
                     .authorizeRequests()
-                    .antMatchers("/app/**", "/clientsApp", "/supermarkets").permitAll()
+                    .antMatchers("/app/**", "/clientsApp", "/clientsApp/**", "/roles/**", "/supermarkets", "/supermarkets/**", "/email").permitAll()
                     
                     .anyRequest().authenticated().and()
                     .logout().logoutSuccessUrl("/app/index.html#/viewLogin")
