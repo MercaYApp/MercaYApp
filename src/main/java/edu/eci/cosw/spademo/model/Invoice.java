@@ -38,6 +38,10 @@ public class Invoice  implements java.io.Serializable {
     public Invoice() {
     }
 
+    public Invoice(Date dateInvoice, Set<Product>  productses) {
+       this.dateInvoice = dateInvoice;
+       this.productses = productses;
+    }
 	
     public Invoice(long idInvoices, Date dateInvoice) {
         this.idInvoices = idInvoices;
@@ -50,7 +54,7 @@ public class Invoice  implements java.io.Serializable {
     }
    
     @Id
-    //@GeneratedValue(strategy=GenerationType.SEQUENCE)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     @Column(name="id_invoices", unique=true, nullable=false)
     public long getIdInvoices() {
         return this.idInvoices;
