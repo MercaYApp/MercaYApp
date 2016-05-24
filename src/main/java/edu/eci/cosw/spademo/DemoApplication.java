@@ -121,8 +121,8 @@ public class DemoApplication {
                     .permitAll()
                     .and().csrf()
                     .csrfTokenRepository(csrfTokenRepository()).and()
-                    
-                    .addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);
+                    .addFilterAfter(csrfHeaderFilter(), CsrfFilter.class)
+                    .csrf().disable();
         }
 
         private Filter csrfHeaderFilter() {
